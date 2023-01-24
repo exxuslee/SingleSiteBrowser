@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.compose.material:material-ripple:1.3.1@aar">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../.gradle/caches/transforms-3/af4ba7b400dd30ddd01b57d81e383dc3/transformed/jetified-material-ripple-1.3.1/res" />
-      <root url="jar://$PROJECT_DIR$/../../.gradle/caches/transforms-3/af4ba7b400dd30ddd01b57d81e383dc3/transformed/jetified-material-ripple-1.3.1/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../.gradle/caches/transforms-3/af4ba7b400dd30ddd01b57d81e383dc3/transformed/jetified-material-ripple-1.3.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/70049ec53fcfbb40fde9e54c2c3ce04f/transformed/jetified-material-ripple-1.3.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/70049ec53fcfbb40fde9e54c2c3ce04f/transformed/jetified-material-ripple-1.3.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/70049ec53fcfbb40fde9e54c2c3ce04f/transformed/jetified-material-ripple-1.3.1/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../../.gradle/caches/modules-2/files-2.1/androidx.compose.material/material-ripple/1.3.1/17dc970b3b9979e18c1401c0d30c381a1d4eeff1/material-ripple-1.3.1-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.compose.material/material-ripple/1.3.1/17dc970b3b9979e18c1401c0d30c381a1d4eeff1/material-ripple-1.3.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
