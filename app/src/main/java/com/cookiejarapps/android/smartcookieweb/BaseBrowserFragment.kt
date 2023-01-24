@@ -16,7 +16,6 @@ import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -27,22 +26,20 @@ import com.cookiejarapps.android.smartcookieweb.*
 import com.cookiejarapps.android.smartcookieweb.browser.BrowsingMode
 import com.cookiejarapps.android.smartcookieweb.browser.HomepageChoice
 import com.cookiejarapps.android.smartcookieweb.browser.home.HomeFragmentDirections
+import com.cookiejarapps.android.smartcookieweb.browser.home.SharedViewModel
 import com.cookiejarapps.android.smartcookieweb.components.StoreProvider
-import com.cookiejarapps.android.smartcookieweb.components.toolbar.*
+import com.cookiejarapps.android.smartcookieweb.databinding.FragmentBrowserBinding
 import com.cookiejarapps.android.smartcookieweb.ext.components
+import com.cookiejarapps.android.smartcookieweb.integration.ContextMenuIntegration
 import com.cookiejarapps.android.smartcookieweb.integration.FindInPageIntegration
+import com.cookiejarapps.android.smartcookieweb.integration.ReaderModeIntegration
 import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
 import mozilla.components.browser.state.action.ContentAction
-import mozilla.components.browser.state.selector.findCustomTab
-import mozilla.components.browser.state.selector.findCustomTabOrSelectedTab
-import mozilla.components.browser.state.selector.findTabOrCustomTab
-import mozilla.components.browser.state.selector.findTabOrCustomTabOrSelectedTab
-import mozilla.components.browser.state.selector.getNormalOrPrivateTabs
-import mozilla.components.browser.state.selector.selectedTab
+import mozilla.components.browser.state.selector.*
 import mozilla.components.browser.state.state.CustomTabSessionState
 import mozilla.components.browser.state.state.SessionState
 import mozilla.components.browser.state.state.TabSessionState
@@ -51,17 +48,14 @@ import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.browser.thumbnails.BrowserThumbnails
 import mozilla.components.feature.app.links.AppLinksFeature
 import mozilla.components.feature.downloads.DownloadsFeature
-import mozilla.components.feature.downloads.share.ShareDownloadFeature
 import mozilla.components.feature.intent.ext.EXTRA_SESSION_ID
 import mozilla.components.feature.media.fullscreen.MediaSessionFullscreenFeature
-import mozilla.components.feature.privatemode.feature.SecureWindowFeature
 import mozilla.components.feature.prompts.PromptFeature
 import mozilla.components.feature.search.SearchFeature
 import mozilla.components.feature.session.FullScreenFeature
 import mozilla.components.feature.session.PictureInPictureFeature
 import mozilla.components.feature.session.SessionFeature
 import mozilla.components.feature.session.SwipeRefreshFeature
-import mozilla.components.feature.session.behavior.EngineViewBrowserToolbarBehavior
 import mozilla.components.feature.sitepermissions.SitePermissionsFeature
 import mozilla.components.lib.state.ext.consumeFlow
 import mozilla.components.lib.state.ext.flowScoped
@@ -70,17 +64,9 @@ import mozilla.components.support.base.feature.PermissionsFeature
 import mozilla.components.support.base.feature.UserInteractionHandler
 import mozilla.components.support.base.feature.ViewBoundFeatureWrapper
 import mozilla.components.support.ktx.android.view.exitImmersiveMode
-import mozilla.components.support.ktx.android.view.hideKeyboard
 import mozilla.components.support.ktx.kotlinx.coroutines.flow.ifAnyChanged
 import mozilla.components.support.ktx.kotlinx.coroutines.flow.ifChanged
-import com.cookiejarapps.android.smartcookieweb.integration.ContextMenuIntegration
-import com.cookiejarapps.android.smartcookieweb.components.toolbar.ToolbarPosition
-import com.cookiejarapps.android.smartcookieweb.integration.ReaderModeIntegration
-import com.cookiejarapps.android.smartcookieweb.ssl.showSslDialog
-import com.cookiejarapps.android.smartcookieweb.browser.home.SharedViewModel
 import java.lang.ref.WeakReference
-import mozilla.components.feature.session.behavior.ToolbarPosition as MozacToolbarPosition
-import com.cookiejarapps.android.smartcookieweb.databinding.FragmentBrowserBinding
 
 /**
  * Base fragment extended by [BrowserFragment].
@@ -91,7 +77,6 @@ import com.cookiejarapps.android.smartcookieweb.databinding.FragmentBrowserBindi
 @Suppress("TooManyFunctions", "LargeClass")
 abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, ActivityResultHandler, AccessibilityManager.AccessibilityStateChangeListener {
 
-    private lateinit var browserFragmentStore: BrowserFragmentStore
     private lateinit var browserAnimator: BrowserAnimator
 
     protected val thumbnailsFeature = ViewBoundFeatureWrapper<BrowserThumbnails>()
@@ -132,12 +117,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
 
         _binding = FragmentBrowserBinding.inflate(inflater, container, false)
         val view = binding.root
-
-        browserFragmentStore = StoreProvider.get(this) {
-            BrowserFragmentStore(
-                BrowserFragmentState()
-            )
-        }
 
         return view
     }
@@ -187,24 +166,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
             action = Intent.ACTION_VIEW
             putExtra(BrowserActivity.OPEN_TO_BROWSER, true)
         }
-
-        val browserToolbarController = DefaultBrowserToolbarController(
-            store = store,
-            activity = activity,
-            navController = findNavController(),
-            engineView = binding.engineView,
-            customTabSessionId = customTabSessionId,
-            onTabCounterClicked = {
-                thumbnailsFeature.get()?.requestScreenshot()
-
-                val drawerLayout = activity.findViewById<DrawerLayout>(R.id.drawer_layout)
-                val tabDrawer = if(UserPreferences(activity).swapDrawers) activity.findViewById<FrameLayout>(R.id.right_drawer) else activity.findViewById<FrameLayout>(R.id.left_drawer)
-
-                if (tabDrawer != null) {
-                    drawerLayout?.openDrawer(tabDrawer)
-                }
-            }
-        )
 
         findInPageIntegration.set(
             feature = FindInPageIntegration(
@@ -324,7 +285,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                 storage = context.components.permissionStorage,
                 fragmentManager = parentFragmentManager,
                 promptsStyling = SitePermissionsFeature.PromptsStyling(
-                    gravity = getAppropriateLayoutGravity(),
+                    gravity = 0,
                     shouldWidthMatchParent = true,
                     positiveButtonBackgroundColor = accentHighContrastColor,
                     positiveButtonTextColor = R.color.photonWhite
@@ -478,30 +439,13 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
 
         if (UserPreferences(context).hideBarWhileScrolling) {
             binding.engineView.setDynamicToolbarMaxHeight(toolbarHeight)
-
-            val toolbarPosition = if (UserPreferences(context).shouldUseBottomToolbar) {
-                MozacToolbarPosition.BOTTOM
-            } else {
-                MozacToolbarPosition.TOP
-            }
-            (binding.swipeRefresh.layoutParams as CoordinatorLayout.LayoutParams).behavior =
-                EngineViewBrowserToolbarBehavior(
-                    context,
-                    null,
-                    binding.swipeRefresh,
-                    toolbarHeight,
-                    toolbarPosition
-                )
         } else {
             binding.engineView.setDynamicToolbarMaxHeight(0)
 
             val swipeRefreshParams =
                 binding.swipeRefresh.layoutParams as CoordinatorLayout.LayoutParams
-            if (UserPreferences(context).shouldUseBottomToolbar) {
                 swipeRefreshParams.bottomMargin = toolbarHeight
-            } else {
-                swipeRefreshParams.topMargin = toolbarHeight
-            }
+
         }
     }
 
@@ -602,14 +546,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     }
 
     @CallSuper
-    override fun onPause() {
-        super.onPause()
-        if (findNavController().currentDestination?.id != R.id.searchDialogFragment) {
-            view?.hideKeyboard()
-        }
-    }
-
-    @CallSuper
     override fun onStop() {
         super.onStop()
         initUIJob?.cancel()
@@ -701,12 +637,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         }
         return false
     }
-
-    /**
-     * Returns the layout [android.view.Gravity] for the quick settings and ETP dialog.
-     */
-    protected fun getAppropriateLayoutGravity(): Int =
-        UserPreferences(requireContext()).toolbarPositionType.androidGravity
 
     /**
      * Set the activity normal/private theme to match the current session.

@@ -57,10 +57,8 @@ class TabsTrayFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View{
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentTabstrayBinding.inflate(inflater, container, false)
         val view = binding.root
 
@@ -70,8 +68,9 @@ class TabsTrayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        browsingModeManager =  (activity as BrowserActivity).browsingModeManager
-        configuration = Configuration(if (browsingModeManager.mode == BrowsingMode.Normal) BrowserTabType.NORMAL else BrowserTabType.PRIVATE)
+        browsingModeManager = (activity as BrowserActivity).browsingModeManager
+        configuration =
+            Configuration(if (browsingModeManager.mode == BrowsingMode.Normal) BrowserTabType.NORMAL else BrowserTabType.PRIVATE)
 
         val tabsAdapter = createTabsTray()
 
@@ -81,9 +80,7 @@ class TabsTrayFragment : Fragment() {
                 store = components.store,
                 defaultTabsFilter = { it.filterFromConfig(configuration) },
                 onCloseTray = ::closeTabsTray
-            ),
-            owner = this,
-            view = view
+            ), owner = this, view = view
         )
 
         binding.tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
@@ -125,8 +122,7 @@ class TabsTrayFragment : Fragment() {
             requireContext().resources.getString(R.string.close_app)
         )
 
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle(resources.getString(R.string.mozac_feature_addons_remove))
+        MaterialAlertDialogBuilder(requireContext()).setTitle(resources.getString(R.string.mozac_feature_addons_remove))
             .setItems(items) { dialog, which ->
                 when (which) {
                     0 -> {
@@ -155,15 +151,13 @@ class TabsTrayFragment : Fragment() {
                         ) {
                             components.tabsUseCases.undo.invoke()
                         }
-                        if(UserPreferences(requireContext()).shouldUseBottomToolbar) snackbar.anchorView =
-                            requireActivity().findViewById(R.id.toolbar)
+                        snackbar.anchorView = requireActivity().findViewById(R.id.toolbar)
                         snackbar.show()
                     }
                     1 -> {
                         val tabList = components.store.state.tabs.toMutableList()
                         tabList.remove(components.store.state.selectedTab)
-                        val idList: MutableList<String> =
-                            emptyList<String>().toMutableList()
+                        val idList: MutableList<String> = emptyList<String>().toMutableList()
                         for (i in tabList) idList.add(i.id)
                         components.tabsUseCases.removeTabs.invoke(idList.toList())
                     }
@@ -179,8 +173,7 @@ class TabsTrayFragment : Fragment() {
                         requireActivity().finishAndRemoveTask()
                     }
                 }
-            }
-            .show()
+            }.show()
     }
 
     private fun closeTabsTray() {
@@ -195,20 +188,21 @@ class TabsTrayFragment : Fragment() {
     private fun createTabsTray(): TabsTray {
         val thumbnailLoader = ThumbnailLoader(components.thumbnailStorage)
 
-        val adapter = TabListAdapter(
-            thumbnailLoader = thumbnailLoader,
+        val adapter = TabListAdapter(thumbnailLoader = thumbnailLoader,
             delegate = object : TabsTray.Delegate {
                 override fun onTabSelected(tab: TabSessionState, source: String?) {
                     components.tabsUseCases.selectTab(tab.id)
                     closeTabsTray()
 
-                    if(tab.content.url == "about:homepage"){
+                    if (tab.content.url == "about:homepage") {
                         requireContext().components.sessionUseCases.reload(tab.id)
-                    }
-                    else if (requireActivity().findNavController(R.id.container).currentDestination?.id == R.id.browserFragment) {
+                    } else if (requireActivity().findNavController(R.id.container).currentDestination?.id == R.id.browserFragment) {
                         return
-                    } else if (!requireActivity().findNavController(R.id.container).popBackStack(R.id.browserFragment, false)) {
-                        requireActivity().findNavController(R.id.container).navigate(R.id.browserFragment)
+                    } else if (!requireActivity().findNavController(R.id.container)
+                            .popBackStack(R.id.browserFragment, false)
+                    ) {
+                        requireActivity().findNavController(R.id.container)
+                            .navigate(R.id.browserFragment)
                     }
                 }
 
@@ -219,35 +213,41 @@ class TabsTrayFragment : Fragment() {
                     // a homepage tab or not, so we switch to the browser fragment just in case and reload so the browser will switch back to
                     // the homepage if the new tab loads about:homepage
                     // TODO
-                    if(requireContext().components.store.state.findCustomTabOrSelectedTab()?.content?.url == "about:homepage"){
-                        if (!requireActivity().findNavController(R.id.container).popBackStack(R.id.browserFragment, false)) {
-                            requireActivity().findNavController(R.id.container).navigate(R.id.browserFragment)
+                    if (requireContext().components.store.state.findCustomTabOrSelectedTab()?.content?.url == "about:homepage") {
+                        if (!requireActivity().findNavController(R.id.container)
+                                .popBackStack(R.id.browserFragment, false)
+                        ) {
+                            requireActivity().findNavController(R.id.container)
+                                .navigate(R.id.browserFragment)
                         }
                     }
 
-                    if(requireActivity().components.store.state.tabs.isEmpty() && UserPreferences(requireActivity()).homepageType == HomepageChoice.VIEW.ordinal){
+                    if (requireActivity().components.store.state.tabs.isEmpty() && UserPreferences(
+                            requireActivity()
+                        ).homepageType == HomepageChoice.VIEW.ordinal
+                    ) {
                         requireActivity().finish()
                     }
                 }
-            }
-        )
+            })
 
         binding.tabsTray.adapter = adapter
-        val layoutManager = if(UserPreferences(requireContext()).showTabsInGrid) GridLayoutManager(
-            context,
-            2
+        val layoutManager = if (UserPreferences(requireContext()).showTabsInGrid) GridLayoutManager(
+            context, 2
         ) else LinearLayoutManager(context)
-        layoutManager.stackFromEnd = !UserPreferences(requireContext()).showTabsInGrid && UserPreferences(
-            requireContext()
-        ).stackFromBottom
+        layoutManager.stackFromEnd =
+            !UserPreferences(requireContext()).showTabsInGrid && UserPreferences(
+                requireContext()
+            ).stackFromBottom
         binding.tabsTray.layoutManager = layoutManager
 
         return adapter
     }
 
     fun notifyBrowsingModeStateChanged() {
-        browsingModeManager =  (activity as BrowserActivity).browsingModeManager
-        configuration = Configuration(if (browsingModeManager.mode == BrowsingMode.Normal) BrowserTabType.NORMAL else BrowserTabType.PRIVATE)
+        browsingModeManager = (activity as BrowserActivity).browsingModeManager
+        configuration =
+            Configuration(if (browsingModeManager.mode == BrowsingMode.Normal) BrowserTabType.NORMAL else BrowserTabType.PRIVATE)
 
         binding.tabLayout.selectTab(binding.tabLayout.getTabAt(browsingModeManager.mode.ordinal))
     }

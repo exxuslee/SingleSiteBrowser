@@ -22,13 +22,11 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.cookiejarapps.android.smartcookieweb.browser.*
 import com.cookiejarapps.android.smartcookieweb.browser.home.HomeFragmentDirections
-import com.cookiejarapps.android.smartcookieweb.browser.tabs.TabsTrayFragment
 import com.cookiejarapps.android.smartcookieweb.databinding.ActivityMainBinding
 import com.cookiejarapps.android.smartcookieweb.ext.alreadyOnDestination
 import com.cookiejarapps.android.smartcookieweb.ext.components
 import com.cookiejarapps.android.smartcookieweb.ext.nav
 import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
-import com.cookiejarapps.android.smartcookieweb.search.SearchDialogFragmentDirections
 import com.cookiejarapps.android.smartcookieweb.utils.PrintUtils
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -302,8 +300,6 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
             NavGraphDirections.actionGlobalBrowser(customTabSessionId)
         BrowserDirection.FromHome ->
             HomeFragmentDirections.actionGlobalBrowser(customTabSessionId)
-        BrowserDirection.FromSearchDialog ->
-            SearchDialogFragmentDirections.actionGlobalBrowser(customTabSessionId)
     }
 
     private fun load(

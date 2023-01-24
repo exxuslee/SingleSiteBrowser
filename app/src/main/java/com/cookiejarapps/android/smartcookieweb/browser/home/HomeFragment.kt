@@ -95,8 +95,6 @@ class HomeFragment : Fragment() {
         val activity = activity as BrowserActivity
         val components = requireContext().components
 
-        updateLayout(view)
-
         if (!UserPreferences(requireContext()).showShortcuts) {
             binding.shortcutName.visibility = View.GONE
             binding.shortcutGrid.visibility = View.GONE
@@ -283,35 +281,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun updateLayout(view: View) {
-        when (UserPreferences(view.context).toolbarPosition) {
-            ToolbarPosition.TOP.ordinal -> {
-                binding.toolbarLayout.layoutParams = CoordinatorLayout.LayoutParams(
-                    ConstraintLayout.LayoutParams.MATCH_PARENT,
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT
-                ).apply {
-                    gravity = Gravity.TOP
-                }
-
-                ConstraintSet().apply {
-                    clone(binding.toolbarLayout)
-                    clear(binding.bottomBar.id, BOTTOM)
-                    clear(binding.bottomBarShadow.id, BOTTOM)
-                    connect(binding.bottomBar.id, TOP, PARENT_ID, TOP)
-                    connect(binding.bottomBarShadow.id, TOP, binding.bottomBar.id, BOTTOM)
-                    connect(binding.bottomBarShadow.id, BOTTOM, PARENT_ID, BOTTOM)
-                    applyTo(binding.toolbarLayout)
-                }
-
-                binding.homeAppBar.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                    topMargin =
-                        resources.getDimensionPixelSize(R.dimen.home_fragment_top_toolbar_header_margin)
-                }
-            }
-            ToolbarPosition.BOTTOM.ordinal -> {
-            }
-        }
-    }
 
     @Suppress("LongMethod", "ComplexMethod")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -327,9 +296,6 @@ class HomeFragment : Fragment() {
             )
         )
 
-        binding.toolbarWrapper.setOnClickListener {
-            navigateToSearch()
-        }
 
         binding.tabButton.setOnClickListener {
             openTabDrawer()
@@ -346,10 +312,6 @@ class HomeFragment : Fragment() {
         }
 
         updateTabCounter(components.store.state)
-
-        if (bundleArgs.getBoolean(FOCUS_ON_ADDRESS_BAR)) {
-            navigateToSearch()
-        }
     }
 
     private fun observeSearchEngineChanges() {
@@ -394,16 +356,6 @@ class HomeFragment : Fragment() {
         appBarLayout = null
         bundleArgs.clear()
         requireActivity().window.clearFlags(FLAG_SECURE)
-    }
-
-    private fun navigateToSearch() {
-        val directions =
-            HomeFragmentDirections.actionGlobalSearchDialog(
-                sessionId = null
-            )
-
-        // TODO: OPTIONS
-        nav(R.id.homeFragment, directions, null)
     }
 
     private fun openTabDrawer() {

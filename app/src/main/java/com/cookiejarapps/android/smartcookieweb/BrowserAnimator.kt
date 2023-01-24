@@ -74,17 +74,8 @@ class BrowserAnimator(
     companion object {
         fun getToolbarNavOptions(context: Context): NavOptions {
             val navOptions = NavOptions.Builder()
-
-            when (UserPreferences(context).toolbarPosition) {
-                ToolbarPosition.TOP.ordinal -> {
-                    navOptions.setEnterAnim(R.anim.fade_in)
-                    navOptions.setExitAnim(R.anim.fade_out)
-                }
-                ToolbarPosition.BOTTOM.ordinal -> {
-                    navOptions.setEnterAnim(R.anim.fade_in_up)
-                    navOptions.setExitAnim(R.anim.fade_out_down)
-                }
-            }
+            navOptions.setEnterAnim(R.anim.fade_in)
+            navOptions.setExitAnim(R.anim.fade_out)
 
             return navOptions.build()
         }
