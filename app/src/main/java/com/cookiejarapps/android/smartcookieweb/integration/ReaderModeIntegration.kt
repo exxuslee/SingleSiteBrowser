@@ -18,7 +18,6 @@ class ReaderModeIntegration(
     context: Context,
     engine: Engine,
     store: BrowserStore,
-    toolbar: BrowserToolbar,
     view: ReaderViewControlsView,
     readerViewAppearanceButton: FloatingActionButton
 ) : LifecycleAwareFeature, UserInteractionHandler {
@@ -48,7 +47,6 @@ class ReaderModeIntegration(
     }
 
     init {
-        toolbar.addPageAction(readerViewButton)
         readerViewAppearanceButton.setOnClickListener { feature.showControls() }
     }
 
@@ -57,7 +55,6 @@ class ReaderModeIntegration(
         readerViewButton.setSelected(active)
 
         if (active) readerViewAppearanceButton.show() else readerViewAppearanceButton.hide()
-        toolbar.invalidateActions()
     }
 
     override fun start() {

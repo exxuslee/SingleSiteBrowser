@@ -35,7 +35,6 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
                 activity = requireActivity(),
                 contentLayout = binding.browserLayout,
                 tabPreview = binding.tabPreview,
-                toolbarLayout = browserToolbarView.view,
                 store = components.store,
                 selectTabUseCase = components.tabsUseCases.selectTab
             )
@@ -46,17 +45,6 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
             owner = this,
             view = view
         )
-
-        if(UserPreferences(requireContext()).showAddonsInBar){
-            webExtToolbarFeature.set(
-                feature = WebExtensionToolbarFeature(
-                    browserToolbarView.view,
-                    components.store
-                ),
-                owner = this,
-                view = view
-            )
-        }
 
         windowFeature.set(
             feature = WindowFeature(

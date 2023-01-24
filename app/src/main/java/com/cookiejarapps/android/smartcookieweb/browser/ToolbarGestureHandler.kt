@@ -34,7 +34,6 @@ class ToolbarGestureHandler(
     private val activity: Activity,
     private val contentLayout: View,
     private val tabPreview: FakeTab,
-    private val toolbarLayout: View,
     private val store: BrowserStore,
     private val selectTabUseCase: TabsUseCases.SelectTabUseCase
 ) : SwipeGestureListener {
@@ -71,7 +70,6 @@ class ToolbarGestureHandler(
         @Suppress("ComplexCondition")
         return if (
             !activity.window.decorView.isKeyboardVisible() &&
-            start.isInToolbar() &&
             abs(dx) > touchSlop &&
             abs(dy) < abs(dx)
         ) {
@@ -250,17 +248,6 @@ class ToolbarGestureHandler(
         }.start()
     }
 
-    private fun PointF.isInToolbar(): Boolean {
-        val toolbarLocation = toolbarLayout.getRectWithScreenLocation()
-        // In Android 10, the system gesture touch area overlaps the bottom of the toolbar, so
-        // lets make our swipe area taller by that amount
-        activity.window.decorView.getWindowInsets()?.let { insets ->
-            if (UserPreferences(activity).toolbarPosition == ToolbarPosition.BOTTOM.ordinal) {
-                toolbarLocation.top -= (insets.mandatorySystemGestureInsets.bottom - insets.stableInsetBottom)
-            }
-        }
-        return toolbarLocation.contains(toPoint())
-    }
 
     private val Rect.visibleWidth: Int
         get() = if (left < 0) {

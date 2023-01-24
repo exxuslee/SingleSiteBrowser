@@ -30,7 +30,6 @@ interface BrowserToolbarViewInteractor {
     fun onBrowserToolbarPaste(text: String)
     fun onBrowserToolbarPasteAndGo(text: String)
     fun onBrowserToolbarClicked()
-    fun onBrowserToolbarMenuItemTapped(item: ToolbarMenu.Item)
     fun onTabCounterClicked()
     fun onTabCounterMenuItemTapped(item: TabCounterMenu.Item)
     fun onScrolled(offset: Int)
@@ -61,7 +60,6 @@ class BrowserToolbarView(
     internal var view: BrowserToolbar = layout
         .findViewById(R.id.toolbar)
 
-    val toolbarIntegration: ToolbarIntegration
 
     //TODO: FIX THIS
     @VisibleForTesting
@@ -135,35 +133,6 @@ class BrowserToolbarView(
 
                 display.hint = context.getString(R.string.search)
             }
-
-            val menuToolbar: ToolbarMenu
-            menuToolbar = BrowserMenu(
-                    context = this,
-                    store = components.store,
-                    onItemTapped = {
-                        it.performHapticIfNeeded(view)
-                        interactor.onBrowserToolbarMenuItemTapped(it)
-                    },
-                    lifecycleOwner = lifecycleOwner,
-                    isPinningSupported = isPinningSupported,
-                shouldReverseItems = settings.toolbarPosition == ToolbarPosition.TOP.ordinal
-                )
-                view.display.setMenuDismissAction {
-                    view.invalidateActions()
-                }
-
-            toolbarIntegration = DefaultToolbarIntegration(
-                    this,
-                    view,
-                    menuToolbar,
-                    ShippedDomainsProvider().also { it.initialize(this) },
-                    components.historyStorage,
-                    lifecycleOwner,
-                    sessionId = null,
-                    isPrivate = components.store.state.selectedTab?.content?.private ?: false,
-                    interactor = interactor,
-                    engine = components.engine
-                )
         }
     }
 
@@ -238,16 +207,6 @@ class BrowserToolbarView(
     internal fun setDynamicToolbarBehavior(toolbarPosition: MozacToolbarPosition) {
         (view.layoutParams as? CoordinatorLayout.LayoutParams)?.apply {
             behavior = BrowserToolbarBehavior(view.context, null, toolbarPosition)
-        }
-    }
-
-    @Suppress("ComplexCondition")
-    private fun ToolbarMenu.Item.performHapticIfNeeded(view: View) {
-        if (this is ToolbarMenu.Item.Reload && this.bypassCache ||
-            this is ToolbarMenu.Item.Back && this.viewHistory ||
-            this is ToolbarMenu.Item.Forward && this.viewHistory
-        ) {
-            view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
         }
     }
 }
