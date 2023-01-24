@@ -36,7 +36,6 @@ import com.cookiejarapps.android.smartcookieweb.browser.shortcuts.ShortcutGridAd
 import com.cookiejarapps.android.smartcookieweb.databinding.FragmentHomeBinding
 import com.cookiejarapps.android.smartcookieweb.ext.components
 import com.cookiejarapps.android.smartcookieweb.ext.nav
-import com.cookiejarapps.android.smartcookieweb.history.HistoryActivity
 import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -98,25 +97,39 @@ class HomeFragment : Fragment() {
 
         updateLayout(view)
 
-        if(!UserPreferences(requireContext()).showShortcuts){
+        if (!UserPreferences(requireContext()).showShortcuts) {
             binding.shortcutName.visibility = View.GONE
             binding.shortcutGrid.visibility = View.GONE
         }
 
-        if(!UserPreferences(requireContext()).shortcutDrawerOpen){
-            binding.shortcutName.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_shortcuts, 0, R.drawable.ic_baseline_chevron_up, 0)
+        if (!UserPreferences(requireContext()).shortcutDrawerOpen) {
+            binding.shortcutName.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                R.drawable.ic_baseline_shortcuts,
+                0,
+                R.drawable.ic_baseline_chevron_up,
+                0
+            )
             binding.shortcutGrid.visibility = View.GONE
         }
 
         binding.shortcutName.setOnClickListener {
-            if(UserPreferences(requireContext()).shortcutDrawerOpen){
+            if (UserPreferences(requireContext()).shortcutDrawerOpen) {
                 UserPreferences(requireContext()).shortcutDrawerOpen = false
-                binding.shortcutName.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_shortcuts, 0, R.drawable.ic_baseline_chevron_up, 0)
+                binding.shortcutName.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    R.drawable.ic_baseline_shortcuts,
+                    0,
+                    R.drawable.ic_baseline_chevron_up,
+                    0
+                )
                 binding.shortcutGrid.visibility = View.GONE
-            }
-            else{
+            } else {
                 UserPreferences(requireContext()).shortcutDrawerOpen = true
-                binding.shortcutName.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_shortcuts, 0, R.drawable.ic_baseline_chevron_down, 0)
+                binding.shortcutName.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    R.drawable.ic_baseline_shortcuts,
+                    0,
+                    R.drawable.ic_baseline_chevron_down,
+                    0
+                )
                 binding.shortcutGrid.visibility = View.VISIBLE
             }
         }
@@ -146,22 +159,32 @@ class HomeFragment : Fragment() {
 
         binding.shortcutGrid.setOnItemClickListener { _, _, position, _ ->
             findNavController().navigate(
-                    R.id.browserFragment
-                )
+                R.id.browserFragment
+            )
 
-                components.sessionUseCases.loadUrl(
-                    (binding.shortcutGrid.adapter.getItem(position) as ShortcutEntity).url!!)
+            components.sessionUseCases.loadUrl(
+                (binding.shortcutGrid.adapter.getItem(position) as ShortcutEntity).url!!
+            )
         }
 
         binding.shortcutGrid.setOnItemLongClickListener { _, _, position, _ ->
-            val items = arrayOf(resources.getString(R.string.edit_shortcut), resources.getString(R.string.delete_shortcut))
+            val items = arrayOf(
+                resources.getString(R.string.edit_shortcut),
+                resources.getString(R.string.delete_shortcut)
+            )
 
             AlertDialog.Builder(requireContext())
                 .setTitle(resources.getString(R.string.edit_shortcut))
                 .setItems(items) { _, which ->
-                    when(which){
-                        0 -> showEditShortcutDialog(position, binding.shortcutGrid.adapter as ShortcutGridAdapter)
-                        1 -> deleteShortcut(binding.shortcutGrid.adapter.getItem(position) as ShortcutEntity, binding.shortcutGrid.adapter as ShortcutGridAdapter)
+                    when (which) {
+                        0 -> showEditShortcutDialog(
+                            position,
+                            binding.shortcutGrid.adapter as ShortcutGridAdapter
+                        )
+                        1 -> deleteShortcut(
+                            binding.shortcutGrid.adapter.getItem(position) as ShortcutEntity,
+                            binding.shortcutGrid.adapter as ShortcutGridAdapter
+                        )
                     }
                 }
                 .show()
@@ -173,8 +196,13 @@ class HomeFragment : Fragment() {
             showCreateShortcutDialog(binding.shortcutGrid.adapter as ShortcutGridAdapter)
         }
 
-        if(browsingModeManager.mode == BrowsingMode.Private) {
-            binding.toolbarWrapper.background = context?.let { ContextCompat.getDrawable(it, R.drawable.toolbar_background_private) }
+        if (browsingModeManager.mode == BrowsingMode.Private) {
+            binding.toolbarWrapper.background = context?.let {
+                ContextCompat.getDrawable(
+                    it,
+                    R.drawable.toolbar_background_private
+                )
+            }
         }
 
         appBarLayout = binding.homeAppBar
@@ -188,10 +216,11 @@ class HomeFragment : Fragment() {
         getMenuButton()?.dismissMenu()
     }
 
-    private fun showEditShortcutDialog(position: Int, adapter: ShortcutGridAdapter){
+    private fun showEditShortcutDialog(position: Int, adapter: ShortcutGridAdapter) {
         val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         builder.setTitle(resources.getString(R.string.edit_shortcut))
-        val viewInflated: View = LayoutInflater.from(context).inflate(R.layout.add_shortcut_dialog, view as ViewGroup?, false)
+        val viewInflated: View = LayoutInflater.from(context)
+            .inflate(R.layout.add_shortcut_dialog, view as ViewGroup?, false)
         val url = viewInflated.findViewById<View>(R.id.urlEditText) as EditText
         url.setText(adapter.list[position].url)
         val name = viewInflated.findViewById<View>(R.id.nameEditText) as EditText
@@ -213,10 +242,11 @@ class HomeFragment : Fragment() {
         builder.show()
     }
 
-    private fun showCreateShortcutDialog(adapter: ShortcutGridAdapter){
+    private fun showCreateShortcutDialog(adapter: ShortcutGridAdapter) {
         val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         builder.setTitle(resources.getString(R.string.add_shortcut))
-        val viewInflated: View = LayoutInflater.from(context).inflate(R.layout.add_shortcut_dialog, view as ViewGroup?, false)
+        val viewInflated: View = LayoutInflater.from(context)
+            .inflate(R.layout.add_shortcut_dialog, view as ViewGroup?, false)
         val url = viewInflated.findViewById<View>(R.id.urlEditText) as EditText
         val name = viewInflated.findViewById<View>(R.id.nameEditText) as EditText
         builder.setView(viewInflated)
@@ -229,7 +259,12 @@ class HomeFragment : Fragment() {
             adapter.notifyDataSetChanged()
 
             GlobalScope.launch {
-                database?.shortcutDao()?.insertAll(ShortcutEntity(url = url.text.toString(), title = name.text.toString()))
+                database?.shortcutDao()?.insertAll(
+                    ShortcutEntity(
+                        url = url.text.toString(),
+                        title = name.text.toString()
+                    )
+                )
             }
         }
         builder.setNegativeButton(android.R.string.cancel) { dialog, _ -> dialog.cancel() }
@@ -379,21 +414,20 @@ class HomeFragment : Fragment() {
             context,
             onItemTapped = {
                 when (it) {
-                    HomeMenu.Item.Settings -> {                    }
+                    HomeMenu.Item.Settings -> {}
                     HomeMenu.Item.Bookmarks -> {
                         val drawerLayout = activity?.findViewById<DrawerLayout>(R.id.drawer_layout)
-                        val bookmarksDrawer = if(UserPreferences(requireContext()).swapDrawers) requireActivity().findViewById<FrameLayout>(R.id.left_drawer) else requireActivity().findViewById<FrameLayout>(R.id.right_drawer)
+                        val bookmarksDrawer =
+                            if (UserPreferences(requireContext()).swapDrawers) requireActivity().findViewById<FrameLayout>(
+                                R.id.left_drawer
+                            ) else requireActivity().findViewById<FrameLayout>(R.id.right_drawer)
 
                         if (bookmarksDrawer != null) {
                             drawerLayout?.openDrawer(bookmarksDrawer)
                         }
                     }
-                    HomeMenu.Item.History -> {
-                        val settings = Intent(activity, HistoryActivity::class.java)
-                        settings.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                        activity?.startActivity(settings)
-                    }
-                    HomeMenu.Item.AddonsManager -> {                    }
+                    HomeMenu.Item.History -> {}
+                    HomeMenu.Item.AddonsManager -> {}
                     else -> {}
                 }
             },
@@ -403,7 +437,10 @@ class HomeFragment : Fragment() {
 
     private fun openTabDrawer() {
         val drawerLayout = activity?.findViewById<DrawerLayout>(R.id.drawer_layout)
-        val tabDrawer = if(UserPreferences(requireContext()).swapDrawers) requireActivity().findViewById<FrameLayout>(R.id.right_drawer) else requireActivity().findViewById<FrameLayout>(R.id.left_drawer)
+        val tabDrawer =
+            if (UserPreferences(requireContext()).swapDrawers) requireActivity().findViewById<FrameLayout>(
+                R.id.right_drawer
+            ) else requireActivity().findViewById<FrameLayout>(R.id.left_drawer)
 
         if (tabDrawer != null) {
             drawerLayout?.openDrawer(tabDrawer)

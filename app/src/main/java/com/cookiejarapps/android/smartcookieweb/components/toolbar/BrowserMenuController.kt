@@ -8,7 +8,6 @@ import androidx.navigation.NavController
 import com.cookiejarapps.android.smartcookieweb.*
 import com.cookiejarapps.android.smartcookieweb.browser.HomepageChoice
 import com.cookiejarapps.android.smartcookieweb.ext.components
-import com.cookiejarapps.android.smartcookieweb.history.HistoryActivity
 import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
@@ -65,7 +64,7 @@ class DefaultBrowserToolbarMenuController(
                     it.id
                 )
             }
-            is ToolbarMenu.Item.Settings -> {            }
+            is ToolbarMenu.Item.Settings -> {}
             is ToolbarMenu.Item.RequestDesktop -> {
                 currentSession?.let {
                     sessionUseCases.requestDesktopSite.invoke(
@@ -132,11 +131,7 @@ class DefaultBrowserToolbarMenuController(
                     drawerLayout?.openDrawer(bookmarksDrawer)
                 }
             }
-            is ToolbarMenu.Item.History -> browserAnimator.captureEngineViewAndDrawStatically {
-                val settings = Intent(activity, HistoryActivity::class.java)
-                settings.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                activity.startActivity(settings)
-            }
+            is ToolbarMenu.Item.History -> {}
             is ToolbarMenu.Item.NewTab -> {
                 activity.components.tabsUseCases.addTab.invoke(
                     if (UserPreferences(activity).homepageType == HomepageChoice.VIEW.ordinal) "about:homepage" else if (UserPreferences(
