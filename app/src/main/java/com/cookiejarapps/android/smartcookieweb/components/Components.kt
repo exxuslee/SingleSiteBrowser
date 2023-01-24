@@ -7,7 +7,6 @@ import com.cookiejarapps.android.smartcookieweb.BrowserActivity
 import com.cookiejarapps.android.smartcookieweb.BuildConfig
 import com.cookiejarapps.android.smartcookieweb.R
 import com.cookiejarapps.android.smartcookieweb.browser.ThemeChoice
-import com.cookiejarapps.android.smartcookieweb.downloads.DownloadService
 import com.cookiejarapps.android.smartcookieweb.ext.components
 import mozilla.components.browser.engine.gecko.GeckoEngine
 import mozilla.components.browser.engine.gecko.fetch.GeckoViewFetchClient
@@ -131,17 +130,13 @@ open class Components(private val applicationContext: Context) {
     // Storage
     private val lazyHistoryStorage = lazy { PlacesHistoryStorage(applicationContext) }
     val historyStorage by lazy { lazyHistoryStorage.value }
-
     val sessionStorage by lazy { SessionStorage(applicationContext, engine) }
-
     val permissionStorage by lazy { GeckoSitePermissionsStorage(runtime, OnDiskSitePermissionsStorage(applicationContext)) }
-
     val thumbnailStorage by lazy { ThumbnailStorage(applicationContext) }
 
     val store by lazy {
         BrowserStore(
                 middleware = listOf(
-                        DownloadMiddleware(applicationContext, DownloadService::class.java),
                         ReaderViewMiddleware(),
                         ThumbnailsMiddleware(thumbnailStorage),
                         UndoMiddleware(),

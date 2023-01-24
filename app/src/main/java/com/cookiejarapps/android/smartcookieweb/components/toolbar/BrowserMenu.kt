@@ -114,21 +114,12 @@ class BrowserMenu(
         }
     }
 
-    private fun canAddToHomescreen(): Boolean =
-        selectedSession != null && isPinningSupported &&
-                !context.components.webAppUseCases.isInstallable()
 
     private val menuItems by lazy {
         val menuItems = listOfNotNull(
-            settings,
-            findInPage,
             BrowserMenuDivider(),
-            historyItem,
             bookmarksItem,
             BrowserMenuDivider(),
-            printItem,
-            saveAsPdfItem,
-            addToHomescreen.apply { visible = ::canAddToHomescreen },
             externalAppItem,
             desktopMode,
             BrowserMenuDivider(),
@@ -145,14 +136,6 @@ class BrowserMenu(
         }
     }
 
-    private val settings = BrowserMenuImageText(
-        label = context.getString(R.string.settings),
-        imageResource = R.drawable.ic_round_settings,
-        iconTintColorResource = primaryTextColor()
-    ) {
-        onItemTapped.invoke(ToolbarMenu.Item.Settings)
-    }
-
     private val desktopMode = BrowserMenuImageSwitch(
         imageResource = R.drawable.ic_desktop,
         label = context.getString(R.string.desktop_mode),
@@ -161,46 +144,6 @@ class BrowserMenu(
         }
     ) { checked ->
         onItemTapped.invoke(ToolbarMenu.Item.RequestDesktop(checked))
-    }
-
-    private val addToHomescreen = BrowserMenuImageText(
-        label = context.getString(R.string.action_add_to_homescreen),
-        imageResource = R.drawable.ic_round_smartphone,
-        iconTintColorResource = primaryTextColor()
-    ) {
-        onItemTapped.invoke(ToolbarMenu.Item.AddToHomeScreen)
-    }
-
-    private val findInPage = BrowserMenuImageText(
-        label = context.getString(R.string.mozac_feature_findindpage_input),
-        imageResource = R.drawable.mozac_ic_search,
-        iconTintColorResource = primaryTextColor()
-    ) {
-        onItemTapped.invoke(ToolbarMenu.Item.FindInPage)
-    }
-
-    val historyItem = BrowserMenuImageText(
-        context.getString(R.string.action_history),
-        R.drawable.ic_baseline_history,
-        primaryTextColor()
-    ) {
-        onItemTapped.invoke(ToolbarMenu.Item.History)
-    }
-
-    val printItem = BrowserMenuImageText(
-        context.getString(R.string.action_print),
-        R.drawable.ic_baseline_print,
-        primaryTextColor()
-    ) {
-        onItemTapped.invoke(ToolbarMenu.Item.Print)
-    }
-
-    val saveAsPdfItem = BrowserMenuImageText(
-        context.getString(R.string.save_as_pdf),
-        R.drawable.ic_baseline_pdf,
-        primaryTextColor()
-    ) {
-        onItemTapped.invoke(ToolbarMenu.Item.PDF)
     }
 
     val newTabItem = BrowserMenuImageText(

@@ -8,7 +8,6 @@ import androidx.core.graphics.drawable.toBitmap
 import com.cookiejarapps.android.smartcookieweb.BrowserActivity
 import com.cookiejarapps.android.smartcookieweb.R
 import com.cookiejarapps.android.smartcookieweb.browser.BrowsingMode
-import com.cookiejarapps.android.smartcookieweb.browser.bookmark.CustomBookmarksStorage
 import com.cookiejarapps.android.smartcookieweb.ext.components
 import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
 import mozilla.components.browser.state.search.SearchEngine
@@ -34,7 +33,6 @@ class AwesomeBarView(
 ) {
     private val sessionProvider: SessionSuggestionProvider
     private val historyStorageProvider: HistoryStorageSuggestionProvider
-    private val bookmarksStorageSuggestionProvider: BookmarksStorageSuggestionProvider
     private val shortcutsEnginePickerProvider: ShortcutsSuggestionProvider
     private val defaultSearchSuggestionProvider: SearchSuggestionProvider
     private val defaultSearchActionProvider: SearchActionProvider
@@ -101,14 +99,6 @@ class AwesomeBarView(
                 loadUrlUseCase,
                 components.icons,
                 engineForSpeculativeConnects
-            )
-
-        bookmarksStorageSuggestionProvider =
-            BookmarksStorageSuggestionProvider(
-                bookmarksStorage = CustomBookmarksStorage(activity),
-                loadUrlUseCase = loadUrlUseCase,
-                icons = components.icons,
-                engine = engineForSpeculativeConnects
             )
 
         val searchBitmap = getDrawable(activity, R.drawable.ic_round_search)!!.apply {
@@ -197,10 +187,6 @@ class AwesomeBarView(
 
         if (state.showHistorySuggestions) {
             providersToAdd.add(historyStorageProvider)
-        }
-
-        if (state.showBookmarkSuggestions) {
-            providersToAdd.add(bookmarksStorageSuggestionProvider)
         }
 
         if (state.showSearchSuggestions) {

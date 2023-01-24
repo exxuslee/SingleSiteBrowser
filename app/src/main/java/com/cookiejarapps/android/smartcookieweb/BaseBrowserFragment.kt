@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,9 +26,7 @@ import androidx.navigation.fragment.findNavController
 import com.cookiejarapps.android.smartcookieweb.*
 import com.cookiejarapps.android.smartcookieweb.browser.BrowsingMode
 import com.cookiejarapps.android.smartcookieweb.browser.HomepageChoice
-import com.cookiejarapps.android.smartcookieweb.browser.bookmark.ui.BookmarkFragment
 import com.cookiejarapps.android.smartcookieweb.browser.home.HomeFragmentDirections
-import com.cookiejarapps.android.smartcookieweb.browser.tabs.TabsTrayFragment
 import com.cookiejarapps.android.smartcookieweb.components.StoreProvider
 import com.cookiejarapps.android.smartcookieweb.components.toolbar.*
 import com.cookiejarapps.android.smartcookieweb.ext.components
@@ -37,7 +34,6 @@ import com.cookiejarapps.android.smartcookieweb.integration.FindInPageIntegratio
 import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
 import mozilla.components.browser.state.action.ContentAction
@@ -60,7 +56,6 @@ import mozilla.components.feature.intent.ext.EXTRA_SESSION_ID
 import mozilla.components.feature.media.fullscreen.MediaSessionFullscreenFeature
 import mozilla.components.feature.privatemode.feature.SecureWindowFeature
 import mozilla.components.feature.prompts.PromptFeature
-import mozilla.components.feature.readerview.ReaderViewFeature
 import mozilla.components.feature.search.SearchFeature
 import mozilla.components.feature.session.FullScreenFeature
 import mozilla.components.feature.session.PictureInPictureFeature
@@ -79,16 +74,14 @@ import mozilla.components.support.ktx.android.view.hideKeyboard
 import mozilla.components.support.ktx.kotlinx.coroutines.flow.ifAnyChanged
 import mozilla.components.support.ktx.kotlinx.coroutines.flow.ifChanged
 import com.cookiejarapps.android.smartcookieweb.components.toolbar.ToolbarIntegration
-import com.cookiejarapps.android.smartcookieweb.downloads.DownloadService
 import com.cookiejarapps.android.smartcookieweb.integration.ContextMenuIntegration
 import mozilla.components.feature.downloads.manager.FetchDownloadManager
 import mozilla.components.support.base.log.logger.Logger.Companion.debug
 import com.cookiejarapps.android.smartcookieweb.components.toolbar.ToolbarPosition
 import com.cookiejarapps.android.smartcookieweb.integration.ReaderModeIntegration
 import com.cookiejarapps.android.smartcookieweb.ssl.showSslDialog
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.mozilla.fenix.home.HomeScreenViewModel
-import org.mozilla.fenix.home.SharedViewModel
+import com.cookiejarapps.android.smartcookieweb.browser.home.SharedViewModel
 import java.lang.ref.WeakReference
 import mozilla.components.feature.session.behavior.ToolbarPosition as MozacToolbarPosition
 import com.cookiejarapps.android.smartcookieweb.databinding.FragmentBrowserBinding
@@ -121,7 +114,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     private val sessionFeature = ViewBoundFeatureWrapper<SessionFeature>()
     private val contextMenuIntegration = ViewBoundFeatureWrapper<ContextMenuIntegration>()
     private val downloadsFeature = ViewBoundFeatureWrapper<DownloadsFeature>()
-    private val shareDownloadsFeature = ViewBoundFeatureWrapper<ShareDownloadFeature>()
     private val appLinksFeature = ViewBoundFeatureWrapper<AppLinksFeature>()
     private val promptsFeature = ViewBoundFeatureWrapper<PromptFeature>()
     private val findInPageIntegration = ViewBoundFeatureWrapper<FindInPageIntegration>()
@@ -129,9 +121,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     private val sitePermissionsFeature = ViewBoundFeatureWrapper<SitePermissionsFeature>()
     private val fullScreenFeature = ViewBoundFeatureWrapper<FullScreenFeature>()
     private val swipeRefreshFeature = ViewBoundFeatureWrapper<SwipeRefreshFeature>()
-    private val secureWindowFeature = ViewBoundFeatureWrapper<SecureWindowFeature>()
-    private var fullScreenMediaSessionFeature =
-        ViewBoundFeatureWrapper<MediaSessionFullscreenFeature>()
+    private var fullScreenMediaSessionFeature = ViewBoundFeatureWrapper<MediaSessionFullscreenFeature>()
     private val searchFeature = ViewBoundFeatureWrapper<SearchFeature>()
     private var pipFeature: PictureInPictureFeature? = null
     val readerViewFeature = ViewBoundFeatureWrapper<ReaderModeIntegration>()
@@ -144,7 +134,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     protected var webAppToolbarShouldBeVisible = true
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
-    private val homeViewModel: HomeScreenViewModel by activityViewModels()
 
     private var _binding: FragmentBrowserBinding? = null
     protected val binding get() = _binding!!
@@ -400,29 +389,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                 },
                 store = store
             ),
-            owner = this,
-            view = view
-        )
-
-        downloadsFeature.set(
-            feature = DownloadsFeature(
-                requireContext().applicationContext,
-                store = components.store,
-                useCases = components.downloadsUseCases,
-                fragmentManager = childFragmentManager,
-                shouldForwardToThirdParties = { UserPreferences(requireContext()).promptExternalDownloader },
-                onDownloadStopped = { download, id, status ->
-                    debug("Download ID#$id $download with status $status is done.")
-                },
-                downloadManager = FetchDownloadManager(
-                    requireContext().applicationContext,
-                    components.store,
-                    DownloadService::class
-                ),
-                tabId = customTabSessionId,
-                onNeedToRequestPermissions = { permissions ->
-                    requestPermissions(permissions, REQUEST_CODE_DOWNLOAD_PERMISSIONS)
-                }),
             owner = this,
             view = view
         )

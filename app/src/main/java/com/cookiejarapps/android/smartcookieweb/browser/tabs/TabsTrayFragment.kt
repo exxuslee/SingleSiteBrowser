@@ -73,67 +73,6 @@ class TabsTrayFragment : Fragment() {
         browsingModeManager =  (activity as BrowserActivity).browsingModeManager
         configuration = Configuration(if (browsingModeManager.mode == BrowsingMode.Normal) BrowserTabType.NORMAL else BrowserTabType.PRIVATE)
 
-        binding.toolbar.inflateMenu(R.menu.tabstray_menu)
-        binding.toolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.newTab -> {
-                    when (binding.tabLayout.selectedTabPosition) {
-                            0 -> {
-                                browsingModeManager.mode = BrowsingMode.Normal
-                                when(UserPreferences(requireContext()).homepageType){
-                                    HomepageChoice.VIEW.ordinal -> {
-                                        components.tabsUseCases.addTab.invoke(
-                                            "about:homepage",
-                                            selectTab = true
-                                        )
-                                    }
-                                    HomepageChoice.BLANK_PAGE.ordinal -> {
-                                        components.tabsUseCases.addTab.invoke(
-                                            "about:blank",
-                                            selectTab = true
-                                        )
-                                    }
-                                    HomepageChoice.CUSTOM_PAGE.ordinal -> {
-                                        components.tabsUseCases.addTab.invoke(
-                                            UserPreferences(requireContext()).customHomepageUrl,
-                                            selectTab = true
-                                        )
-                                    }
-                                }
-                            }
-                            1 -> {
-                                browsingModeManager.mode = BrowsingMode.Private
-                                when(UserPreferences(requireContext()).homepageType){
-                                    HomepageChoice.VIEW.ordinal -> {
-                                        components.tabsUseCases.addPrivateTab.invoke(
-                                            "about:homepage",
-                                            selectTab = true
-                                        )
-                                    }
-                                    HomepageChoice.BLANK_PAGE.ordinal -> {
-                                        components.tabsUseCases.addPrivateTab.invoke(
-                                            "about:blank",
-                                            selectTab = true
-                                        )
-                                    }
-                                    HomepageChoice.CUSTOM_PAGE.ordinal -> {
-                                        components.tabsUseCases.addPrivateTab.invoke(
-                                            UserPreferences(requireContext()).customHomepageUrl,
-                                            selectTab = true
-                                        )
-                                    }
-                                }
-                        }
-                    }
-                    closeTabsTray()
-                }
-                R.id.removeTabs -> {
-                   removeTabsDialog(view)
-                }
-            }
-            true
-        }
-
         val tabsAdapter = createTabsTray()
 
         tabsFeature.set(

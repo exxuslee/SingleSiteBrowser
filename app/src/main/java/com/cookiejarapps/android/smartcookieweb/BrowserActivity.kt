@@ -21,7 +21,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.cookiejarapps.android.smartcookieweb.browser.*
-import com.cookiejarapps.android.smartcookieweb.browser.bookmark.ui.BookmarkFragment
 import com.cookiejarapps.android.smartcookieweb.browser.home.HomeFragmentDirections
 import com.cookiejarapps.android.smartcookieweb.browser.tabs.TabsTrayFragment
 import com.cookiejarapps.android.smartcookieweb.databinding.ActivityMainBinding
@@ -31,7 +30,6 @@ import com.cookiejarapps.android.smartcookieweb.ext.nav
 import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
 import com.cookiejarapps.android.smartcookieweb.search.SearchDialogFragmentDirections
 import com.cookiejarapps.android.smartcookieweb.utils.PrintUtils
-import com.cookiejarapps.android.smartcookieweb.utils.Utils
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import mozilla.components.browser.icons.IconRequest
@@ -168,31 +166,6 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
-
-        val rightDrawer = if(UserPreferences(this).swapDrawers) TabsTrayFragment() else BookmarkFragment()
-        val leftDrawer = if(UserPreferences(this).swapDrawers) BookmarkFragment() else TabsTrayFragment()
-
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.right_drawer, rightDrawer)
-            commit()
-        }
-
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.left_drawer, leftDrawer)
-            commit()
-        }
-
-        binding.drawerLayout.addDrawerListener(object : SimpleDrawerListener() {
-            override fun onDrawerStateChanged(newState: Int) {
-                if (newState == DrawerLayout.STATE_SETTLING && !binding.drawerLayout.isDrawerOpen(
-                        GravityCompat.START
-                    )
-                ) {
-                     val tabDrawer = if(UserPreferences(this@BrowserActivity).swapDrawers) rightDrawer else leftDrawer
-                    (tabDrawer as TabsTrayFragment).notifyBrowsingModeStateChanged()
-                }
-            }
-        })
 
         installPrintExtension()
 

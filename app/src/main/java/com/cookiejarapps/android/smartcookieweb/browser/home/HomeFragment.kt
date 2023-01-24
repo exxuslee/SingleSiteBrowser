@@ -318,7 +318,6 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         observeSearchEngineChanges()
-        createHomeMenu(requireContext(), WeakReference(binding.menuButton))
         createTabCounterMenu(view)
 
         binding.menuButton.setColorFilter(
@@ -406,34 +405,6 @@ class HomeFragment : Fragment() {
         // TODO: OPTIONS
         nav(R.id.homeFragment, directions, null)
     }
-
-    @SuppressWarnings("ComplexMethod", "LongMethod")
-    private fun createHomeMenu(context: Context, menuButtonView: WeakReference<MenuButton>) =
-        HomeMenu(
-            this.viewLifecycleOwner,
-            context,
-            onItemTapped = {
-                when (it) {
-                    HomeMenu.Item.Settings -> {}
-                    HomeMenu.Item.Bookmarks -> {
-                        val drawerLayout = activity?.findViewById<DrawerLayout>(R.id.drawer_layout)
-                        val bookmarksDrawer =
-                            if (UserPreferences(requireContext()).swapDrawers) requireActivity().findViewById<FrameLayout>(
-                                R.id.left_drawer
-                            ) else requireActivity().findViewById<FrameLayout>(R.id.right_drawer)
-
-                        if (bookmarksDrawer != null) {
-                            drawerLayout?.openDrawer(bookmarksDrawer)
-                        }
-                    }
-                    HomeMenu.Item.History -> {}
-                    HomeMenu.Item.AddonsManager -> {}
-                    else -> {}
-                }
-            },
-            onHighlightPresent = { menuButtonView.get()?.setHighlight(it) },
-            onMenuBuilderChanged = { menuButtonView.get()?.menuBuilder = it }
-        )
 
     private fun openTabDrawer() {
         val drawerLayout = activity?.findViewById<DrawerLayout>(R.id.drawer_layout)
