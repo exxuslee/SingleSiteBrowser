@@ -2,17 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-  <uses-permission android:name="android.permission.CAMERA" />
-  <uses-permission android:name="android.permission.RECORD_AUDIO" />
-  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
   <uses-permission android:name="android.permission.INTERNET" />
-  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-  <uses-permission android:name="android.permission.BLUETOOTH" />
-  <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-  <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
   <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
 
   <application
@@ -37,47 +27,6 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-
-    <activity
-        android:name=".addons.AddonsActivity"
-        android:label="@string/mozac_feature_addons_addons"
-        android:parentActivityName=".BrowserActivity"
-        android:theme="@style/AppThemeAddons" />
-
-    <activity
-        android:name=".settings.activity.SettingsActivity"
-        android:label="@string/settings"
-        android:theme="@style/AppThemeSettings"/>
-
-    <activity
-        android:name=".addons.AddonDetailsActivity"
-        android:label="@string/mozac_feature_addons_addons"
-        android:theme="@style/AppThemeAddons" />
-
-    <activity android:name=".addons.InstalledAddonDetailsActivity"
-        android:label="@string/mozac_feature_addons_addons"
-        android:parentActivityName=".addons.AddonsActivity"
-        android:theme="@style/AppThemeAddons" />
-
-    <activity
-        android:name=".addons.PermissionsDetailsActivity"
-        android:label="@string/mozac_feature_addons_addons"
-        android:theme="@style/AppThemeAddons" />
-
-    <activity
-        android:name=".addons.AddonSettingsActivity"
-        android:label="@string/mozac_feature_addons_addons"
-        android:theme="@style/AppThemeAddons" />
-
-    <activity
-        android:name=".addons.NotYetSupportedAddonActivity"
-        android:label="@string/mozac_feature_addons_addons"
-        android:theme="@style/AppThemeAddons" />
-
-    <activity
-        android:name=".history.HistoryActivity"
-        android:label="@string/action_history"
-        android:theme="@style/AppThemeAddons" />
 
     <activity
         android:name=".IntentReceiverActivity"
@@ -150,11 +99,6 @@
       </intent-filter>
 
     </activity>
-
-    <service android:name=".downloads.DownloadService" />
-
-    <service android:name=".media.MediaSessionService"
-        android:exported="false" />
 
   </application>
 
