@@ -20,8 +20,6 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import com.cookiejarapps.android.smartcookieweb.addons.WebExtensionPopupFragment
-import com.cookiejarapps.android.smartcookieweb.addons.WebExtensionTabletPopupFragment
 import com.cookiejarapps.android.smartcookieweb.browser.*
 import com.cookiejarapps.android.smartcookieweb.browser.bookmark.ui.BookmarkFragment
 import com.cookiejarapps.android.smartcookieweb.browser.home.HomeFragmentDirections
@@ -36,10 +34,8 @@ import com.cookiejarapps.android.smartcookieweb.utils.PrintUtils
 import com.cookiejarapps.android.smartcookieweb.utils.Utils
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import mozilla.components.browser.engine.gecko.GeckoEngineSession
 import mozilla.components.browser.icons.IconRequest
 import mozilla.components.browser.state.search.SearchEngine
-import mozilla.components.browser.state.selector.findCustomTabOrSelectedTab
 import mozilla.components.browser.state.selector.selectedTab
 import mozilla.components.browser.state.state.SessionState
 import mozilla.components.browser.state.state.WebExtensionState
@@ -297,17 +293,9 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
 
     private fun openPopup(webExtensionState: WebExtensionState) {
         val fm: FragmentManager = supportFragmentManager
-        val editNameDialogFragment =
-            if(Utils().isTablet(this)) WebExtensionTabletPopupFragment()
-            else WebExtensionPopupFragment()
-
         val bundle = Bundle()
         bundle.putString("web_extension_id", webExtensionState.id)
         intent.putExtra("web_extension_name", webExtensionState.name)
-
-        editNameDialogFragment.arguments = bundle
-
-        editNameDialogFragment.show(fm, "fragment_edit_name")
     }
 
     @Suppress("LongParameterList")

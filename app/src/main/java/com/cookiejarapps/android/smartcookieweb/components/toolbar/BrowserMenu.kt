@@ -6,7 +6,6 @@ import androidx.annotation.ColorRes
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LifecycleOwner
 import com.cookiejarapps.android.smartcookieweb.R
-import com.cookiejarapps.android.smartcookieweb.addons.AddonsActivity
 import com.cookiejarapps.android.smartcookieweb.ext.components
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import mozilla.components.browser.menu.WebExtensionBrowserMenuBuilder
@@ -37,11 +36,6 @@ class BrowserMenu(
             endOfMenuAlwaysVisible = !shouldReverseItems,
             store = store,
             style = WebExtensionBrowserMenuBuilder.Style(webExtIconTintColorResource = primaryTextColor()),
-            onAddonsManagerTapped = {
-                val intent = Intent(context, AddonsActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                context.startActivity(intent)
-            },
             appendExtensionSubMenuAtStart = !shouldReverseItems
         )
     }

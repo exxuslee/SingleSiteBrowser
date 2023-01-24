@@ -9,7 +9,6 @@ import com.cookiejarapps.android.smartcookieweb.R
 import com.cookiejarapps.android.smartcookieweb.browser.ThemeChoice
 import com.cookiejarapps.android.smartcookieweb.downloads.DownloadService
 import com.cookiejarapps.android.smartcookieweb.ext.components
-import com.cookiejarapps.android.smartcookieweb.media.MediaSessionService
 import mozilla.components.browser.engine.gecko.GeckoEngine
 import mozilla.components.browser.engine.gecko.fetch.GeckoViewFetchClient
 import mozilla.components.browser.icons.BrowserIcons
@@ -161,8 +160,6 @@ open class Components(private val applicationContext: Context) {
                     applicationContext, engine, icons, R.drawable.ic_notification,
                     permissionStorage, BrowserActivity::class.java
             )
-
-            MediaSessionFeature(applicationContext, MediaSessionService::class.java, this).start()
         }
     }
 

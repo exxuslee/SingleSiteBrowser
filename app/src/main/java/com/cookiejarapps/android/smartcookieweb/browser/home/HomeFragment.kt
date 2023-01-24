@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Display.FLAG_SECURE
 import android.view.Gravity
@@ -30,22 +29,18 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.cookiejarapps.android.smartcookieweb.BrowserActivity
 import com.cookiejarapps.android.smartcookieweb.R
-import com.cookiejarapps.android.smartcookieweb.addons.AddonsActivity
 import com.cookiejarapps.android.smartcookieweb.browser.BrowsingMode
 import com.cookiejarapps.android.smartcookieweb.browser.shortcuts.ShortcutDatabase
 import com.cookiejarapps.android.smartcookieweb.browser.shortcuts.ShortcutEntity
 import com.cookiejarapps.android.smartcookieweb.browser.shortcuts.ShortcutGridAdapter
-import com.cookiejarapps.android.smartcookieweb.databinding.FragmentBookmarkBinding
 import com.cookiejarapps.android.smartcookieweb.databinding.FragmentHomeBinding
 import com.cookiejarapps.android.smartcookieweb.ext.components
 import com.cookiejarapps.android.smartcookieweb.ext.nav
 import com.cookiejarapps.android.smartcookieweb.history.HistoryActivity
 import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
-import com.cookiejarapps.android.smartcookieweb.settings.activity.SettingsActivity
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import mozilla.components.browser.menu.view.MenuButton
@@ -57,7 +52,6 @@ import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.browser.toolbar.behavior.ToolbarPosition
 import mozilla.components.lib.state.ext.consumeFlow
 import mozilla.components.lib.state.ext.consumeFrom
-import mozilla.components.support.ktx.android.content.getColorFromAttr
 import mozilla.components.support.ktx.kotlinx.coroutines.flow.ifChanged
 import mozilla.components.ui.tabcounter.TabCounterMenu
 import org.mozilla.gecko.util.ThreadUtils
@@ -385,11 +379,7 @@ class HomeFragment : Fragment() {
             context,
             onItemTapped = {
                 when (it) {
-                    HomeMenu.Item.Settings -> {
-                        val settings = Intent(activity, SettingsActivity::class.java)
-                        settings.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                        requireActivity().startActivity(settings)
-                    }
+                    HomeMenu.Item.Settings -> {                    }
                     HomeMenu.Item.Bookmarks -> {
                         val drawerLayout = activity?.findViewById<DrawerLayout>(R.id.drawer_layout)
                         val bookmarksDrawer = if(UserPreferences(requireContext()).swapDrawers) requireActivity().findViewById<FrameLayout>(R.id.left_drawer) else requireActivity().findViewById<FrameLayout>(R.id.right_drawer)
@@ -403,11 +393,7 @@ class HomeFragment : Fragment() {
                         settings.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                         activity?.startActivity(settings)
                     }
-                    HomeMenu.Item.AddonsManager -> {
-                        val settings = Intent(activity, AddonsActivity::class.java)
-                        settings.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                        activity?.startActivity(settings)
-                    }
+                    HomeMenu.Item.AddonsManager -> {                    }
                     else -> {}
                 }
             },
