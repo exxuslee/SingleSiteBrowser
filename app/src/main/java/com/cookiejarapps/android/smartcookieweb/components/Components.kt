@@ -8,29 +8,29 @@ import com.cookiejarapps.android.smartcookieweb.BuildConfig
 import com.cookiejarapps.android.smartcookieweb.R
 import com.cookiejarapps.android.smartcookieweb.browser.ThemeChoice
 import com.cookiejarapps.android.smartcookieweb.ext.components
+import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
+import com.cookiejarapps.android.smartcookieweb.request.AppRequestInterceptor
+import com.cookiejarapps.android.smartcookieweb.utils.ClipboardHandler
 import mozilla.components.browser.engine.gecko.GeckoEngine
+import mozilla.components.browser.engine.gecko.ext.toContentBlockingSetting
 import mozilla.components.browser.engine.gecko.fetch.GeckoViewFetchClient
+import mozilla.components.browser.engine.gecko.permission.GeckoSitePermissionsStorage
 import mozilla.components.browser.icons.BrowserIcons
-import mozilla.components.browser.state.engine.EngineMiddleware
 import mozilla.components.browser.session.storage.SessionStorage
+import mozilla.components.browser.state.engine.EngineMiddleware
 import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.browser.storage.sync.PlacesHistoryStorage
 import mozilla.components.browser.thumbnails.ThumbnailsMiddleware
 import mozilla.components.browser.thumbnails.storage.ThumbnailStorage
 import mozilla.components.concept.engine.DefaultSettings
 import mozilla.components.concept.engine.Engine
+import mozilla.components.concept.engine.EngineSession
 import mozilla.components.concept.engine.mediaquery.PreferredColorScheme
 import mozilla.components.concept.fetch.Client
-import mozilla.components.feature.addons.AddonManager
-import mozilla.components.feature.addons.amo.AddonCollectionProvider
-import mozilla.components.feature.addons.migration.DefaultSupportedAddonsChecker
-import mozilla.components.feature.addons.update.DefaultAddonUpdater
 import mozilla.components.feature.app.links.AppLinksInterceptor
 import mozilla.components.feature.app.links.AppLinksUseCases
 import mozilla.components.feature.contextmenu.ContextMenuUseCases
-import mozilla.components.feature.downloads.DownloadMiddleware
 import mozilla.components.feature.downloads.DownloadsUseCases
-import mozilla.components.feature.media.MediaSessionFeature
 import mozilla.components.feature.media.middleware.RecordingDevicesMiddleware
 import mozilla.components.feature.pwa.ManifestStorage
 import mozilla.components.feature.pwa.WebAppInterceptor
@@ -44,22 +44,16 @@ import mozilla.components.feature.session.HistoryDelegate
 import mozilla.components.feature.session.SessionUseCases
 import mozilla.components.feature.session.middleware.LastAccessMiddleware
 import mozilla.components.feature.session.middleware.undo.UndoMiddleware
+import mozilla.components.feature.sitepermissions.OnDiskSitePermissionsStorage
 import mozilla.components.feature.tabs.TabsUseCases
 import mozilla.components.feature.webcompat.WebCompatFeature
 import mozilla.components.feature.webnotifications.WebNotificationFeature
 import mozilla.components.lib.publicsuffixlist.PublicSuffixList
 import mozilla.components.service.location.LocationService
-import org.mozilla.geckoview.GeckoRuntime
-import org.mozilla.geckoview.GeckoRuntimeSettings
-import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
-import com.cookiejarapps.android.smartcookieweb.request.AppRequestInterceptor
-import com.cookiejarapps.android.smartcookieweb.utils.ClipboardHandler
-import mozilla.components.browser.engine.gecko.ext.toContentBlockingSetting
-import mozilla.components.browser.engine.gecko.permission.GeckoSitePermissionsStorage
-import mozilla.components.concept.engine.EngineSession
-import mozilla.components.feature.sitepermissions.OnDiskSitePermissionsStorage
 import mozilla.components.support.base.worker.Frequency
 import org.mozilla.geckoview.ContentBlocking
+import org.mozilla.geckoview.GeckoRuntime
+import org.mozilla.geckoview.GeckoRuntimeSettings
 import java.util.concurrent.TimeUnit
 
 
@@ -113,9 +107,6 @@ open class Components(private val applicationContext: Context) {
         }
     }
 
-    val addonUpdater =
-            DefaultAddonUpdater(applicationContext, Frequency(1, TimeUnit.DAYS))
-
     // Engine
     open val engine: Engine by lazy {
         GeckoEngine(applicationContext, engineSettings, runtime).also {
@@ -160,57 +151,10 @@ open class Components(private val applicationContext: Context) {
 
     val sessionUseCases by lazy { SessionUseCases(store) }
 
-    // Addons
-    val addonManager by lazy {
-        AddonManager(store, engine, addonCollectionProvider, addonUpdater)
-    }
-
-    // TODO: Swap out version code for proper collection user
-    val addonCollectionProvider by lazy {
-        if(UserPreferences(applicationContext).customAddonCollection){
-            AddonCollectionProvider(
-                    applicationContext,
-                    client,
-                    collectionUser = UserPreferences(applicationContext).customAddonCollectionUser,
-                    collectionName = UserPreferences(applicationContext).customAddonCollectionName,
-                    maxCacheAgeInMinutes = 0,
-            )
-        }
-        else{
-            AddonCollectionProvider(
-                    applicationContext,
-                    client,
-                    collectionUser = BuildConfig.VERSION_CODE.toString(),
-                    collectionName = "scw",
-                    maxCacheAgeInMinutes = DAY_IN_MINUTES,
-                    serverURL = "https://addons.smartcookieweb.com"
-            )
-        }
-    }
-
-    val supportedAddonsChecker by lazy {
-        DefaultSupportedAddonsChecker(
-                applicationContext, Frequency(
-                1,
-                TimeUnit.DAYS
-        )
-        )
-    }
 
     val searchUseCases by lazy {
         SearchUseCases(store, tabsUseCases, sessionUseCases)
     }
-
-    val defaultSearchUseCase by lazy {
-        { searchTerms: String ->
-            searchUseCases.defaultSearch.invoke(
-                    searchTerms = searchTerms,
-                    searchEngine = null,
-                    parentSessionId = null
-            )
-        }
-    }
-    val appLinksUseCases by lazy { AppLinksUseCases(applicationContext) }
 
     val appLinksInterceptor by lazy {
         AppLinksInterceptor(

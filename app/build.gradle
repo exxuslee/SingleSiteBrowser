@@ -160,7 +160,6 @@ dependencies {
     implementation "org.mozilla.components:feature-sitepermissions:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-webcompat:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-webnotifications:$mozComponentsVersion"
-    implementation "org.mozilla.components:feature-addons:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-findinpage:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-prompts:$mozComponentsVersion"
 

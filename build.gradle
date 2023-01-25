@@ -5,7 +5,6 @@ buildscript {
             name "Mozilla"
             url "https://maven.mozilla.org/maven2"
         }
-
         google()
         mavenCentral()
     }
@@ -13,30 +12,22 @@ buildscript {
         classpath 'com.android.tools.build:gradle:7.4.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3"
-
         classpath "org.mozilla.components:tooling-glean-gradle:95.0.5"
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
 allprojects {
     repositories {
         google()
-
-        // TODO: Switch back to snapshot repo, create build variants for stable, beta, nightly GV
         maven {
             name "Mozilla Nightly"
             url "https://nightly.maven.mozilla.org/maven2"
         }
-
         maven {
             name "Mozilla"
             url "https://maven.mozilla.org/maven2"
         }
-
         mavenCentral()
-        
         maven { url "https://jitpack.io" }
     }
 }

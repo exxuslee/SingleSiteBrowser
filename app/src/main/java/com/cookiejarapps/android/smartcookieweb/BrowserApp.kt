@@ -47,11 +47,6 @@ class BrowserApp : Application() {
                 onSelectTabOverride = {
                     _, sessionId -> components.tabsUseCases.selectTab(sessionId)
                 },
-                onUpdatePermissionRequest = components.addonUpdater::onUpdatePermissionRequest,
-                onExtensionsLoaded = { extensions ->
-                    components.addonUpdater.registerForFutureUpdates(extensions)
-                    components.supportedAddonsChecker.registerForChecks()
-                }
             )
         } catch (e: UnsupportedOperationException) {
             // Web extension support is only available for engine gecko
