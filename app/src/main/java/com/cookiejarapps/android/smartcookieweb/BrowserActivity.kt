@@ -12,16 +12,12 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.drawerlayout.widget.DrawerLayout.SimpleDrawerListener
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.cookiejarapps.android.smartcookieweb.browser.*
-import com.cookiejarapps.android.smartcookieweb.browser.home.HomeFragmentDirections
 import com.cookiejarapps.android.smartcookieweb.databinding.ActivityMainBinding
 import com.cookiejarapps.android.smartcookieweb.ext.alreadyOnDestination
 import com.cookiejarapps.android.smartcookieweb.ext.components
@@ -68,8 +64,8 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
 
     private val externalSourceIntentProcessors by lazy {
         listOf(
-                OpenBrowserIntentProcessor(this, ::getIntentSessionId),
-                OpenSpecificTabIntentProcessor(this)
+            OpenBrowserIntentProcessor(this, ::getIntentSessionId),
+            OpenSpecificTabIntentProcessor(this)
         )
     }
 
@@ -102,19 +98,21 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
 
         setContentView(view)
 
-        if(UserPreferences(this).firstLaunch){
+        if (UserPreferences(this).firstLaunch) {
             UserPreferences(this).firstLaunch = false
         }
         //TODO: remove this once most people have updated
-        if(UserPreferences(this).showTabsInGrid && UserPreferences(this).stackFromBottom) UserPreferences(this).stackFromBottom = false
+        if (UserPreferences(this).showTabsInGrid && UserPreferences(this).stackFromBottom) UserPreferences(
+            this
+        ).stackFromBottom = false
 
         //TODO: Move to settings page so app restart no longer required
         //TODO: Differentiate between using search engine / adding to list - the code below removes all from list as I don't support adding to list, only setting as default
-        for(i in components.store.state.search.customSearchEngines){
+        for (i in components.store.state.search.customSearchEngines) {
             components.searchUseCases.removeSearchEngine(i)
         }
 
-        if(UserPreferences(this).customSearchEngine){
+        if (UserPreferences(this).customSearchEngine) {
             GlobalScope.launch {
                 val customSearch =
                     createSearchEngine(
@@ -133,14 +131,12 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
                     )
                 }
             }
-        }
-        else{
-            if(SearchEngineList().getEngines()[UserPreferences(this).searchEngineChoice].type == SearchEngine.Type.BUNDLED){
+        } else {
+            if (SearchEngineList().getEngines()[UserPreferences(this).searchEngineChoice].type == SearchEngine.Type.BUNDLED) {
                 components.searchUseCases.selectSearchEngine(
                     SearchEngineList().getEngines()[UserPreferences(this).searchEngineChoice]
                 )
-            }
-            else{
+            } else {
                 components.searchUseCases.addSearchEngine(
                     SearchEngineList().getEngines()[UserPreferences(
                         this
@@ -153,13 +149,20 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
         }
 
         if (isActivityColdStarted(intent, savedInstanceState) &&
-            !externalSourceIntentProcessors.any { it.process(intent, navHost.navController, this.intent) }) {
+            !externalSourceIntentProcessors.any {
+                it.process(
+                    intent,
+                    navHost.navController,
+                    this.intent
+                )
+            }
+        ) {
             navigateToBrowserOnColdStart()
         }
 
-        if(UserPreferences(this).appThemeChoice == ThemeChoice.SYSTEM.ordinal) {
+        if (UserPreferences(this).appThemeChoice == ThemeChoice.SYSTEM.ordinal) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-        } else if(UserPreferences(this).appThemeChoice == ThemeChoice.LIGHT.ordinal) {
+        } else if (UserPreferences(this).appThemeChoice == ThemeChoice.LIGHT.ordinal) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -216,12 +219,17 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
         super.onBackPressed()
     }
 
-    override fun onCreateView(parent: View?, name: String, context: Context, attrs: AttributeSet): View? =
+    override fun onCreateView(
+        parent: View?,
+        name: String,
+        context: Context,
+        attrs: AttributeSet
+    ): View? =
         when (name) {
             EngineView::class.java.name -> components.engine.createView(context, attrs).apply {
                 selectionActionDelegate = DefaultSelectionActionDelegate(
-                        store = components.store,
-                        context = context
+                    store = components.store,
+                    context = context
                 )
             }.asView()
             else -> super.onCreateView(parent, name, context, attrs)
@@ -252,9 +260,9 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
     @Suppress("SpreadOperator")
     fun setupNavigationToolbar(vararg topLevelDestinationIds: Int) {
         NavigationUI.setupWithNavController(
-                navigationToolbar,
-                navHost.navController,
-                AppBarConfiguration.Builder(*topLevelDestinationIds).build()
+            navigationToolbar,
+            navHost.navController,
+            AppBarConfiguration.Builder(*topLevelDestinationIds).build()
         )
 
         navigationToolbar.setNavigationOnClickListener {
@@ -271,13 +279,13 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
 
     @Suppress("LongParameterList")
     fun openToBrowserAndLoad(
-            searchTermOrURL: String,
-            newTab: Boolean,
-            from: BrowserDirection,
-            customTabSessionId: String? = null,
-            engine: SearchEngine? = null,
-            forceSearch: Boolean = false,
-            flags: EngineSession.LoadUrlFlags = EngineSession.LoadUrlFlags.none()
+        searchTermOrURL: String,
+        newTab: Boolean,
+        from: BrowserDirection,
+        customTabSessionId: String? = null,
+        engine: SearchEngine? = null,
+        forceSearch: Boolean = false,
+        flags: EngineSession.LoadUrlFlags = EngineSession.LoadUrlFlags.none()
     ) {
         openToBrowser(from, customTabSessionId)
         load(searchTermOrURL, newTab, engine, forceSearch, flags)
@@ -293,21 +301,20 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
     }
 
     protected open fun getNavDirections(
-            from: BrowserDirection,
-            customTabSessionId: String?
+        from: BrowserDirection,
+        customTabSessionId: String?
     ): NavDirections? = when (from) {
         BrowserDirection.FromGlobal ->
             NavGraphDirections.actionGlobalBrowser(customTabSessionId)
-        BrowserDirection.FromHome ->
-            HomeFragmentDirections.actionGlobalBrowser(customTabSessionId)
+        BrowserDirection.FromHome -> NavGraphDirections.actionGlobalBrowser(customTabSessionId)
     }
 
     private fun load(
-            searchTermOrURL: String,
-            newTab: Boolean,
-            engine: SearchEngine?,
-            forceSearch: Boolean,
-            flags: EngineSession.LoadUrlFlags = EngineSession.LoadUrlFlags.none()
+        searchTermOrURL: String,
+        newTab: Boolean,
+        engine: SearchEngine?,
+        forceSearch: Boolean,
+        flags: EngineSession.LoadUrlFlags = EngineSession.LoadUrlFlags.none()
     ) {
         val mode = browsingModeManager.mode
 
@@ -324,11 +331,11 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
             if (newTab) {
                 components.searchUseCases.newTabSearch
                     .invoke(
-                            searchTermOrURL,
-                            SessionState.Source.Internal.UserEntered,
-                            true,
-                            mode.isPrivate,
-                            searchEngine = engine
+                        searchTermOrURL,
+                        SessionState.Source.Internal.UserEntered,
+                        true,
+                        mode.isPrivate,
+                        searchEngine = engine
                     )
             } else {
                 components.searchUseCases.defaultSearch.invoke(searchTermOrURL, engine)
@@ -336,17 +343,21 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
         }
     }
 
-    private fun installPrintExtension(){
+    private fun installPrintExtension() {
         val messageHandler = object : MessageHandler {
             override fun onPortConnected(port: Port) {
                 mPort = port
             }
 
-            override fun onPortDisconnected(port: Port) { }
+            override fun onPortDisconnected(port: Port) {}
 
             override fun onPortMessage(message: Any, port: Port) {
                 val converter = PrintUtils.instance
-                converter!!.convert(originalContext, message.toString(), components.store.state.selectedTab?.content?.url)
+                converter!!.convert(
+                    originalContext,
+                    message.toString(),
+                    components.store.state.selectedTab?.content?.url
+                )
             }
 
             override fun onMessage(message: Any, source: EngineSession?) {
@@ -362,7 +373,7 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
         )
     }
 
-    fun printPage(){
+    fun printPage() {
         val message = JSONObject()
         message.put("print", true)
         mPort!!.postMessage(message)

@@ -10,13 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.view.accessibility.AccessibilityManager
-import android.widget.FrameLayout
 import androidx.annotation.CallSuper
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -25,9 +23,6 @@ import androidx.navigation.fragment.findNavController
 import com.cookiejarapps.android.smartcookieweb.*
 import com.cookiejarapps.android.smartcookieweb.browser.BrowsingMode
 import com.cookiejarapps.android.smartcookieweb.browser.HomepageChoice
-import com.cookiejarapps.android.smartcookieweb.browser.home.HomeFragmentDirections
-import com.cookiejarapps.android.smartcookieweb.browser.home.SharedViewModel
-import com.cookiejarapps.android.smartcookieweb.components.StoreProvider
 import com.cookiejarapps.android.smartcookieweb.databinding.FragmentBrowserBinding
 import com.cookiejarapps.android.smartcookieweb.ext.components
 import com.cookiejarapps.android.smartcookieweb.integration.ContextMenuIntegration
@@ -102,8 +97,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     private var initUIJob: Job? = null
     protected var webAppToolbarShouldBeVisible = true
 
-    private val sharedViewModel: SharedViewModel by activityViewModels()
-
     private var _binding: FragmentBrowserBinding? = null
     protected val binding get() = _binding!!
 
@@ -114,11 +107,8 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         savedInstanceState: Bundle?
     ): View {
         customTabSessionId = requireArguments().getString(EXTRA_SESSION_ID)
-
         _binding = FragmentBrowserBinding.inflate(inflater, container, false)
-        val view = binding.root
-
-        return view
+        return binding.root
     }
 
     final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -130,8 +120,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                 // this if we have a known session to display.
                 observeRestoreComplete(requireContext().components.store, findNavController())
             }
-
-            observeTabSelection(requireContext().components.store)
         }
 
     private fun initializeUI(view: View) {
@@ -360,74 +348,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         }
     }
 
-    /**
-     * Preserves current state of the [DynamicDownloadDialog] to persist through tab changes and
-     * other fragments navigation.
-     * */
-    private fun saveDownloadDialogState(
-        sessionId: String?,
-        downloadState: DownloadState,
-        downloadJobStatus: DownloadState.Status
-    ) {
-        sessionId?.let { id ->
-            sharedViewModel.downloadDialogState[id] = Pair(
-                downloadState,
-                downloadJobStatus == DownloadState.Status.FAILED
-            )
-        }
-    }
-
-    /**
-     * Re-initializes [DynamicDownloadDialog] if the user hasn't dismissed the dialog
-     * before navigating away from it's original tab.
-     * onTryAgain it will use [ContentAction.UpdateDownloadAction] to re-enqueue the former failed
-     * download, because [DownloadsFeature] clears any queued downloads onStop.
-     * */
-    @VisibleForTesting
-    internal fun resumeDownloadDialogState(
-        sessionId: String?,
-        store: BrowserStore,
-        view: View,
-        context: Context,
-        toolbarHeight: Int
-    ) {
-        val savedDownloadState =
-            sharedViewModel.downloadDialogState[sessionId]
-
-        if (savedDownloadState == null || sessionId == null) {
-            //view.viewDynamicDownloadDialog.visibility = View.GONE
-            return
-        }
-
-        val onTryAgain: (String) -> Unit = {
-            savedDownloadState.first?.let { dlState ->
-                store.dispatch(
-                    ContentAction.UpdateDownloadAction(
-                        sessionId, dlState.copy(skipConfirmation = true)
-                    )
-                )
-            }
-        }
-
-        val onDismiss: () -> Unit =
-            { sharedViewModel.downloadDialogState.remove(sessionId) }
-
-        /*DynamicDownloadDialog(
-            container = view.browserLayout,
-            downloadState = savedDownloadState.first,
-            metrics = requireComponents.analytics.metrics,
-            didFail = savedDownloadState.second,
-            tryAgain = onTryAgain,
-            onCannotOpenFile = {
-                showCannotOpenFileError(view.browserLayout, context, it)
-            },
-            view = view.viewDynamicDownloadDialog,
-            toolbarHeight = toolbarHeight,
-            onDismiss = onDismiss
-        ).show()*/
-
-    }
-
     @VisibleForTesting
     internal fun shouldPullToRefreshBeEnabled(inFullScreen: Boolean): Boolean {
         return UserPreferences(requireContext()).swipeToRefresh
@@ -465,17 +385,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                             )
                         if (tabs.isEmpty() || store.state.selectedTabId == null) {
                             when(UserPreferences(requireContext()).homepageType){
-                                HomepageChoice.VIEW.ordinal -> {
-                                    components.tabsUseCases.addTab.invoke(
-                                        "about:homepage",
-                                        selectTab = true
-                                    )
-                                    navController.navigate(
-                                        HomeFragmentDirections.actionGlobalHome(
-                                            focusOnAddressBar = false
-                                        )
-                                    )
-                                }
+                                HomepageChoice.VIEW.ordinal -> {      }
                                 HomepageChoice.BLANK_PAGE.ordinal -> {
                                     components.tabsUseCases.addTab.invoke(
                                         "about:blank",
@@ -492,39 +402,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                         }
                     }
                 }
-        }
-    }
-
-    @VisibleForTesting
-    internal fun observeTabSelection(store: BrowserStore) {
-        consumeFlow(store) { flow ->
-            flow.ifChanged {
-                it.selectedTabId
-            }
-                .mapNotNull {
-                    it.selectedTab
-                }
-                .collect {
-                    handleTabSelected(it)
-                }
-        }
-    }
-
-    private fun handleTabSelected(selectedTab: TabSessionState) {
-        if (!this.isRemoving) {
-            updateThemeForSession(selectedTab)
-        }
-
-        if (browserInitialized) {
-            view?.let { view ->
-                fullScreenChanged(false)
-
-                val toolbarHeight = resources.getDimensionPixelSize(R.dimen.browser_toolbar_height)
-                val context = requireContext()
-                resumeDownloadDialogState(selectedTab.id, context.components.store, view, context, toolbarHeight)
-            }
-        } else {
-            view?.let { view -> initializeUI(view) }
         }
     }
 
