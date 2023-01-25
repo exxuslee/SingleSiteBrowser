@@ -17,7 +17,10 @@ class OpenBrowserIntentProcessor(
         return if (intent.extras?.getBoolean(BrowserActivity.OPEN_TO_BROWSER) == true) {
             out.putExtra(BrowserActivity.OPEN_TO_BROWSER, false)
 
-            activity.openToBrowser(BrowserDirection.FromGlobal, getIntentSessionId(intent.toSafeIntent()))
+            activity.openToBrowser(
+                BrowserDirection.FromGlobal,
+                getIntentSessionId(intent.toSafeIntent())
+            )
             true
         } else {
             false

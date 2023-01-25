@@ -369,8 +369,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         }
     }
 
-    //TODO: Custom add-on collections, final clean up, VideoDL + update SCW/BB
-
     @VisibleForTesting
     internal fun observeRestoreComplete(store: BrowserStore, navController: NavController) {
         val activity = activity as BrowserActivity

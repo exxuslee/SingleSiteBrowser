@@ -31,17 +31,11 @@ class BrowserApp : Application() {
         Facts.registerProcessor(LogFactProcessor())
 
         components.engine.warmUp()
-        restoreBrowserState()
 
         GlobalScope.launch(Dispatchers.IO) {
             components.webAppManifestStorage.warmUpScopes(System.currentTimeMillis())
         }
-        components.downloadsUseCases.restoreDownloads()
         try {
-            GlobalAddonDependencyProvider.initialize(
-                components.addonManager,
-                components.addonUpdater
-            )
             WebExtensionSupport.initialize(
                 components.engine,
                 components.store,
@@ -67,14 +61,6 @@ class BrowserApp : Application() {
         }
     }
 
-    private fun restoreBrowserState() = GlobalScope.launch(Dispatchers.Main) {
-        components.tabsUseCases.restore(components.sessionStorage)
-
-        components.sessionStorage.autoSave(components.store)
-            .periodicallyInForeground(interval = 30, unit = TimeUnit.SECONDS)
-            .whenGoingToBackground()
-            .whenSessionsChange()
-    }
 
     override fun onTrimMemory(level: Int) {
         super.onTrimMemory(level)

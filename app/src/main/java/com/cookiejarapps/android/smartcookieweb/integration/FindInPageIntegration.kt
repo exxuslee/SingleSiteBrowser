@@ -31,12 +31,4 @@ class FindInPageIntegration(
             (feature as FindInPageFeature).bind(tab)
         }
     }
-    /**
-     * Holder of all details needed about the Toolbar.
-     * Used to modify the layout of BrowserToolbar while the find in page bar is shown.
-     */
-    data class ToolbarInfo(
-        val isToolbarDynamic: Boolean,
-        val isToolbarPlacedAtTop: Boolean
-    )
 }
