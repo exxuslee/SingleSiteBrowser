@@ -26,9 +26,6 @@ class UserPreferences(appContext: Context): PreferencesHolder {
     var appThemeChoice by intPreference(APP_THEME_CHOICE, ThemeChoice.SYSTEM.ordinal)
     var webThemeChoice by intPreference(WEB_THEME_CHOICE, ThemeChoice.SYSTEM.ordinal)
     var launchInApp by booleanPreference(LAUNCH_IN_APP, true)
-    var customAddonCollection by booleanPreference(CUSTOM_ADDON_BOOL, false)
-    var customAddonCollectionUser by stringPreference(COLLECTION_USER, "")
-    var customAddonCollectionName by stringPreference(COLLECTION_NAME, "")
     var autoFontSize by booleanPreference(AUTO_FONT_SIZE, true)
     var fontSizeFactor by floatPreference(FONT_SIZE_FACTOR, 1f)
     var hideBarWhileScrolling by booleanPreference(HIDE_URL_BAR, true)
@@ -52,9 +49,6 @@ class UserPreferences(appContext: Context): PreferencesHolder {
         const val APP_THEME_CHOICE = "app_theme_choice"
         const val WEB_THEME_CHOICE = "web_theme_choice"
         const val LAUNCH_IN_APP = "launch_in_app"
-        const val CUSTOM_ADDON_BOOL = "custom_addon_bool"
-        const val COLLECTION_NAME = "collection_name"
-        const val COLLECTION_USER = "collection_user"
         const val AUTO_FONT_SIZE = "auto_font_size"
         const val FONT_SIZE_FACTOR = "font_size_factor"
         const val HIDE_URL_BAR = "hide_url_bar"
