@@ -13,7 +13,6 @@ import androidx.annotation.CallSuper
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -21,7 +20,6 @@ import com.cookiejarapps.android.smartcookieweb.browser.BrowsingMode
 import com.cookiejarapps.android.smartcookieweb.browser.HomepageChoice
 import com.cookiejarapps.android.smartcookieweb.databinding.FragmentBrowserBinding
 import com.cookiejarapps.android.smartcookieweb.ext.components
-import com.cookiejarapps.android.smartcookieweb.integration.FindInPageIntegration
 import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
@@ -42,7 +40,6 @@ import mozilla.components.feature.search.SearchFeature
 import mozilla.components.feature.session.FullScreenFeature
 import mozilla.components.feature.session.PictureInPictureFeature
 import mozilla.components.feature.session.SessionFeature
-import mozilla.components.feature.session.SwipeRefreshFeature
 import mozilla.components.feature.sitepermissions.SitePermissionsFeature
 import mozilla.components.lib.state.ext.consumeFlow
 import mozilla.components.lib.state.ext.flowScoped
@@ -70,7 +67,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     private val downloadsFeature = ViewBoundFeatureWrapper<DownloadsFeature>()
     private val appLinksFeature = ViewBoundFeatureWrapper<AppLinksFeature>()
     private val promptsFeature = ViewBoundFeatureWrapper<PromptFeature>()
-    private val findInPageIntegration = ViewBoundFeatureWrapper<FindInPageIntegration>()
     private val sitePermissionsFeature = ViewBoundFeatureWrapper<SitePermissionsFeature>()
     private val fullScreenFeature = ViewBoundFeatureWrapper<FullScreenFeature>()
     private var fullScreenMediaSessionFeature =
@@ -125,18 +121,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         val context = requireContext()
         val store = context.components.store
         val activity = requireActivity() as BrowserActivity
-
-        findInPageIntegration.set(
-            feature = FindInPageIntegration(
-                store = store,
-                sessionId = customTabSessionId,
-                stub = binding.stubFindInPage,
-                engineView = binding.engineView,
-            ),
-            owner = this,
-            view = view
-        )
-
 
         promptsFeature.set(
             feature = PromptFeature(
@@ -270,9 +254,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                 .ifAnyChanged { tab ->
                     arrayOf(tab.content.url, tab.content.loadRequest)
                 }
-                .collect {
-                    findInPageIntegration.onBackPressed()
-                }
         }
     }
 
@@ -344,8 +325,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
 
     @CallSuper
     override fun onBackPressed(): Boolean {
-        return findInPageIntegration.onBackPressed() ||
-                fullScreenFeature.onBackPressed() ||
+        return  fullScreenFeature.onBackPressed() ||
                 promptsFeature.onBackPressed() ||
                 sessionFeature.onBackPressed() ||
                 removeSessionIfNeeded()
@@ -465,7 +445,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     internal fun fullScreenChanged(inFullScreen: Boolean) {
         if (inFullScreen) {
             // Close find in page bar if opened
-            findInPageIntegration.onBackPressed()
 
             requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
             requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
