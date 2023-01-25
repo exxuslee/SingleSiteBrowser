@@ -52,11 +52,11 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
         supportFragmentManager.findFragmentById(R.id.container) as NavHostFragment
     }
 
-    private val externalSourceIntentProcessors by lazy {
-        listOf(
-            OpenBrowserIntentProcessor(this, ::getIntentSessionId),
-        )
-    }
+//    private val externalSourceIntentProcessors by lazy {
+//        listOf(
+//            OpenBrowserIntentProcessor(this, ::getIntentSessionId),
+//        )
+//    }
 
     private val webExtensionPopupFeature by lazy {
         WebExtensionPopupFeature(components.store, ::openPopup)
@@ -137,17 +137,17 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
             }
         }
 
-        if (isActivityColdStarted(intent, savedInstanceState) &&
-            !externalSourceIntentProcessors.any {
-                it.process(
-                    intent,
-                    navHost.navController,
-                    this.intent
-                )
-            }
-        ) {
-            navigateToBrowserOnColdStart()
-        }
+//        if (isActivityColdStarted(intent, savedInstanceState) &&
+//            !externalSourceIntentProcessors.any {
+//                it.process(
+//                    intent,
+//                    navHost.navController,
+//                    this.intent
+//                )
+//            }
+//        ) {
+//            navigateToBrowserOnColdStart()
+//        }
 
         if (UserPreferences(this).appThemeChoice == ThemeChoice.SYSTEM.ordinal) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
@@ -158,36 +158,33 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
         }
 
         installPrintExtension()
-
         components.appRequestInterceptor.setNavController(navHost.navController)
-
         lifecycle.addObserver(webExtensionPopupFeature)
-
     }
 
-    final override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        // TODO: temporary fix
-        openToBrowser(BrowserDirection.FromGlobal)
-        intent?.let {
-            handleNewIntent(it)
-        }
-    }
+//    final override fun onNewIntent(intent: Intent?) {
+//        super.onNewIntent(intent)
+//        // TODO: temporary fix
+//        openToBrowser(BrowserDirection.FromGlobal)
+//        intent?.let {
+//            handleNewIntent(it)
+//        }
+//    }
 
-    open fun handleNewIntent(intent: Intent) {
-        val intentProcessors = externalSourceIntentProcessors
-        val intentHandled =
-            intentProcessors.any { it.process(intent, navHost.navController, this.intent) }
-        browsingModeManager.mode = BrowsingMode.Normal
-
-        if (intentHandled) {
-            supportFragmentManager
-                .primaryNavigationFragment
-                ?.childFragmentManager
-                ?.fragments
-                ?.lastOrNull()
-        }
-    }
+//    open fun handleNewIntent(intent: Intent) {
+//        val intentProcessors = externalSourceIntentProcessors
+//        val intentHandled =
+//            intentProcessors.any { it.process(intent, navHost.navController, this.intent) }
+//        browsingModeManager.mode = BrowsingMode.Normal
+//
+//        if (intentHandled) {
+//            supportFragmentManager
+//                .primaryNavigationFragment
+//                ?.childFragmentManager
+//                ?.fragments
+//                ?.lastOrNull()
+//        }
+//    }
 
     open fun navigateToBrowserOnColdStart() {
         if (!browsingModeManager.mode.isPrivate) {

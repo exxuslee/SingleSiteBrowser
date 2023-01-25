@@ -1,9 +1,6 @@
 <component name="libraryTable">
   <library name="Gradle: org.mozilla.components:support-ktx:110.0.20230107143316@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bf9ceff175db36c9782c74d951d14b53/transformed/jetified-support-ktx-110.0.20230107143316/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bf9ceff175db36c9782c74d951d14b53/transformed/jetified-support-ktx-110.0.20230107143316/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/bf9ceff175db36c9782c74d951d14b53/transformed/jetified-support-ktx-110.0.20230107143316/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c796611f0b1e5ee44da6859d5375d2c3/transformed/jetified-support-ktx-110.0.20230107143316/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c796611f0b1e5ee44da6859d5375d2c3/transformed/jetified-support-ktx-110.0.20230107143316/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c796611f0b1e5ee44da6859d5375d2c3/transformed/jetified-support-ktx-110.0.20230107143316/AndroidManifest.xml" />

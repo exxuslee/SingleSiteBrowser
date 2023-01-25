@@ -1,8 +1,6 @@
 <component name="libraryTable">
   <library name="Gradle: org.mozilla.components:lib-publicsuffixlist:110.0.20230107143316@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e3808777b24b9236f369a8446d2eabc9/transformed/jetified-lib-publicsuffixlist-110.0.20230107143316/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/e3808777b24b9236f369a8446d2eabc9/transformed/jetified-lib-publicsuffixlist-110.0.20230107143316/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/19462b5a515974fe61b49fe83476ff66/transformed/jetified-lib-publicsuffixlist-110.0.20230107143316/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/19462b5a515974fe61b49fe83476ff66/transformed/jetified-lib-publicsuffixlist-110.0.20230107143316/jars/classes.jar!/" />
     </CLASSES>

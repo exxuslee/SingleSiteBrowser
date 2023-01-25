@@ -1,8 +1,6 @@
 <component name="libraryTable">
   <library name="Gradle: org.mozilla.components:concept-sync:110.0.20230107143316@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/aca47887288ba304372296d6c2d90fb1/transformed/jetified-concept-sync-110.0.20230107143316/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/aca47887288ba304372296d6c2d90fb1/transformed/jetified-concept-sync-110.0.20230107143316/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/728619398dcd7c448d7bd3f0d40e4d9d/transformed/jetified-concept-sync-110.0.20230107143316/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/728619398dcd7c448d7bd3f0d40e4d9d/transformed/jetified-concept-sync-110.0.20230107143316/jars/classes.jar!/" />
     </CLASSES>

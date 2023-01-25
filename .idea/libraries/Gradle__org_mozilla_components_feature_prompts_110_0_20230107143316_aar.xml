@@ -1,9 +1,6 @@
 <component name="libraryTable">
   <library name="Gradle: org.mozilla.components:feature-prompts:110.0.20230107143316@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c8b0febb7e9f892d69774fb6ee40b02b/transformed/jetified-feature-prompts-110.0.20230107143316/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c8b0febb7e9f892d69774fb6ee40b02b/transformed/jetified-feature-prompts-110.0.20230107143316/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c8b0febb7e9f892d69774fb6ee40b02b/transformed/jetified-feature-prompts-110.0.20230107143316/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/64e6b579dc843fbf109b81c4f56d23f3/transformed/jetified-feature-prompts-110.0.20230107143316/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/64e6b579dc843fbf109b81c4f56d23f3/transformed/jetified-feature-prompts-110.0.20230107143316/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/64e6b579dc843fbf109b81c4f56d23f3/transformed/jetified-feature-prompts-110.0.20230107143316/jars/classes.jar!/" />

@@ -1,13 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: org.mozilla.geckoview:geckoview-nightly-omni:110.0.20230107093442@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/12b045c6e2a99f08f00f94612a6661d3/transformed/jetified-geckoview-nightly-omni-110.0.20230107093442/annotations.zip!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/942f5bf68f21b21ed69c7d26bd413e42/transformed/jetified-geckoview-nightly-omni-110.0.20230107093442/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/12b045c6e2a99f08f00f94612a6661d3/transformed/jetified-geckoview-nightly-omni-110.0.20230107093442/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/12b045c6e2a99f08f00f94612a6661d3/transformed/jetified-geckoview-nightly-omni-110.0.20230107093442/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/12b045c6e2a99f08f00f94612a6661d3/transformed/jetified-geckoview-nightly-omni-110.0.20230107093442/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/942f5bf68f21b21ed69c7d26bd413e42/transformed/jetified-geckoview-nightly-omni-110.0.20230107093442/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/942f5bf68f21b21ed69c7d26bd413e42/transformed/jetified-geckoview-nightly-omni-110.0.20230107093442/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/942f5bf68f21b21ed69c7d26bd413e42/transformed/jetified-geckoview-nightly-omni-110.0.20230107093442/res" />

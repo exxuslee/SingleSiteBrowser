@@ -1,9 +1,6 @@
 <component name="libraryTable">
   <library name="Gradle: org.mozilla.components:browser-thumbnails:110.0.20230107143316@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/696d3503209d92244742a656b75ecb69/transformed/jetified-browser-thumbnails-110.0.20230107143316/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/696d3503209d92244742a656b75ecb69/transformed/jetified-browser-thumbnails-110.0.20230107143316/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/696d3503209d92244742a656b75ecb69/transformed/jetified-browser-thumbnails-110.0.20230107143316/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4cf1b31defbdb0723940cd7634237a81/transformed/jetified-browser-thumbnails-110.0.20230107143316/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4cf1b31defbdb0723940cd7634237a81/transformed/jetified-browser-thumbnails-110.0.20230107143316/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/4cf1b31defbdb0723940cd7634237a81/transformed/jetified-browser-thumbnails-110.0.20230107143316/jars/classes.jar!/" />

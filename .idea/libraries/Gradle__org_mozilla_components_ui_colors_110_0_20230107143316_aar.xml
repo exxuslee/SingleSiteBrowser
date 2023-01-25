@@ -1,9 +1,6 @@
 <component name="libraryTable">
   <library name="Gradle: org.mozilla.components:ui-colors:110.0.20230107143316@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6eeed13fee1a9a46c1d9bf869f184f41/transformed/jetified-ui-colors-110.0.20230107143316/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6eeed13fee1a9a46c1d9bf869f184f41/transformed/jetified-ui-colors-110.0.20230107143316/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/6eeed13fee1a9a46c1d9bf869f184f41/transformed/jetified-ui-colors-110.0.20230107143316/jars/classes.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/b2c46b05132eeba63715a3bb9317bf7a/transformed/jetified-ui-colors-110.0.20230107143316/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b2c46b05132eeba63715a3bb9317bf7a/transformed/jetified-ui-colors-110.0.20230107143316/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b2c46b05132eeba63715a3bb9317bf7a/transformed/jetified-ui-colors-110.0.20230107143316/AndroidManifest.xml" />
