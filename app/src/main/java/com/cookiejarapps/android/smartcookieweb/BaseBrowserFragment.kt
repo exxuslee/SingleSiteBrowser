@@ -296,18 +296,18 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         }
     }
 
-    @CallSuper
-    override fun onResume() {
-        super.onResume()
-        val components = requireContext().components
-
-        val preferredColorScheme = components.darkEnabled()
-        if (components.engine.settings.preferredColorScheme != preferredColorScheme) {
-            components.engine.settings.preferredColorScheme = preferredColorScheme
-            components.sessionUseCases.reload()
-        }
-        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
-    }
+//    @CallSuper
+//    override fun onResume() {
+//        super.onResume()
+//        val components = requireContext().components
+//
+//        val preferredColorScheme = components.darkEnabled()
+//        if (components.engine.settings.preferredColorScheme != preferredColorScheme) {
+//            components.engine.settings.preferredColorScheme = preferredColorScheme
+//            components.sessionUseCases.reload()
+//        }
+//        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
+//    }
 
     @CallSuper
     override fun onStop() {

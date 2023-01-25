@@ -2,11 +2,8 @@ package com.cookiejarapps.android.smartcookieweb.components
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.content.res.Configuration
 import com.cookiejarapps.android.smartcookieweb.BrowserActivity
-import com.cookiejarapps.android.smartcookieweb.BuildConfig
 import com.cookiejarapps.android.smartcookieweb.R
-import com.cookiejarapps.android.smartcookieweb.browser.ThemeChoice
 import com.cookiejarapps.android.smartcookieweb.ext.components
 import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
 import com.cookiejarapps.android.smartcookieweb.request.AppRequestInterceptor
@@ -25,10 +22,8 @@ import mozilla.components.browser.thumbnails.storage.ThumbnailStorage
 import mozilla.components.concept.engine.DefaultSettings
 import mozilla.components.concept.engine.Engine
 import mozilla.components.concept.engine.EngineSession
-import mozilla.components.concept.engine.mediaquery.PreferredColorScheme
 import mozilla.components.concept.fetch.Client
 import mozilla.components.feature.app.links.AppLinksInterceptor
-import mozilla.components.feature.app.links.AppLinksUseCases
 import mozilla.components.feature.contextmenu.ContextMenuUseCases
 import mozilla.components.feature.downloads.DownloadsUseCases
 import mozilla.components.feature.media.middleware.RecordingDevicesMiddleware
@@ -50,11 +45,9 @@ import mozilla.components.feature.webcompat.WebCompatFeature
 import mozilla.components.feature.webnotifications.WebNotificationFeature
 import mozilla.components.lib.publicsuffixlist.PublicSuffixList
 import mozilla.components.service.location.LocationService
-import mozilla.components.support.base.worker.Frequency
 import org.mozilla.geckoview.ContentBlocking
 import org.mozilla.geckoview.GeckoRuntime
 import org.mozilla.geckoview.GeckoRuntimeSettings
-import java.util.concurrent.TimeUnit
 
 
 private const val DAY_IN_MINUTES = 24 * 60L
@@ -74,17 +67,17 @@ open class Components(private val applicationContext: Context) {
             applicationContext.getSharedPreferences(BROWSER_PREFERENCES, Context.MODE_PRIVATE)
 
 
-    fun darkEnabled(): PreferredColorScheme {
-        val darkOn =
-                (applicationContext.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
-                        Configuration.UI_MODE_NIGHT_YES
-        return when {
-            UserPreferences(applicationContext).webThemeChoice == ThemeChoice.DARK.ordinal -> PreferredColorScheme.Dark
-            UserPreferences(applicationContext).webThemeChoice == ThemeChoice.LIGHT.ordinal -> PreferredColorScheme.Light
-            darkOn -> PreferredColorScheme.Dark
-            else -> PreferredColorScheme.Light
-        }
-    }
+//    fun darkEnabled(): PreferredColorScheme {
+//        val darkOn =
+//                (applicationContext.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
+//                        Configuration.UI_MODE_NIGHT_YES
+//        return when {
+//            UserPreferences(applicationContext).webThemeChoice == ThemeChoice.DARK.ordinal -> PreferredColorScheme.Dark
+//            UserPreferences(applicationContext).webThemeChoice == ThemeChoice.LIGHT.ordinal -> PreferredColorScheme.Light
+//            darkOn -> PreferredColorScheme.Dark
+//            else -> PreferredColorScheme.Light
+//        }
+//    }
 
     val appRequestInterceptor by lazy {
         AppRequestInterceptor(applicationContext)
@@ -102,7 +95,7 @@ open class Components(private val applicationContext: Context) {
                 fontSizeFactor = UserPreferences(applicationContext).fontSizeFactor
                 automaticFontSizeAdjustment = false
             }
-            preferredColorScheme = darkEnabled()
+//            preferredColorScheme = darkEnabled()
             javascriptEnabled = UserPreferences(applicationContext).javaScriptEnabled
         }
     }
