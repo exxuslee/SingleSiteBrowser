@@ -65,7 +65,6 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
     private val externalSourceIntentProcessors by lazy {
         listOf(
             OpenBrowserIntentProcessor(this, ::getIntentSessionId),
-            OpenSpecificTabIntentProcessor(this)
         )
     }
 
