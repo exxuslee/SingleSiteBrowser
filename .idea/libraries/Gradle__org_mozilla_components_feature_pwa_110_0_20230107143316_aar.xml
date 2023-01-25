@@ -4,6 +4,9 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/e4170e2ce2b7379397ef1a51b0b7f577/transformed/jetified-feature-pwa-110.0.20230107143316/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e4170e2ce2b7379397ef1a51b0b7f577/transformed/jetified-feature-pwa-110.0.20230107143316/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e4170e2ce2b7379397ef1a51b0b7f577/transformed/jetified-feature-pwa-110.0.20230107143316/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/161399044b6bcb615f0d99c0be94ac6d/transformed/jetified-feature-pwa-110.0.20230107143316/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/161399044b6bcb615f0d99c0be94ac6d/transformed/jetified-feature-pwa-110.0.20230107143316/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/161399044b6bcb615f0d99c0be94ac6d/transformed/jetified-feature-pwa-110.0.20230107143316/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -3,6 +3,8 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/2b42ab4da7b7319f989474856d8476f3/transformed/jetified-full-megazord-96.2.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2b42ab4da7b7319f989474856d8476f3/transformed/jetified-full-megazord-96.2.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/bb7bc779ad63ed933100687405ee0f12/transformed/jetified-full-megazord-96.2.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bb7bc779ad63ed933100687405ee0f12/transformed/jetified-full-megazord-96.2.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

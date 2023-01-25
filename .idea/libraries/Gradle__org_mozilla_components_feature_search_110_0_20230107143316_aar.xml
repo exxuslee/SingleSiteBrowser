@@ -4,6 +4,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4ac14321ff5536d7eaad159707a7a6b1/transformed/jetified-feature-search-110.0.20230107143316/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/4ac14321ff5536d7eaad159707a7a6b1/transformed/jetified-feature-search-110.0.20230107143316/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4ac14321ff5536d7eaad159707a7a6b1/transformed/jetified-feature-search-110.0.20230107143316/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/aca649a612932271bdc094346d69d0b7/transformed/jetified-feature-search-110.0.20230107143316/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/aca649a612932271bdc094346d69d0b7/transformed/jetified-feature-search-110.0.20230107143316/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/aca649a612932271bdc094346d69d0b7/transformed/jetified-feature-search-110.0.20230107143316/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

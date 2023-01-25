@@ -4,6 +4,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4c19e0036bcc34ac9b99e84c5ba21223/transformed/jetified-browser-tabstray-110.0.20230107143316/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/4c19e0036bcc34ac9b99e84c5ba21223/transformed/jetified-browser-tabstray-110.0.20230107143316/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4c19e0036bcc34ac9b99e84c5ba21223/transformed/jetified-browser-tabstray-110.0.20230107143316/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/762de1ba06808d715c24ed6caedcc7bf/transformed/jetified-browser-tabstray-110.0.20230107143316/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/762de1ba06808d715c24ed6caedcc7bf/transformed/jetified-browser-tabstray-110.0.20230107143316/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/762de1ba06808d715c24ed6caedcc7bf/transformed/jetified-browser-tabstray-110.0.20230107143316/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -3,6 +3,8 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/cc4e91ee8a68734bf7b490d6809c7501/transformed/jetified-support-locale-110.0.20230107143316/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cc4e91ee8a68734bf7b490d6809c7501/transformed/jetified-support-locale-110.0.20230107143316/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/059a985d8c871016325862d9420306a4/transformed/jetified-support-locale-110.0.20230107143316/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/059a985d8c871016325862d9420306a4/transformed/jetified-support-locale-110.0.20230107143316/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

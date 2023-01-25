@@ -3,6 +3,8 @@
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8f04a718878ad688a0648c0b9264d468/transformed/jetified-dagger-android-support-2.38.1/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/8f04a718878ad688a0648c0b9264d468/transformed/jetified-dagger-android-support-2.38.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/70591d665c86a6406acc2a201f39b75f/transformed/jetified-dagger-android-support-2.38.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/70591d665c86a6406acc2a201f39b75f/transformed/jetified-dagger-android-support-2.38.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-android-support/2.38.1/ce666233e8fb0efa662c250f4af40825bfedd7bc/dagger-android-support-2.38.1-javadoc.jar!/" />

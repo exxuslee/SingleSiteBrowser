@@ -289,8 +289,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                 view = view
             )
         }
-
-        initializeEngineView(toolbarHeight)
     }
 
     @VisibleForTesting
@@ -311,22 +309,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     @VisibleForTesting
     internal fun shouldPullToRefreshBeEnabled(inFullScreen: Boolean): Boolean {
         return UserPreferences(requireContext()).swipeToRefresh
-    }
-
-    @VisibleForTesting
-    internal fun initializeEngineView(toolbarHeight: Int) {
-        val context = requireContext()
-
-        if (UserPreferences(context).hideBarWhileScrolling) {
-            binding.engineView.setDynamicToolbarMaxHeight(toolbarHeight)
-        } else {
-            binding.engineView.setDynamicToolbarMaxHeight(0)
-
-            val swipeRefreshParams =
-                binding.swipeRefresh.layoutParams as CoordinatorLayout.LayoutParams
-                swipeRefreshParams.bottomMargin = toolbarHeight
-
-        }
     }
 
     @VisibleForTesting
@@ -540,10 +522,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
             requireActivity().window.getDecorView().systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
 
             activity?.exitImmersiveMode()
-            if (webAppToolbarShouldBeVisible) {
-                val toolbarHeight = resources.getDimensionPixelSize(R.dimen.browser_toolbar_height)
-                initializeEngineView(toolbarHeight)
-            }
         }
 
         binding.swipeRefresh?.isEnabled = shouldPullToRefreshBeEnabled(inFullScreen)

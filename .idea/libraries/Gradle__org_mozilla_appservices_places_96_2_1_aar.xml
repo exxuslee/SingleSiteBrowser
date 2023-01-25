@@ -3,6 +3,8 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/b074cfbf8b266c75f795324a1a7c9ac6/transformed/jetified-places-96.2.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b074cfbf8b266c75f795324a1a7c9ac6/transformed/jetified-places-96.2.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/724425244024f2c3976796d5f12abc0e/transformed/jetified-places-96.2.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/724425244024f2c3976796d5f12abc0e/transformed/jetified-places-96.2.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
