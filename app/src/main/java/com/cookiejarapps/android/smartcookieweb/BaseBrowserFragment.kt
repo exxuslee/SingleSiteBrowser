@@ -131,10 +131,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         val activity = requireActivity() as BrowserActivity
 
         val toolbarHeight = resources.getDimensionPixelSize(R.dimen.browser_toolbar_height)
-        val openInFenixIntent = Intent(context, IntentReceiverActivity::class.java).apply {
-            action = Intent.ACTION_VIEW
-            putExtra(BrowserActivity.OPEN_TO_BROWSER, true)
-        }
 
         findInPageIntegration.set(
             feature = FindInPageIntegration(
@@ -237,7 +233,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
 
                 if (parentSession is CustomTabSessionState) {
                     useCase.invoke(request.query)
-                    requireActivity().startActivity(openInFenixIntent)
                 } else {
                     useCase.invoke(request.query, parentSessionId = parentSession?.id)
                 }
