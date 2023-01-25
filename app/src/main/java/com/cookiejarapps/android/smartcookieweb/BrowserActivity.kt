@@ -8,15 +8,11 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.IdRes
 import androidx.annotation.VisibleForTesting
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
 import com.cookiejarapps.android.smartcookieweb.browser.*
 import com.cookiejarapps.android.smartcookieweb.databinding.ActivityMainBinding
 import com.cookiejarapps.android.smartcookieweb.ext.alreadyOnDestination
@@ -43,21 +39,15 @@ import mozilla.components.support.ktx.kotlin.isUrl
 import mozilla.components.support.ktx.kotlin.toNormalizedUrl
 import mozilla.components.support.utils.SafeIntent
 import mozilla.components.support.webextensions.WebExtensionPopupFeature
-import org.json.JSONObject
 
 
 /**
  * Activity that holds the [BrowserFragment].
  */
-open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostActivity {
+open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
 
     lateinit var binding: ActivityMainBinding
-
     lateinit var browsingModeManager: BrowsingModeManager
-
-    private var isToolbarInflated = false
-    private lateinit var navigationToolbar: Toolbar
-
     private val navHost by lazy {
         supportFragmentManager.findFragmentById(R.id.container) as NavHostFragment
     }
@@ -234,19 +224,6 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
             else -> super.onCreateView(parent, name, context, attrs)
         }
 
-    override fun getSupportActionBarAndInflateIfNecessary(): ActionBar {
-        if (!isToolbarInflated) {
-            navigationToolbar = binding.navigationToolbarStub.inflate() as Toolbar
-
-            setSupportActionBar(navigationToolbar)
-            // Add ids to this that we don't want to have a toolbar back button
-            setupNavigationToolbar()
-
-            isToolbarInflated = true
-        }
-        return supportActionBar!!
-    }
-
     final override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         supportFragmentManager.primaryNavigationFragment?.childFragmentManager?.fragments?.forEach {
             if (it is ActivityResultHandler && it.onActivityResult(requestCode, data, resultCode)) {
@@ -254,19 +231,6 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
-    }
-
-    @Suppress("SpreadOperator")
-    fun setupNavigationToolbar(vararg topLevelDestinationIds: Int) {
-        NavigationUI.setupWithNavController(
-            navigationToolbar,
-            navHost.navController,
-            AppBarConfiguration.Builder(*topLevelDestinationIds).build()
-        )
-
-        navigationToolbar.setNavigationOnClickListener {
-            onBackPressed()
-        }
     }
 
     private fun openPopup(webExtensionState: WebExtensionState) {

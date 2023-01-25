@@ -1,6 +1,5 @@
 package com.cookiejarapps.android.smartcookieweb
 
-import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Build
@@ -16,11 +15,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.cookiejarapps.android.smartcookieweb.*
 import com.cookiejarapps.android.smartcookieweb.browser.BrowsingMode
 import com.cookiejarapps.android.smartcookieweb.browser.HomepageChoice
 import com.cookiejarapps.android.smartcookieweb.databinding.FragmentBrowserBinding
@@ -33,12 +29,10 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
-import mozilla.components.browser.state.action.ContentAction
 import mozilla.components.browser.state.selector.*
 import mozilla.components.browser.state.state.CustomTabSessionState
 import mozilla.components.browser.state.state.SessionState
 import mozilla.components.browser.state.state.TabSessionState
-import mozilla.components.browser.state.state.content.DownloadState
 import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.browser.thumbnails.BrowserThumbnails
 import mozilla.components.feature.app.links.AppLinksFeature
@@ -61,7 +55,6 @@ import mozilla.components.support.base.feature.ViewBoundFeatureWrapper
 import mozilla.components.support.ktx.android.view.exitImmersiveMode
 import mozilla.components.support.ktx.kotlinx.coroutines.flow.ifAnyChanged
 import mozilla.components.support.ktx.kotlinx.coroutines.flow.ifChanged
-import java.lang.ref.WeakReference
 
 /**
  * Base fragment extended by [BrowserFragment].
@@ -71,8 +64,6 @@ import java.lang.ref.WeakReference
 @ExperimentalCoroutinesApi
 @Suppress("TooManyFunctions", "LargeClass")
 abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, ActivityResultHandler, AccessibilityManager.AccessibilityStateChangeListener {
-
-    private lateinit var browserAnimator: BrowserAnimator
 
     protected val thumbnailsFeature = ViewBoundFeatureWrapper<BrowserThumbnails>()
 
@@ -140,16 +131,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         val activity = requireActivity() as BrowserActivity
 
         val toolbarHeight = resources.getDimensionPixelSize(R.dimen.browser_toolbar_height)
-
-        browserAnimator = BrowserAnimator(
-            fragment = WeakReference(this),
-            engineView = WeakReference(binding.engineView),
-            swipeRefresh = WeakReference(binding.swipeRefresh),
-            viewLifecycleScope = WeakReference(viewLifecycleOwner.lifecycleScope)
-        ).apply {
-            beginAnimateInIfNecessary()
-        }
-
         val openInFenixIntent = Intent(context, IntentReceiverActivity::class.java).apply {
             action = Intent.ACTION_VIEW
             putExtra(BrowserActivity.OPEN_TO_BROWSER, true)
