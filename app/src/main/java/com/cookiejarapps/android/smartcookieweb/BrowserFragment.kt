@@ -1,7 +1,9 @@
 package com.cookiejarapps.android.smartcookieweb
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.cookiejarapps.android.smartcookieweb.ext.components
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import mozilla.components.browser.state.state.SessionState
@@ -42,10 +44,14 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
         )
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         (requireActivity() as BrowserActivity)
             .openToBrowserAndLoad(searchTermOrURL =  "exzi.com",
                 newTab = false, from = BrowserDirection.FromGlobal)
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 }

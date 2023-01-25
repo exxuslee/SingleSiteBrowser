@@ -73,7 +73,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     private val findInPageIntegration = ViewBoundFeatureWrapper<FindInPageIntegration>()
     private val sitePermissionsFeature = ViewBoundFeatureWrapper<SitePermissionsFeature>()
     private val fullScreenFeature = ViewBoundFeatureWrapper<FullScreenFeature>()
-    private val swipeRefreshFeature = ViewBoundFeatureWrapper<SwipeRefreshFeature>()
     private var fullScreenMediaSessionFeature =
         ViewBoundFeatureWrapper<MediaSessionFullscreenFeature>()
     private val searchFeature = ViewBoundFeatureWrapper<SearchFeature>()
@@ -84,7 +83,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     @VisibleForTesting
     internal var browserInitialized: Boolean = false
     private var initUIJob: Job? = null
-    protected var webAppToolbarShouldBeVisible = true
 
     private var _binding: FragmentBrowserBinding? = null
     protected val binding get() = _binding!!
@@ -127,8 +125,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         val context = requireContext()
         val store = context.components.store
         val activity = requireActivity() as BrowserActivity
-
-        val toolbarHeight = resources.getDimensionPixelSize(R.dimen.browser_toolbar_height)
 
         findInPageIntegration.set(
             feature = FindInPageIntegration(
@@ -262,22 +258,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                 .collect { tab -> pipModeChanged(tab) }
         }
 
-        binding.swipeRefresh.isEnabled = shouldPullToRefreshBeEnabled(false)
-
-        if (binding.swipeRefresh.isEnabled) {
-            val primaryTextColor = ContextCompat.getColor(context, R.color.primary_icon)
-            binding.swipeRefresh.setColorSchemeColors(primaryTextColor)
-            swipeRefreshFeature.set(
-                feature = SwipeRefreshFeature(
-                    requireContext().components.store,
-                    context.components.sessionUseCases.reload,
-                    binding.swipeRefresh,
-                    customTabSessionId
-                ),
-                owner = this,
-                view = view
-            )
-        }
+//        binding.swipeRefresh.isEnabled = shouldPullToRefreshBeEnabled(false)
     }
 
     @VisibleForTesting
@@ -345,10 +326,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
             components.sessionUseCases.reload()
         }
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
-
-        components.store.state.findTabOrCustomTabOrSelectedTab(customTabSessionId)?.let {
-            updateThemeForSession(it)
-        }
     }
 
     @CallSuper
@@ -515,8 +492,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
 
             activity?.exitImmersiveMode()
         }
-
-        binding.swipeRefresh?.isEnabled = shouldPullToRefreshBeEnabled(inFullScreen)
     }
 
     /*
