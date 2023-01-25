@@ -21,7 +21,6 @@ import com.cookiejarapps.android.smartcookieweb.browser.BrowsingMode
 import com.cookiejarapps.android.smartcookieweb.browser.HomepageChoice
 import com.cookiejarapps.android.smartcookieweb.databinding.FragmentBrowserBinding
 import com.cookiejarapps.android.smartcookieweb.ext.components
-import com.cookiejarapps.android.smartcookieweb.integration.ContextMenuIntegration
 import com.cookiejarapps.android.smartcookieweb.integration.FindInPageIntegration
 import com.cookiejarapps.android.smartcookieweb.integration.ReaderModeIntegration
 import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
@@ -68,7 +67,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     protected val thumbnailsFeature = ViewBoundFeatureWrapper<BrowserThumbnails>()
 
     private val sessionFeature = ViewBoundFeatureWrapper<SessionFeature>()
-    private val contextMenuIntegration = ViewBoundFeatureWrapper<ContextMenuIntegration>()
     private val downloadsFeature = ViewBoundFeatureWrapper<DownloadsFeature>()
     private val appLinksFeature = ViewBoundFeatureWrapper<AppLinksFeature>()
     private val promptsFeature = ViewBoundFeatureWrapper<PromptFeature>()
@@ -138,20 +136,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                 sessionId = customTabSessionId,
                 stub = binding.stubFindInPage,
                 engineView = binding.engineView,
-            ),
-            owner = this,
-            view = view
-        )
-
-        contextMenuIntegration.set(
-            feature = ContextMenuIntegration(
-                context = requireContext(),
-                fragmentManager = parentFragmentManager,
-                browserStore = components.store,
-                tabsUseCases = components.tabsUseCases,
-                contextMenuUseCases = components.contextMenuUseCases,
-                parentView = view,
-                sessionId = customTabSessionId
             ),
             owner = this,
             view = view
