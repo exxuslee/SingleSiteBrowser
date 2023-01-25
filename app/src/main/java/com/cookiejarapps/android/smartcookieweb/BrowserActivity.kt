@@ -372,12 +372,6 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
         )
     }
 
-    fun printPage() {
-        val message = JSONObject()
-        message.put("print", true)
-        mPort!!.postMessage(message)
-    }
-
     override fun attachBaseContext(base: Context) {
         this.originalContext = base
         super.attachBaseContext(base)

@@ -1,5 +1,6 @@
 package com.cookiejarapps.android.smartcookieweb
 
+import android.os.Bundle
 import android.view.View
 import com.cookiejarapps.android.smartcookieweb.ext.components
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -39,5 +40,12 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
             owner = this,
             view = view
         )
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (requireActivity() as BrowserActivity)
+            .openToBrowserAndLoad(searchTermOrURL =  "exzi.com",
+                newTab = false, from = BrowserDirection.FromGlobal)
     }
 }
