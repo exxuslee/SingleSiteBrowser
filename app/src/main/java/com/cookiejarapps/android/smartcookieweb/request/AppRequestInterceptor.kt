@@ -1,13 +1,8 @@
 package com.cookiejarapps.android.smartcookieweb.request
 
 import android.content.Context
-import android.content.Intent
-import android.util.Log
-import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavController
-import com.cookiejarapps.android.smartcookieweb.browser.home.HomeFragmentDirections
 import com.cookiejarapps.android.smartcookieweb.ext.components
-import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
 import mozilla.components.browser.errorpages.ErrorPages
 import mozilla.components.browser.errorpages.ErrorType
 import mozilla.components.concept.engine.EngineSession
@@ -57,17 +52,6 @@ class AppRequestInterceptor(val context: Context) : RequestInterceptor {
         val riskLevel = getErrorCategory(errorType)
 
         if (uri == "about:homepage") {
-            /* This needs to be in onErrorRequest because onLoadRequest doesn't load on about pages due to a GeckoView bug
-            * We don't need to (and can't) check whether the URL was loaded by a link, whether the user entered the URL, or whether the browser opened it
-            * This doesn't matter though - GeckoView blocks web pages from loading about URLs already
-            * TODO: Option to focus on address bar when new tab is created
-            */
-            navController?.get()?.navigate(
-                HomeFragmentDirections.actionGlobalHome(
-                    focusOnAddressBar = false
-                )
-            )
-
             return RequestInterceptor.ErrorResponse("resource://android/assets/homepage.html")
         }
 

@@ -306,7 +306,6 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2, NavHostAc
     ): NavDirections? = when (from) {
         BrowserDirection.FromGlobal ->
             NavGraphDirections.actionGlobalBrowser(customTabSessionId)
-        BrowserDirection.FromHome -> NavGraphDirections.actionGlobalBrowser(customTabSessionId)
     }
 
     private fun load(
