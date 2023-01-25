@@ -6,14 +6,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import mozilla.components.browser.state.action.SystemAction
-import mozilla.components.feature.addons.update.GlobalAddonDependencyProvider
 import mozilla.components.support.base.facts.Facts
 import mozilla.components.support.base.facts.processor.LogFactProcessor
 import mozilla.components.support.base.log.logger.Logger
 import mozilla.components.support.ktx.android.content.isMainProcess
 import mozilla.components.support.ktx.android.content.runOnlyInMainProcess
 import mozilla.components.support.webextensions.WebExtensionSupport
-import java.util.concurrent.TimeUnit
 
 class BrowserApp : Application() {
 
