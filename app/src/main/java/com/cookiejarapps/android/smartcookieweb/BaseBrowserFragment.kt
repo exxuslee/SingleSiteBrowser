@@ -22,7 +22,6 @@ import com.cookiejarapps.android.smartcookieweb.browser.HomepageChoice
 import com.cookiejarapps.android.smartcookieweb.databinding.FragmentBrowserBinding
 import com.cookiejarapps.android.smartcookieweb.ext.components
 import com.cookiejarapps.android.smartcookieweb.integration.FindInPageIntegration
-import com.cookiejarapps.android.smartcookieweb.integration.ReaderModeIntegration
 import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
@@ -62,7 +61,8 @@ import mozilla.components.support.ktx.kotlinx.coroutines.flow.ifChanged
  */
 @ExperimentalCoroutinesApi
 @Suppress("TooManyFunctions", "LargeClass")
-abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, ActivityResultHandler, AccessibilityManager.AccessibilityStateChangeListener {
+abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, ActivityResultHandler,
+    AccessibilityManager.AccessibilityStateChangeListener {
 
     protected val thumbnailsFeature = ViewBoundFeatureWrapper<BrowserThumbnails>()
 
@@ -74,10 +74,10 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     private val sitePermissionsFeature = ViewBoundFeatureWrapper<SitePermissionsFeature>()
     private val fullScreenFeature = ViewBoundFeatureWrapper<FullScreenFeature>()
     private val swipeRefreshFeature = ViewBoundFeatureWrapper<SwipeRefreshFeature>()
-    private var fullScreenMediaSessionFeature = ViewBoundFeatureWrapper<MediaSessionFullscreenFeature>()
+    private var fullScreenMediaSessionFeature =
+        ViewBoundFeatureWrapper<MediaSessionFullscreenFeature>()
     private val searchFeature = ViewBoundFeatureWrapper<SearchFeature>()
     private var pipFeature: PictureInPictureFeature? = null
-    val readerViewFeature = ViewBoundFeatureWrapper<ReaderModeIntegration>()
 
     var customTabSessionId: String? = null
 
@@ -101,15 +101,15 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     }
 
     final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-            initializeUI(view)
+        initializeUI(view)
 
-            if (customTabSessionId == null) {
-                // We currently only need this observer to navigate to home
-                // in case all tabs have been removed on startup. No need to
-                // this if we have a known session to display.
-                observeRestoreComplete(requireContext().components.store, findNavController())
-            }
+        if (customTabSessionId == null) {
+            // We currently only need this observer to navigate to home
+            // in case all tabs have been removed on startup. No need to
+            // this if we have a known session to display.
+            observeRestoreComplete(requireContext().components.store, findNavController())
         }
+    }
 
     private fun initializeUI(view: View) {
         val tab = getCurrentTab()
@@ -141,29 +141,18 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
             view = view
         )
 
-        readerViewFeature.set(
-            feature = ReaderModeIntegration(
-                requireContext(),
-                components.engine,
-                components.store,
-                binding.readerViewBar,
-                binding.readerViewAppearanceButton
-            ),
-            owner = this,
-            view = view
-        )
 
         promptsFeature.set(
-                feature = PromptFeature(
-                        activity = activity,
-                        store = components.store,
-                        customTabId = customTabSessionId,
-                        fragmentManager = parentFragmentManager,
-                        onNeedToRequestPermissions = { permissions ->
-                            requestPermissions(permissions, REQUEST_CODE_PROMPT_PERMISSIONS)
-                        }),
-                owner = this,
-                view = view
+            feature = PromptFeature(
+                activity = activity,
+                store = components.store,
+                customTabId = customTabSessionId,
+                fragmentManager = parentFragmentManager,
+                onNeedToRequestPermissions = { permissions ->
+                    requestPermissions(permissions, REQUEST_CODE_PROMPT_PERMISSIONS)
+                }),
+            owner = this,
+            view = view
         )
 
         fullScreenMediaSessionFeature.set(
@@ -294,11 +283,11 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     @VisibleForTesting
     internal fun expandToolbarOnNavigation(store: BrowserStore) {
         consumeFlow(store) { flow ->
-            flow.mapNotNull {
-                    state -> state.findCustomTabOrSelectedTab(customTabSessionId)
+            flow.mapNotNull { state ->
+                state.findCustomTabOrSelectedTab(customTabSessionId)
             }
-                .ifAnyChanged {
-                        tab -> arrayOf(tab.content.url, tab.content.loadRequest)
+                .ifAnyChanged { tab ->
+                    arrayOf(tab.content.url, tab.content.loadRequest)
                 }
                 .collect {
                     findInPageIntegration.onBackPressed()
@@ -324,8 +313,8 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                                 activity.browsingModeManager.mode.isPrivate
                             )
                         if (tabs.isEmpty() || store.state.selectedTabId == null) {
-                            when(UserPreferences(requireContext()).homepageType){
-                                HomepageChoice.VIEW.ordinal -> {      }
+                            when (UserPreferences(requireContext()).homepageType) {
+                                HomepageChoice.VIEW.ordinal -> {}
                                 HomepageChoice.BLANK_PAGE.ordinal -> {
                                     components.tabsUseCases.addTab.invoke(
                                         "about:blank",
@@ -378,8 +367,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
 
     @CallSuper
     override fun onBackPressed(): Boolean {
-        return readerViewFeature.onBackPressed() ||
-                findInPageIntegration.onBackPressed() ||
+        return findInPageIntegration.onBackPressed() ||
                 fullScreenFeature.onBackPressed() ||
                 promptsFeature.onBackPressed() ||
                 sessionFeature.onBackPressed() ||
@@ -445,7 +433,10 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
             } else {
                 val hasParentSession = session is TabSessionState && session.parentId != null
                 if (hasParentSession) {
-                    requireContext().components.tabsUseCases.removeTab(session.id, selectParentIfExists = true)
+                    requireContext().components.tabsUseCases.removeTab(
+                        session.id,
+                        selectParentIfExists = true
+                    )
                 }
                 // We want to return to home if this session didn't have a parent session to select.
                 val goToOverview = !hasParentSession
@@ -501,11 +492,12 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
 
             requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
             requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-            requireActivity().window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+            requireActivity().window.decorView.systemUiVisibility =
+                (View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        or View.SYSTEM_UI_FLAG_FULLSCREEN
+                        or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
 
             val browserEngine = binding.swipeRefresh.layoutParams as CoordinatorLayout.LayoutParams
             browserEngine.bottomMargin = 0
