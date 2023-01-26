@@ -8,8 +8,8 @@
         android:shortcutLongLabel="@string/mozac_browser_menu_new_private_tab">
         <intent
             android:action="com.cookiejarapps.android.smartcookieweb.NEWPRIVATETAB"
-            android:targetPackage="com.cookiejarapps.android.smartcookieweb"
-            android:targetClass="com.cookiejarapps.android.smartcookieweb.IntentReceiverActivity" />
+            android:targetPackage="com.cookiejarapps.android.android"
+            android:targetClass="com.cookiejarapps.android.android.IntentReceiverActivity" />
     </shortcut>
     <shortcut
         android:shortcutId="new_tab"
@@ -19,7 +19,7 @@
         android:shortcutLongLabel="@string/new_tab">
         <intent
             android:action="com.cookiejarapps.android.smartcookieweb.NEWTAB"
-            android:targetPackage="com.cookiejarapps.android.smartcookieweb"
-            android:targetClass="com.cookiejarapps.android.smartcookieweb.IntentReceiverActivity" />
+            android:targetPackage="com.cookiejarapps.android.android"
+            android:targetClass="com.cookiejarapps.android.android.IntentReceiverActivity" />
     </shortcut>
 </shortcuts>

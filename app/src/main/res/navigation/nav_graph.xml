@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/browserFragment"
-        android:name="com.cookiejarapps.android.smartcookieweb.BrowserFragment"
+        android:name="com.exzi.android.BrowserFragment"
         app:exitAnim="@anim/fade_out"
         tools:layout="@layout/fragment_browser">
         <argument
