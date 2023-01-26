@@ -1,48 +1,14 @@
-<com.cookiejarapps.android.smartcookieweb.browser.SwipeGestureLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/gestureLayout"
+    android:id="@+id/browserLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/browserWindow"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/browserLayout"
+        <mozilla.components.concept.engine.EngineView
+            android:id="@+id/engineView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:context="browser.BrowserFragment">
+            android:layout_height="match_parent"
+            tools:ignore="Instantiatable" />
 
-            <mozilla.components.ui.widgets.VerticalSwipeRefreshLayout
-                android:id="@+id/swipeRefresh"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <mozilla.components.concept.engine.EngineView
-                    tools:ignore="Instantiatable"
-                    android:id="@+id/engineView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="gone" />
-            </mozilla.components.ui.widgets.VerticalSwipeRefreshLayout>
-
-            <mozilla.components.feature.readerview.view.ReaderViewControlsBar
-                android:id="@+id/readerViewControlsBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="?attr/colorSurface"
-                android:elevation="24dp"
-                android:visibility="gone" />
-
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</com.cookiejarapps.android.smartcookieweb.browser.SwipeGestureLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

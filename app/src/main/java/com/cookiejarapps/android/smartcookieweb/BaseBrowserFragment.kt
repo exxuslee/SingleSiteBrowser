@@ -455,10 +455,10 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                         or View.SYSTEM_UI_FLAG_FULLSCREEN
                         or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
 
-            val browserEngine = binding.swipeRefresh.layoutParams as CoordinatorLayout.LayoutParams
-            browserEngine.bottomMargin = 0
-            browserEngine.topMargin = 0
-            binding.swipeRefresh.translationY = 0f
+//            val browserEngine = binding.swipeRefresh.layoutParams as CoordinatorLayout.LayoutParams
+//            browserEngine.bottomMargin = 0
+//            browserEngine.topMargin = 0
+//            binding.swipeRefresh.translationY = 0f
 
             binding.engineView.setDynamicToolbarMaxHeight(0)
             // Without this, fullscreen has a margin at the top.
