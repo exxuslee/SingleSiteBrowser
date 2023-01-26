@@ -15,7 +15,7 @@
             android:id="@+id/browserLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/loginSelectBar"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:context="browser.BrowserFragment">
 
@@ -43,23 +43,6 @@
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        <mozilla.components.feature.prompts.login.LoginSelectBar
-            android:visibility="gone"
-            android:id="@+id/loginSelectBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/browserLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <mozilla.components.feature.readerview.view.ReaderViewControlsBar
-        android:id="@+id/readerViewBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="#FFFFFFFF"
-        android:elevation="10dp"
-        android:paddingBottom="55dp"
-        android:visibility="gone" />
 
 </com.cookiejarapps.android.smartcookieweb.browser.SwipeGestureLayout>
