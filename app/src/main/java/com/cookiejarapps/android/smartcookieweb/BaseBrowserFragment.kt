@@ -98,9 +98,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         initializeUI(view)
 
         if (customTabSessionId == null) {
-            // We currently only need this observer to navigate to home
-            // in case all tabs have been removed on startup. No need to
-            // this if we have a known session to display.
             observeRestoreComplete(requireContext().components.store, findNavController())
         }
     }
@@ -241,8 +238,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                 .ifChanged { tab -> tab.content.pictureInPictureEnabled }
                 .collect { tab -> pipModeChanged(tab) }
         }
-
-//        binding.swipeRefresh.isEnabled = shouldPullToRefreshBeEnabled(false)
     }
 
     @VisibleForTesting
@@ -255,11 +250,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                     arrayOf(tab.content.url, tab.content.loadRequest)
                 }
         }
-    }
-
-    @VisibleForTesting
-    internal fun shouldPullToRefreshBeEnabled(inFullScreen: Boolean): Boolean {
-        return UserPreferences(requireContext()).swipeToRefresh
     }
 
     @VisibleForTesting
@@ -295,19 +285,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                 }
         }
     }
-
-//    @CallSuper
-//    override fun onResume() {
-//        super.onResume()
-//        val components = requireContext().components
-//
-//        val preferredColorScheme = components.darkEnabled()
-//        if (components.engine.settings.preferredColorScheme != preferredColorScheme) {
-//            components.engine.settings.preferredColorScheme = preferredColorScheme
-//            components.sessionUseCases.reload()
-//        }
-//        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
-//    }
 
     @CallSuper
     override fun onStop() {
@@ -403,15 +380,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         return false
     }
 
-    /**
-     * Set the activity normal/private theme to match the current session.
-     */
-    @VisibleForTesting
-    internal fun updateThemeForSession(session: SessionState) {
-        val sessionMode = BrowsingMode.fromBoolean(session.content.private)
-        (activity as BrowserActivity).browsingModeManager.mode = sessionMode
-    }
-
     @VisibleForTesting
     internal fun getCurrentTab(): SessionState? {
         return requireContext().components.store.state.findCustomTabOrSelectedTab(customTabSessionId)
@@ -455,11 +423,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                         or View.SYSTEM_UI_FLAG_FULLSCREEN
                         or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
 
-//            val browserEngine = binding.swipeRefresh.layoutParams as CoordinatorLayout.LayoutParams
-//            browserEngine.bottomMargin = 0
-//            browserEngine.topMargin = 0
-//            binding.swipeRefresh.translationY = 0f
-
             binding.engineView.setDynamicToolbarMaxHeight(0)
             // Without this, fullscreen has a margin at the top.
             binding.engineView.setVerticalClipping(0)
@@ -473,9 +436,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         }
     }
 
-    /*
-     * Dereference these views when the fragment view is destroyed to prevent memory leaks
-     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -491,7 +451,4 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     override fun onAccessibilityStateChanged(enabled: Boolean) {
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-    }
 }

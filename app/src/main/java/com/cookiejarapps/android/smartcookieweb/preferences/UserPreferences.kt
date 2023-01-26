@@ -17,17 +17,11 @@ class UserPreferences(appContext: Context): PreferencesHolder {
 
     // Preferences
     var javaScriptEnabled by booleanPreference(JAVA_SCRIPT_ENABLED, true)
-    var searchEngineChoice by intPreference(SEARCH_ENGINE, 0)
-    var customSearchEngine by booleanPreference(CUSTOM_SEARCH_ENGINE, false)
-    var customSearchEngineURL by stringPreference(CUSTOM_SEARCH_ENGINE_URL, "")
     var homepageType by intPreference(HOMEPAGE_TYPE, HomepageChoice.VIEW.ordinal)
     var customHomepageUrl by stringPreference(HOMEPAGE_URL, "")
-//    var appThemeChoice by intPreference(APP_THEME_CHOICE, ThemeChoice.SYSTEM.ordinal)
-//    var webThemeChoice by intPreference(WEB_THEME_CHOICE, ThemeChoice.SYSTEM.ordinal)
     var launchInApp by booleanPreference(LAUNCH_IN_APP, true)
     var autoFontSize by booleanPreference(AUTO_FONT_SIZE, true)
     var fontSizeFactor by floatPreference(FONT_SIZE_FACTOR, 1f)
-    var hideBarWhileScrolling by booleanPreference(HIDE_URL_BAR, true)
     var stackFromBottom by booleanPreference(STACK_FROM_BOTTOM, false)
     var showTabsInGrid by booleanPreference(SHOW_TABS_IN_GRID, false)
     var swipeToRefresh by booleanPreference(SWIPE_TO_REFRESH, true)
@@ -40,17 +34,11 @@ class UserPreferences(appContext: Context): PreferencesHolder {
         const val SCW_PREFERENCES = "scw_preferences"
 
         const val JAVA_SCRIPT_ENABLED = "java_script_enabled"
-        const val SEARCH_ENGINE = "search_engine"
-        const val CUSTOM_SEARCH_ENGINE = "custom_search_engine"
-        const val CUSTOM_SEARCH_ENGINE_URL = "custom_search_engine_url"
         const val HOMEPAGE_TYPE = "homepage_type"
         const val HOMEPAGE_URL = "homepage_url"
-        const val APP_THEME_CHOICE = "app_theme_choice"
-        const val WEB_THEME_CHOICE = "web_theme_choice"
         const val LAUNCH_IN_APP = "launch_in_app"
         const val AUTO_FONT_SIZE = "auto_font_size"
         const val FONT_SIZE_FACTOR = "font_size_factor"
-        const val HIDE_URL_BAR = "hide_url_bar"
         const val STACK_FROM_BOTTOM = "stack_from_bottom"
         const val SHOW_TABS_IN_GRID = "show_tabs_in_grid"
         const val SWIPE_TO_REFRESH = "swipe_to_refresh"
