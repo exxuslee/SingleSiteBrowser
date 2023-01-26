@@ -22,7 +22,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
 import mozilla.components.browser.state.selector.*
-import mozilla.components.browser.state.state.CustomTabSessionState
 import mozilla.components.browser.state.state.SessionState
 import mozilla.components.browser.state.state.TabSessionState
 import mozilla.components.browser.state.store.BrowserStore
@@ -30,9 +29,7 @@ import mozilla.components.browser.thumbnails.BrowserThumbnails
 import mozilla.components.feature.app.links.AppLinksFeature
 import mozilla.components.feature.downloads.DownloadsFeature
 import mozilla.components.feature.intent.ext.EXTRA_SESSION_ID
-//import mozilla.components.feature.media.fullscreen.MediaSessionFullscreenFeature
 import mozilla.components.feature.prompts.PromptFeature
-//import mozilla.components.feature.search.SearchFeature
 import mozilla.components.feature.session.FullScreenFeature
 import mozilla.components.feature.session.PictureInPictureFeature
 import mozilla.components.feature.session.SessionFeature
@@ -65,9 +62,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     private val promptsFeature = ViewBoundFeatureWrapper<PromptFeature>()
     private val sitePermissionsFeature = ViewBoundFeatureWrapper<SitePermissionsFeature>()
     private val fullScreenFeature = ViewBoundFeatureWrapper<FullScreenFeature>()
-//    private var fullScreenMediaSessionFeature =
-//        ViewBoundFeatureWrapper<MediaSessionFullscreenFeature>()
-//    private val searchFeature = ViewBoundFeatureWrapper<SearchFeature>()
     private var pipFeature: PictureInPictureFeature? = null
 
     var customTabSessionId: String? = null
@@ -127,16 +121,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
             owner = this,
             view = view
         )
-
-//        fullScreenMediaSessionFeature.set(
-//            feature = MediaSessionFullscreenFeature(
-//                requireActivity(),
-//                context.components.store,
-//                customTabSessionId
-//            ),
-//            owner = this,
-//            view = view
-//        )
 
         pipFeature = PictureInPictureFeature(
             store = store,
@@ -409,16 +393,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     internal fun fullScreenChanged(inFullScreen: Boolean) {
         if (inFullScreen) {
             // Close find in page bar if opened
-
             requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-            requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-            requireActivity().window.decorView.systemUiVisibility =
-                (View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        or View.SYSTEM_UI_FLAG_FULLSCREEN
-                        or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-
             binding.engineView.setDynamicToolbarMaxHeight(0)
             // Without this, fullscreen has a margin at the top.
             binding.engineView.setVerticalClipping(0)
@@ -426,7 +401,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         } else {
             requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
             requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-            requireActivity().window.getDecorView().systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+            requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
 
             activity?.exitImmersiveMode()
         }

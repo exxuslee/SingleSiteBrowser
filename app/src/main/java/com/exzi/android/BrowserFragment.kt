@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.exzi.android.browser.BrowserDirection
 import com.exzi.android.ext.components
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import mozilla.components.browser.state.state.SessionState
@@ -51,7 +50,7 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
         (requireActivity() as BrowserActivity)
             .openToBrowserAndLoad(
                 searchTermOrURL = "exzi.com",
-                newTab = false, from = BrowserDirection.FromGlobal
+                newTab = false,
             )
         return super.onCreateView(inflater, container, savedInstanceState)
     }

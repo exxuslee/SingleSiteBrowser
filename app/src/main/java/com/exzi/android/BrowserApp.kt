@@ -14,20 +14,13 @@ import mozilla.components.support.ktx.android.content.runOnlyInMainProcess
 import mozilla.components.support.webextensions.WebExtensionSupport
 
 class BrowserApp : Application() {
-
-    private val logger = Logger("BrowserApp")
-
     val components by lazy { Components(this) }
 
     override fun onCreate() {
         super.onCreate()
 
-        if (!isMainProcess()) {
-            return
-        }
-
+        if (!isMainProcess()) return
         Facts.registerProcessor(LogFactProcessor())
-
         components.engine.warmUp()
 
         GlobalScope.launch(Dispatchers.IO) {
@@ -37,31 +30,30 @@ class BrowserApp : Application() {
             WebExtensionSupport.initialize(
                 components.engine,
                 components.store,
-                onNewTabOverride = {
-                    _, engineSession, url ->
-                        components.tabsUseCases.addTab(url, selectTab = true, engineSession = engineSession)
+                onNewTabOverride = { _, engineSession, url ->
+                    components.tabsUseCases.addTab(
+                        url,
+                        selectTab = true,
+                        engineSession = engineSession
+                    )
                 },
-                onCloseTabOverride = {
-                    _, sessionId -> components.tabsUseCases.removeTab(sessionId)
+                onCloseTabOverride = { _, sessionId ->
+                    components.tabsUseCases.removeTab(sessionId)
                 },
-                onSelectTabOverride = {
-                    _, sessionId -> components.tabsUseCases.selectTab(sessionId)
+                onSelectTabOverride = { _, sessionId ->
+                    components.tabsUseCases.selectTab(sessionId)
                 },
             )
         } catch (e: UnsupportedOperationException) {
-            // Web extension support is only available for engine gecko
             Logger.error("Failed to initialize web extension support", e)
         }
     }
-
 
     override fun onTrimMemory(level: Int) {
         super.onTrimMemory(level)
 
         runOnlyInMainProcess {
             components.icons.onTrimMemory(level)
-
-            // TODO: ADD SETTING TO DISABLE THIS
             components.store.dispatch(SystemAction.LowMemoryAction(level))
         }
     }

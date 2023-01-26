@@ -9,9 +9,7 @@ import android.view.View
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.NavHostFragment
-import com.exzi.android.browser.BrowserDirection
 import com.exzi.android.ext.components
 import com.exzi.android.preferences.UserPreferences
 import com.exzi.android.utils.PrintUtils
@@ -45,21 +43,11 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
     private val navHost by lazy {
         supportFragmentManager.findFragmentById(R.id.container) as NavHostFragment
     }
-
     private val webExtensionPopupFeature by lazy {
         WebExtensionPopupFeature(components.store, ::openPopup)
     }
-
     private var mPort: Port? = null
-
     private var originalContext: Context? = null
-
-    protected open fun getIntentSessionId(intent: SafeIntent): String? = null
-
-    @VisibleForTesting
-    internal fun isActivityColdStarted(startingIntent: Intent, activityIcicle: Bundle?): Boolean {
-        return activityIcicle == null && startingIntent.flags and Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY == 0
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,24 +68,11 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
             this
         ).stackFromBottom = false
 
-        //TODO: Move to settings page so app restart no longer required
-        //TODO: Differentiate between using search engine / adding to list - the code below removes all from list as I don't support adding to list, only setting as default
-//        for (i in components.store.state.search.customSearchEngines) {
-//            components.searchUseCases.removeSearchEngine(i)
-//        }
-
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-
         installPrintExtension()
         components.appRequestInterceptor.setNavController(navHost.navController)
         lifecycle.addObserver(webExtensionPopupFeature)
     }
-
-//    open fun navigateToBrowserOnColdStart() {
-//        if (!browsingModeManager.mode.isPrivate) {
-//            openToBrowser(BrowserDirection.FromGlobal, null)
-//        }
-//    }
 
     protected open fun createBrowsingModeManager(initialMode: BrowsingMode): BrowsingModeManager {
         return DefaultBrowsingModeManager(initialMode, UserPreferences(this)) {}
@@ -113,10 +88,7 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
     }
 
     override fun onCreateView(
-        parent: View?,
-        name: String,
-        context: Context,
-        attrs: AttributeSet
+        parent: View?, name: String, context: Context, attrs: AttributeSet
     ): View? =
         when (name) {
             EngineView::class.java.name -> components.engine.createView(context, attrs).apply {
@@ -138,7 +110,6 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
     }
 
     private fun openPopup(webExtensionState: WebExtensionState) {
-        val fm: FragmentManager = supportFragmentManager
         val bundle = Bundle()
         bundle.putString("web_extension_id", webExtensionState.id)
         intent.putExtra("web_extension_name", webExtensionState.name)
@@ -148,32 +119,12 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
     fun openToBrowserAndLoad(
         searchTermOrURL: String,
         newTab: Boolean,
-        from: BrowserDirection,
-        customTabSessionId: String? = null,
         engine: SearchEngine? = null,
         forceSearch: Boolean = false,
         flags: EngineSession.LoadUrlFlags = EngineSession.LoadUrlFlags.none()
     ) {
-        //openToBrowser(from, customTabSessionId)
         load(searchTermOrURL, newTab, engine, forceSearch, flags)
     }
-
-//    fun openToBrowser(from: BrowserDirection, customTabSessionId: String? = null) {
-//        if (navHost.navController.alreadyOnDestination(R.id.browserFragment)) return
-//        @IdRes val fragmentId = if (from.fragmentId != 0) from.fragmentId else null
-//        val directions = getNavDirections(from, customTabSessionId)
-//        if (directions != null) {
-//            navHost.navController.nav(fragmentId, directions)
-//        }
-//    }
-//
-//    protected open fun getNavDirections(
-//        from: BrowserDirection,
-//        customTabSessionId: String?
-//    ): NavDirections? = when (from) {
-//        BrowserDirection.FromGlobal ->
-//            NavGraphDirections.actionGlobalBrowser(customTabSessionId)
-//    }
 
     private fun load(
         searchTermOrURL: String,
@@ -194,20 +145,6 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
         if ((!forceSearch && searchTermOrURL.isUrl()) || engine == null) {
             loadUrlUseCase.invoke(searchTermOrURL.toNormalizedUrl(), flags)
         }
-//        else {
-//            if (newTab) {
-//                components.searchUseCases.newTabSearch
-//                    .invoke(
-//                        searchTermOrURL,
-//                        SessionState.Source.Internal.UserEntered,
-//                        true,
-//                        mode.isPrivate,
-//                        searchEngine = engine
-//                    )
-//            } else {
-//                components.searchUseCases.defaultSearch.invoke(searchTermOrURL, engine)
-//            }
-//        }
     }
 
     private fun installPrintExtension() {
@@ -243,9 +180,5 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
     override fun attachBaseContext(base: Context) {
         this.originalContext = base
         super.attachBaseContext(base)
-    }
-
-    companion object {
-        const val OPEN_TO_BROWSER = "open_to_browser"
     }
 }
