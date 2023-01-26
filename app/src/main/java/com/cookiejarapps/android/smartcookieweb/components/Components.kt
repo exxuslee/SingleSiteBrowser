@@ -66,19 +66,6 @@ open class Components(private val applicationContext: Context) {
     val preferences: SharedPreferences =
             applicationContext.getSharedPreferences(BROWSER_PREFERENCES, Context.MODE_PRIVATE)
 
-
-//    fun darkEnabled(): PreferredColorScheme {
-//        val darkOn =
-//                (applicationContext.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
-//                        Configuration.UI_MODE_NIGHT_YES
-//        return when {
-//            UserPreferences(applicationContext).webThemeChoice == ThemeChoice.DARK.ordinal -> PreferredColorScheme.Dark
-//            UserPreferences(applicationContext).webThemeChoice == ThemeChoice.LIGHT.ordinal -> PreferredColorScheme.Light
-//            darkOn -> PreferredColorScheme.Dark
-//            else -> PreferredColorScheme.Light
-//        }
-//    }
-
     val appRequestInterceptor by lazy {
         AppRequestInterceptor(applicationContext)
     }
@@ -113,8 +100,6 @@ open class Components(private val applicationContext: Context) {
 
     // Storage
     private val lazyHistoryStorage = lazy { PlacesHistoryStorage(applicationContext) }
-    val historyStorage by lazy { lazyHistoryStorage.value }
-    val sessionStorage by lazy { SessionStorage(applicationContext, engine) }
     val permissionStorage by lazy { GeckoSitePermissionsStorage(runtime, OnDiskSitePermissionsStorage(applicationContext)) }
     val thumbnailStorage by lazy { ThumbnailStorage(applicationContext) }
 
@@ -212,14 +197,5 @@ open class Components(private val applicationContext: Context) {
     }
 
     val webAppManifestStorage by lazy { ManifestStorage(applicationContext) }
-    val webAppShortcutManager by lazy { WebAppShortcutManager(
-            applicationContext,
-            client,
-            webAppManifestStorage
-    ) }
-    val webAppUseCases by lazy { WebAppUseCases(applicationContext, store, webAppShortcutManager) }
-
     val tabsUseCases: TabsUseCases by lazy { TabsUseCases(store) }
-    val downloadsUseCases: DownloadsUseCases by lazy { DownloadsUseCases(store) }
-    val contextMenuUseCases: ContextMenuUseCases by lazy { ContextMenuUseCases(store) }
 }
