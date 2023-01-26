@@ -30,9 +30,9 @@ import mozilla.components.browser.thumbnails.BrowserThumbnails
 import mozilla.components.feature.app.links.AppLinksFeature
 import mozilla.components.feature.downloads.DownloadsFeature
 import mozilla.components.feature.intent.ext.EXTRA_SESSION_ID
-import mozilla.components.feature.media.fullscreen.MediaSessionFullscreenFeature
+//import mozilla.components.feature.media.fullscreen.MediaSessionFullscreenFeature
 import mozilla.components.feature.prompts.PromptFeature
-import mozilla.components.feature.search.SearchFeature
+//import mozilla.components.feature.search.SearchFeature
 import mozilla.components.feature.session.FullScreenFeature
 import mozilla.components.feature.session.PictureInPictureFeature
 import mozilla.components.feature.session.SessionFeature
@@ -65,9 +65,9 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     private val promptsFeature = ViewBoundFeatureWrapper<PromptFeature>()
     private val sitePermissionsFeature = ViewBoundFeatureWrapper<SitePermissionsFeature>()
     private val fullScreenFeature = ViewBoundFeatureWrapper<FullScreenFeature>()
-    private var fullScreenMediaSessionFeature =
-        ViewBoundFeatureWrapper<MediaSessionFullscreenFeature>()
-    private val searchFeature = ViewBoundFeatureWrapper<SearchFeature>()
+//    private var fullScreenMediaSessionFeature =
+//        ViewBoundFeatureWrapper<MediaSessionFullscreenFeature>()
+//    private val searchFeature = ViewBoundFeatureWrapper<SearchFeature>()
     private var pipFeature: PictureInPictureFeature? = null
 
     var customTabSessionId: String? = null
@@ -128,15 +128,15 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
             view = view
         )
 
-        fullScreenMediaSessionFeature.set(
-            feature = MediaSessionFullscreenFeature(
-                requireActivity(),
-                context.components.store,
-                customTabSessionId
-            ),
-            owner = this,
-            view = view
-        )
+//        fullScreenMediaSessionFeature.set(
+//            feature = MediaSessionFullscreenFeature(
+//                requireActivity(),
+//                context.components.store,
+//                customTabSessionId
+//            ),
+//            owner = this,
+//            view = view
+//        )
 
         pipFeature = PictureInPictureFeature(
             store = store,
@@ -168,24 +168,24 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
             view = view
         )
 
-        searchFeature.set(
-            feature = SearchFeature(store, customTabSessionId) { request, tabId ->
-                val parentSession = store.state.findTabOrCustomTab(tabId)
-                val useCase = if (request.isPrivate) {
-                    requireContext().components.searchUseCases.newPrivateTabSearch
-                } else {
-                    requireContext().components.searchUseCases.newTabSearch
-                }
-
-                if (parentSession is CustomTabSessionState) {
-                    useCase.invoke(request.query)
-                } else {
-                    useCase.invoke(request.query, parentSessionId = parentSession?.id)
-                }
-            },
-            owner = this,
-            view = view
-        )
+//        searchFeature.set(
+//            feature = SearchFeature(store, customTabSessionId) { request, tabId ->
+//                val parentSession = store.state.findTabOrCustomTab(tabId)
+//                val useCase = if (request.isPrivate) {
+//                    requireContext().components.searchUseCases.newPrivateTabSearch
+//                } else {
+//                    requireContext().components.searchUseCases.newTabSearch
+//                }
+//
+//                if (parentSession is CustomTabSessionState) {
+//                    useCase.invoke(request.query)
+//                } else {
+//                    useCase.invoke(request.query, parentSessionId = parentSession?.id)
+//                }
+//            },
+//            owner = this,
+//            view = view
+//        )
 
         val accentHighContrastColor = R.color.secondary_icon
 

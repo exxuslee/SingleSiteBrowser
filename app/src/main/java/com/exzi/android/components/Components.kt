@@ -23,13 +23,13 @@ import mozilla.components.concept.engine.Engine
 import mozilla.components.concept.engine.EngineSession
 import mozilla.components.concept.fetch.Client
 import mozilla.components.feature.app.links.AppLinksInterceptor
-import mozilla.components.feature.media.middleware.RecordingDevicesMiddleware
+//import mozilla.components.feature.media.middleware.RecordingDevicesMiddleware
 import mozilla.components.feature.pwa.ManifestStorage
 import mozilla.components.feature.pwa.WebAppInterceptor
-import mozilla.components.feature.readerview.ReaderViewMiddleware
-import mozilla.components.feature.search.SearchUseCases
-import mozilla.components.feature.search.middleware.SearchMiddleware
-import mozilla.components.feature.search.region.RegionMiddleware
+//import mozilla.components.feature.readerview.ReaderViewMiddleware
+//import mozilla.components.feature.search.SearchUseCases
+//import mozilla.components.feature.search.middleware.SearchMiddleware
+//import mozilla.components.feature.search.region.RegionMiddleware
 import mozilla.components.feature.session.HistoryDelegate
 import mozilla.components.feature.session.SessionUseCases
 import mozilla.components.feature.session.middleware.LastAccessMiddleware
@@ -101,15 +101,15 @@ open class Components(private val applicationContext: Context) {
     val store by lazy {
         BrowserStore(
                 middleware = listOf(
-                        ReaderViewMiddleware(),
+//                        ReaderViewMiddleware(),
                         ThumbnailsMiddleware(thumbnailStorage),
                         UndoMiddleware(),
-                        RegionMiddleware(
-                                applicationContext,
-                                LocationService.default()
-                        ),
-                        SearchMiddleware(applicationContext),
-                        RecordingDevicesMiddleware(applicationContext),
+//                        RegionMiddleware(
+//                                applicationContext,
+//                                LocationService.default()
+//                        ),
+//                        SearchMiddleware(applicationContext),
+//                        RecordingDevicesMiddleware(applicationContext),
                         LastAccessMiddleware()
                 ) + EngineMiddleware.create(engine)
         ).apply{
@@ -125,9 +125,9 @@ open class Components(private val applicationContext: Context) {
     val sessionUseCases by lazy { SessionUseCases(store) }
 
 
-    val searchUseCases by lazy {
-        SearchUseCases(store, tabsUseCases, sessionUseCases)
-    }
+//    val searchUseCases by lazy {
+//        SearchUseCases(store, tabsUseCases, sessionUseCases)
+//    }
 
     val appLinksInterceptor by lazy {
         AppLinksInterceptor(

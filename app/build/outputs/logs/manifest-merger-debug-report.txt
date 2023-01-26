@@ -7,16 +7,14 @@ INJECTED from D:\Android\pro\SingleSiteBrowser\app\src\main\AndroidManifest.xml:
 MERGED from [org.mozilla.components:feature-pwa:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\161399044b6bcb615f0d99c0be94ac6d\transformed\jetified-feature-pwa-110.0.20230107143316\AndroidManifest.xml:7:1-29:12
 MERGED from [org.mozilla.components:feature-customtabs:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\957fd0583b82c6c23bdc3c7738b7f207\transformed\jetified-feature-customtabs-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [org.mozilla.components:browser-toolbar:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\00293f3c0543386fbffa3053fdc7fddd\transformed\jetified-browser-toolbar-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
-MERGED from [org.mozilla.components:feature-readerview:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\7f323be27ea384f8acea20be7e8ddffc\transformed\jetified-feature-readerview-110.0.20230107143316\AndroidManifest.xml:7:1-16:12
 MERGED from [org.mozilla.components:browser-menu:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\814003154f1bc384b68f22a73a5b068f\transformed\jetified-browser-menu-110.0.20230107143316\AndroidManifest.xml:7:1-16:12
 MERGED from [org.mozilla.components:feature-downloads:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\8e4b1d790beeef6994d080a0a294fd65\transformed\jetified-feature-downloads-110.0.20230107143316\AndroidManifest.xml:7:1-37:12
 MERGED from [org.mozilla.components:compose-awesomebar:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\35b8c20fc2c8263682138e327a58c872\transformed\jetified-compose-awesomebar-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
-MERGED from [org.mozilla.components:feature-awesomebar:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\1c7818a2248f6a3ef386a366d9b1073b\transformed\jetified-feature-awesomebar-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [org.mozilla.components:feature-webnotifications:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\81ac5e4893c52972d9bfdb0e07ff44c1\transformed\jetified-feature-webnotifications-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [org.mozilla.components:feature-intent:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\b6714dbe42b4ade842d13f44fa9b1db7\transformed\jetified-feature-intent-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [org.mozilla.components:feature-contextmenu:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\a4d56ec2f1afdb80cb19e8242ce5ff83\transformed\jetified-feature-contextmenu-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
-MERGED from [org.mozilla.components:feature-search:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\aca649a612932271bdc094346d69d0b7\transformed\jetified-feature-search-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [org.mozilla.components:feature-sitepermissions:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\7717d1be5043984ffae9adf76d729a17\transformed\jetified-feature-sitepermissions-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
+MERGED from [org.mozilla.components:feature-search:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\aca649a612932271bdc094346d69d0b7\transformed\jetified-feature-search-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [org.mozilla.components:feature-tabs:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\c4e79d6f74802cf0ec9c417fdf42e0fc\transformed\jetified-feature-tabs-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [org.mozilla.components:browser-tabstray:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\762de1ba06808d715c24ed6caedcc7bf\transformed\jetified-browser-tabstray-110.0.20230107143316\AndroidManifest.xml:7:1-16:12
 MERGED from [org.mozilla.components:concept-tabstray:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\d1f4b9fd1394f19d772219e0cc76da41\transformed\jetified-concept-tabstray-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
@@ -24,7 +22,6 @@ MERGED from [org.mozilla.components:browser-engine-gecko:110.0.20230107143316] C
 MERGED from [org.mozilla.components:browser-icons:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\01e84486f0668392531364d40aad708e\transformed\jetified-browser-icons-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [org.mozilla.components:browser-thumbnails:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\4cf1b31defbdb0723940cd7634237a81\transformed\jetified-browser-thumbnails-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [org.mozilla.components:browser-session-storage:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\73979dd3c9dd29e5df0dd3bc736b2370\transformed\jetified-browser-session-storage-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
-MERGED from [org.mozilla.components:feature-media:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\0881e063a4acf618e9475258665eb8dd\transformed\jetified-feature-media-110.0.20230107143316\AndroidManifest.xml:7:1-18:12
 MERGED from [org.mozilla.components:feature-toolbar:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\3bb0aced67835cf4a905d264bddc7521\transformed\jetified-feature-toolbar-110.0.20230107143316\AndroidManifest.xml:7:1-16:12
 MERGED from [org.mozilla.components:feature-app-links:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\1b40b9e805be918cc4b14374ce321707\transformed\jetified-feature-app-links-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [org.mozilla.components:feature-session:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\8adf33a44c6efe88c7d4bfe6abc68436\transformed\jetified-feature-session-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
@@ -42,7 +39,6 @@ MERGED from [org.mozilla.components:browser-menu2:110.0.20230107143316] C:\Users
 MERGED from [org.mozilla.components:concept-menu:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\ca810043fb405ce70d0c9ca18a5d4117\transformed\jetified-concept-menu-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [org.mozilla.components:concept-toolbar:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\170a2b0f61430ff7bdcacd9ca0745607\transformed\jetified-concept-toolbar-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [org.mozilla.components:concept-awesomebar:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\a14180c4ea53984c0e14022777c43a56\transformed\jetified-concept-awesomebar-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
-MERGED from [org.mozilla.components:feature-autofill:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\3f24346b8348b541c2455ab55fa7e270\transformed\jetified-feature-autofill-110.0.20230107143316\AndroidManifest.xml:7:1-21:12
 MERGED from [org.mozilla.components:service-location:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\f39aaeb4f3a328dc661a5274f3892422\transformed\jetified-service-location-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [org.mozilla.components:service-digitalassetlinks:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\63a09bbd40316d68775aae50faae1368\transformed\jetified-service-digitalassetlinks-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [org.mozilla.components:browser-storage-sync:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\4d074763fb6bce9b05b24778e7a3cf36\transformed\jetified-browser-storage-sync-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
@@ -59,8 +55,6 @@ MERGED from [org.mozilla.components:concept-sync:110.0.20230107143316] C:\Users\
 MERGED from [org.mozilla.components:support-base:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\b449787abd6d66ff2432a0135fa8208e\transformed\jetified-support-base-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [org.mozilla.components:lib-publicsuffixlist:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\19462b5a515974fe61b49fe83476ff66\transformed\jetified-lib-publicsuffixlist-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [androidx.databinding:viewbinding:7.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\418fdb5a8817bd5edd15ee6b70e5c0cc\transformed\jetified-viewbinding-7.3.1\AndroidManifest.xml:2:1-9:12
-MERGED from [org.mozilla.components:ui-widgets:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\1dcce748f8252c71b11243a9b9a03841\transformed\jetified-ui-widgets-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
-MERGED from [org.mozilla.components:ui-colors:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\b2c46b05132eeba63715a3bb9317bf7a\transformed\jetified-ui-colors-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [org.mozilla.components:concept-base:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\118a9fcd8aba10400a67cf460d9e7376\transformed\jetified-concept-base-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [org.mozilla.components:browser-domains:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\197064bb99d4596ccae0065f9e2257c3\transformed\jetified-browser-domains-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [org.mozilla.components:lib-fetch-httpurlconnection:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\9ad5cba3550d5780501ee86e08e7fb54\transformed\jetified-lib-fetch-httpurlconnection-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
@@ -68,11 +62,12 @@ MERGED from [androidx.compose.ui:ui-tooling:1.3.1] C:\Users\Exxus\.gradle\caches
 MERGED from [androidx.compose.material:material:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\052d7ca36c07a31bb7dd674f87039559\transformed\jetified-material-1.3.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.compose.material:material-ripple:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\89f4b2767f57997de701598c25b1c41a\transformed\jetified-material-ripple-1.3.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.compose.foundation:foundation:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\0dad97552cdeffb29612985c75f0bff0\transformed\jetified-foundation-1.3.1\AndroidManifest.xml:17:1-22:12
+MERGED from [org.mozilla.components:ui-colors:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\b2c46b05132eeba63715a3bb9317bf7a\transformed\jetified-ui-colors-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
+MERGED from [androidx.activity:activity-compose:1.3.0] C:\Users\Exxus\.gradle\caches\transforms-3\40c06b9ebe99fdc477841f14dc0cd543\transformed\jetified-activity-compose-1.3.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.compose.animation:animation:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\5a47f9385bebd9e61aa027ea6f7f16ff\transformed\jetified-animation-1.3.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-tooling-data:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\f59e610d5d4c07230bbe2122f10b1993\transformed\jetified-ui-tooling-data-1.3.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.compose.foundation:foundation-layout:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\2eab8f1c8bbda76e03604c42faedd802\transformed\jetified-foundation-layout-1.3.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.compose.material:material-icons-core:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\2eb0043c4c672daa9d58671cf8d92b9a\transformed\jetified-material-icons-core-1.3.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.activity:activity-compose:1.3.0] C:\Users\Exxus\.gradle\caches\transforms-3\40c06b9ebe99fdc477841f14dc0cd543\transformed\jetified-activity-compose-1.3.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.compose.ui:ui-tooling-data:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\f59e610d5d4c07230bbe2122f10b1993\transformed\jetified-ui-tooling-data-1.3.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.compose.animation:animation-core:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\cb0bb79eaa03eaf3c325618c1d406bc4\transformed\jetified-animation-core-1.3.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.compose.ui:ui:1.3.3] C:\Users\Exxus\.gradle\caches\transforms-3\359fd7ad4636c2fae2aba71ce15e2a7e\transformed\jetified-ui-1.3.3\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-ui-ktx:2.5.3] C:\Users\Exxus\.gradle\caches\transforms-3\7b3c3527814cf14f66f6819d79eccd02\transformed\navigation-ui-ktx-2.5.3\AndroidManifest.xml:17:1-24:12
@@ -83,7 +78,6 @@ MERGED from [com.google.dagger:dagger-android-support:2.38.1] C:\Users\Exxus\.gr
 MERGED from [androidx.preference:preference-ktx:1.2.0] C:\Users\Exxus\.gradle\caches\transforms-3\86296dc96e732464d9f9eafdf1a1cd59\transformed\jetified-preference-ktx-1.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.preference:preference:1.2.0] C:\Users\Exxus\.gradle\caches\transforms-3\4b01015472d385a87ff715164eb7de8d\transformed\preference-1.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.0] C:\Users\Exxus\.gradle\caches\transforms-3\beaf9c99d3f12f580fc5ed24fc974326\transformed\jetified-appcompat-resources-1.6.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.biometric:biometric:1.1.0] C:\Users\Exxus\.gradle\caches\transforms-3\69fc381618b3153d78eb0e09003968dc\transformed\biometric-1.1.0\AndroidManifest.xml:17:1-29:12
 MERGED from [androidx.appcompat:appcompat:1.6.0] C:\Users\Exxus\.gradle\caches\transforms-3\a4cca6bb53fa96a979376b3909ae82ea\transformed\appcompat-1.6.0\AndroidManifest.xml:17:1-22:12
 MERGED from [org.mozilla.appservices:places:96.2.1] C:\Users\Exxus\.gradle\caches\transforms-3\724425244024f2c3976796d5f12abc0e\transformed\jetified-places-96.2.1\AndroidManifest.xml:2:1-9:12
 MERGED from [org.mozilla.telemetry:glean:51.8.2] C:\Users\Exxus\.gradle\caches\transforms-3\b519496aaa0cc3845beb84cf9e85b02a\transformed\jetified-glean-51.8.2\AndroidManifest.xml:2:1-16:12
@@ -141,12 +135,12 @@ MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Exxus\.gradle\caches\t
 MERGED from [androidx.customview:customview:1.1.0] C:\Users\Exxus\.gradle\caches\transforms-3\337125d037a179eff52804b3a8965359\transformed\customview-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] C:\Users\Exxus\.gradle\caches\transforms-3\31dfdaababbf744bb84bfd2d2cd2753a\transformed\jetified-emoji2-views-helper-1.2.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\Exxus\.gradle\caches\transforms-3\597067eed7897a808f4c60c824ba0847\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.media:media:1.0.0] C:\Users\Exxus\.gradle\caches\transforms-3\87392dfc2b0bd49582fd8b3f9f598068\transformed\media-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.jakewharton:butterknife:10.2.1] C:\Users\Exxus\.gradle\caches\transforms-3\b07e637d0281e9ca4bd12873cb06269d\transformed\jetified-butterknife-10.2.1\AndroidManifest.xml:2:1-7:12
 MERGED from [com.jakewharton:butterknife-runtime:10.2.1] C:\Users\Exxus\.gradle\caches\transforms-3\966c8e4704e3312c196e80eafd519c6c\transformed\jetified-butterknife-runtime-10.2.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.browser:browser:1.3.0] C:\Users\Exxus\.gradle\caches\transforms-3\08bbb660b0ce8d6b6170b989d7af05d5\transformed\browser-1.3.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.autofill:autofill:1.1.0] C:\Users\Exxus\.gradle\caches\transforms-3\da3c8d0aa6a9273a1b0cf363898f376b\transformed\jetified-autofill-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.media:media:1.2.0] C:\Users\Exxus\.gradle\caches\transforms-3\de125d424de961dc5848d7ed98e9c5e5\transformed\media-1.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\Exxus\.gradle\caches\transforms-3\a00153392e658a866917b4a4143daf85\transformed\swiperefreshlayout-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\Exxus\.gradle\caches\transforms-3\92bd54c09be38ca4231fbc22e1e3afad\transformed\jetified-autofill-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\Exxus\.gradle\caches\transforms-3\c55383a09cfd316dfcf5a24eb990d4c9\transformed\asynclayoutinflater-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.work:work-runtime:2.7.1] C:\Users\Exxus\.gradle\caches\transforms-3\23ae92aed52a081bfc703d5b32d2187d\transformed\work-runtime-2.7.1\AndroidManifest.xml:17:1-145:12
 MERGED from [androidx.transition:transition:1.4.1] C:\Users\Exxus\.gradle\caches\transforms-3\fd3ffa37236554d163d7d52105217cfd\transformed\transition-1.4.1\AndroidManifest.xml:17:1-24:12
@@ -178,11 +172,11 @@ MERGED from [androidx.sqlite:sqlite-framework:2.2.0] C:\Users\Exxus\.gradle\cach
 MERGED from [androidx.sqlite:sqlite:2.2.0] C:\Users\Exxus\.gradle\caches\transforms-3\348b1e5b017952d42a9a91201dd9f769\transformed\sqlite-2.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [org.mozilla.geckoview:geckoview-exoplayer2-nightly:110.0.20230107093442] C:\Users\Exxus\.gradle\caches\transforms-3\8bc6a32ca92a422976fe894754791009\transformed\jetified-geckoview-exoplayer2-nightly-110.0.20230107093442\AndroidManifest.xml:7:1-14:12
 MERGED from [org.mozilla.components:concept-fetch:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\9229a83ebbfef9757c0a384aea7ccd76\transformed\jetified-concept-fetch-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
-MERGED from [org.mozilla.components:ui-icons:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\e20f8c6e17019100c9a6bf3a2cdfc2f8\transformed\jetified-ui-icons-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [io.reactivex.rxjava2:rxandroid:2.1.1] C:\Users\Exxus\.gradle\caches\transforms-3\fb4bad196cc3e25f419d675275151f6e\transformed\jetified-rxandroid-2.1.1\AndroidManifest.xml:15:1-20:12
 MERGED from [androidx.compose.ui:ui-util:1.3.3] C:\Users\Exxus\.gradle\caches\transforms-3\e29d019dfd6f75832d0235fdc8b94491\transformed\jetified-ui-util-1.3.3\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\Exxus\.gradle\caches\transforms-3\5a8e69298d0a417125d578f1f907142f\transformed\jetified-annotation-experimental-1.3.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.dagger:dagger-lint-aar:2.38.1] C:\Users\Exxus\.gradle\caches\transforms-3\b412a641d2e5f51096c551f4c682ae75\transformed\jetified-dagger-lint-aar-2.38.1\AndroidManifest.xml:16:1-19:12
+MERGED from [org.mozilla.components:ui-icons:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\e20f8c6e17019100c9a6bf3a2cdfc2f8\transformed\jetified-ui-icons-110.0.20230107143316\AndroidManifest.xml:7:1-14:12
 MERGED from [net.java.dev.jna:jna:5.12.1] C:\Users\Exxus\.gradle\caches\transforms-3\536b12ab227bf49a58f61369101710d9\transformed\jetified-jna-5.12.1\AndroidManifest.xml:2:1-8:12
 INJECTED from D:\Android\pro\SingleSiteBrowser\app\src\main\AndroidManifest.xml:2:1-34:12
 INJECTED from D:\Android\pro\SingleSiteBrowser\app\src\main\AndroidManifest.xml:2:1-34:12
@@ -221,16 +215,12 @@ application
 ADDED from D:\Android\pro\SingleSiteBrowser\app\src\main\AndroidManifest.xml:8:5-32:19
 MERGED from [org.mozilla.components:feature-pwa:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\161399044b6bcb615f0d99c0be94ac6d\transformed\jetified-feature-pwa-110.0.20230107143316\AndroidManifest.xml:18:5-27:19
 MERGED from [org.mozilla.components:feature-pwa:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\161399044b6bcb615f0d99c0be94ac6d\transformed\jetified-feature-pwa-110.0.20230107143316\AndroidManifest.xml:18:5-27:19
-MERGED from [org.mozilla.components:feature-readerview:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\7f323be27ea384f8acea20be7e8ddffc\transformed\jetified-feature-readerview-110.0.20230107143316\AndroidManifest.xml:14:5-47
-MERGED from [org.mozilla.components:feature-readerview:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\7f323be27ea384f8acea20be7e8ddffc\transformed\jetified-feature-readerview-110.0.20230107143316\AndroidManifest.xml:14:5-47
 MERGED from [org.mozilla.components:browser-menu:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\814003154f1bc384b68f22a73a5b068f\transformed\jetified-browser-menu-110.0.20230107143316\AndroidManifest.xml:14:5-47
 MERGED from [org.mozilla.components:browser-menu:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\814003154f1bc384b68f22a73a5b068f\transformed\jetified-browser-menu-110.0.20230107143316\AndroidManifest.xml:14:5-47
 MERGED from [org.mozilla.components:feature-downloads:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\8e4b1d790beeef6994d080a0a294fd65\transformed\jetified-feature-downloads-110.0.20230107143316\AndroidManifest.xml:25:5-35:19
 MERGED from [org.mozilla.components:feature-downloads:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\8e4b1d790beeef6994d080a0a294fd65\transformed\jetified-feature-downloads-110.0.20230107143316\AndroidManifest.xml:25:5-35:19
 MERGED from [org.mozilla.components:browser-tabstray:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\762de1ba06808d715c24ed6caedcc7bf\transformed\jetified-browser-tabstray-110.0.20230107143316\AndroidManifest.xml:14:5-47
 MERGED from [org.mozilla.components:browser-tabstray:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\762de1ba06808d715c24ed6caedcc7bf\transformed\jetified-browser-tabstray-110.0.20230107143316\AndroidManifest.xml:14:5-47
-MERGED from [org.mozilla.components:feature-media:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\0881e063a4acf618e9475258665eb8dd\transformed\jetified-feature-media-110.0.20230107143316\AndroidManifest.xml:16:5-20
-MERGED from [org.mozilla.components:feature-media:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\0881e063a4acf618e9475258665eb8dd\transformed\jetified-feature-media-110.0.20230107143316\AndroidManifest.xml:16:5-20
 MERGED from [org.mozilla.components:feature-toolbar:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\3bb0aced67835cf4a905d264bddc7521\transformed\jetified-feature-toolbar-110.0.20230107143316\AndroidManifest.xml:14:5-47
 MERGED from [org.mozilla.components:feature-toolbar:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\3bb0aced67835cf4a905d264bddc7521\transformed\jetified-feature-toolbar-110.0.20230107143316\AndroidManifest.xml:14:5-47
 MERGED from [org.mozilla.components:feature-prompts:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\64e6b579dc843fbf109b81c4f56d23f3\transformed\jetified-feature-prompts-110.0.20230107143316\AndroidManifest.xml:19:5-29:19
@@ -241,8 +231,6 @@ MERGED from [org.mozilla.components:ui-tabcounter:110.0.20230107143316] C:\Users
 MERGED from [org.mozilla.components:ui-tabcounter:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\e1ce57f63f4a56fc0563da95762bd278\transformed\jetified-ui-tabcounter-110.0.20230107143316\AndroidManifest.xml:14:5-47
 MERGED from [org.mozilla.components:browser-menu2:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\025bf9dd8fd6f3318762beb1b9963666\transformed\jetified-browser-menu2-110.0.20230107143316\AndroidManifest.xml:14:5-47
 MERGED from [org.mozilla.components:browser-menu2:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\025bf9dd8fd6f3318762beb1b9963666\transformed\jetified-browser-menu2-110.0.20230107143316\AndroidManifest.xml:14:5-47
-MERGED from [org.mozilla.components:feature-autofill:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\3f24346b8348b541c2455ab55fa7e270\transformed\jetified-feature-autofill-110.0.20230107143316\AndroidManifest.xml:19:5-47
-MERGED from [org.mozilla.components:feature-autofill:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\3f24346b8348b541c2455ab55fa7e270\transformed\jetified-feature-autofill-110.0.20230107143316\AndroidManifest.xml:19:5-47
 MERGED from [org.mozilla.components:lib-state:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\c3c87f0dbe3f25b19890ea1fc0695a2e\transformed\jetified-lib-state-110.0.20230107143316\AndroidManifest.xml:14:5-20
 MERGED from [org.mozilla.components:lib-state:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\c3c87f0dbe3f25b19890ea1fc0695a2e\transformed\jetified-lib-state-110.0.20230107143316\AndroidManifest.xml:14:5-20
 MERGED from [androidx.compose.ui:ui-tooling:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\b0903cc35e1e3ee2e058d33a4a48c53f\transformed\jetified-ui-tooling-1.3.1\AndroidManifest.xml:22:5-26:19
@@ -337,26 +325,22 @@ MERGED from [org.mozilla.components:feature-customtabs:110.0.20230107143316] C:\
 MERGED from [org.mozilla.components:feature-customtabs:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\957fd0583b82c6c23bdc3c7738b7f207\transformed\jetified-feature-customtabs-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:browser-toolbar:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\00293f3c0543386fbffa3053fdc7fddd\transformed\jetified-browser-toolbar-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:browser-toolbar:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\00293f3c0543386fbffa3053fdc7fddd\transformed\jetified-browser-toolbar-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
-MERGED from [org.mozilla.components:feature-readerview:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\7f323be27ea384f8acea20be7e8ddffc\transformed\jetified-feature-readerview-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
-MERGED from [org.mozilla.components:feature-readerview:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\7f323be27ea384f8acea20be7e8ddffc\transformed\jetified-feature-readerview-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:browser-menu:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\814003154f1bc384b68f22a73a5b068f\transformed\jetified-browser-menu-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:browser-menu:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\814003154f1bc384b68f22a73a5b068f\transformed\jetified-browser-menu-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:feature-downloads:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\8e4b1d790beeef6994d080a0a294fd65\transformed\jetified-feature-downloads-110.0.20230107143316\AndroidManifest.xml:11:5-13:41
 MERGED from [org.mozilla.components:feature-downloads:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\8e4b1d790beeef6994d080a0a294fd65\transformed\jetified-feature-downloads-110.0.20230107143316\AndroidManifest.xml:11:5-13:41
 MERGED from [org.mozilla.components:compose-awesomebar:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\35b8c20fc2c8263682138e327a58c872\transformed\jetified-compose-awesomebar-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:compose-awesomebar:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\35b8c20fc2c8263682138e327a58c872\transformed\jetified-compose-awesomebar-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
-MERGED from [org.mozilla.components:feature-awesomebar:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\1c7818a2248f6a3ef386a366d9b1073b\transformed\jetified-feature-awesomebar-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
-MERGED from [org.mozilla.components:feature-awesomebar:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\1c7818a2248f6a3ef386a366d9b1073b\transformed\jetified-feature-awesomebar-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:feature-webnotifications:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\81ac5e4893c52972d9bfdb0e07ff44c1\transformed\jetified-feature-webnotifications-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:feature-webnotifications:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\81ac5e4893c52972d9bfdb0e07ff44c1\transformed\jetified-feature-webnotifications-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:feature-intent:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\b6714dbe42b4ade842d13f44fa9b1db7\transformed\jetified-feature-intent-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:feature-intent:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\b6714dbe42b4ade842d13f44fa9b1db7\transformed\jetified-feature-intent-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:feature-contextmenu:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\a4d56ec2f1afdb80cb19e8242ce5ff83\transformed\jetified-feature-contextmenu-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:feature-contextmenu:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\a4d56ec2f1afdb80cb19e8242ce5ff83\transformed\jetified-feature-contextmenu-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
-MERGED from [org.mozilla.components:feature-search:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\aca649a612932271bdc094346d69d0b7\transformed\jetified-feature-search-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
-MERGED from [org.mozilla.components:feature-search:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\aca649a612932271bdc094346d69d0b7\transformed\jetified-feature-search-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:feature-sitepermissions:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\7717d1be5043984ffae9adf76d729a17\transformed\jetified-feature-sitepermissions-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:feature-sitepermissions:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\7717d1be5043984ffae9adf76d729a17\transformed\jetified-feature-sitepermissions-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
+MERGED from [org.mozilla.components:feature-search:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\aca649a612932271bdc094346d69d0b7\transformed\jetified-feature-search-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
+MERGED from [org.mozilla.components:feature-search:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\aca649a612932271bdc094346d69d0b7\transformed\jetified-feature-search-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:feature-tabs:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\c4e79d6f74802cf0ec9c417fdf42e0fc\transformed\jetified-feature-tabs-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:feature-tabs:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\c4e79d6f74802cf0ec9c417fdf42e0fc\transformed\jetified-feature-tabs-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:browser-tabstray:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\762de1ba06808d715c24ed6caedcc7bf\transformed\jetified-browser-tabstray-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
@@ -371,8 +355,6 @@ MERGED from [org.mozilla.components:browser-thumbnails:110.0.20230107143316] C:\
 MERGED from [org.mozilla.components:browser-thumbnails:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\4cf1b31defbdb0723940cd7634237a81\transformed\jetified-browser-thumbnails-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:browser-session-storage:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\73979dd3c9dd29e5df0dd3bc736b2370\transformed\jetified-browser-session-storage-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:browser-session-storage:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\73979dd3c9dd29e5df0dd3bc736b2370\transformed\jetified-browser-session-storage-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
-MERGED from [org.mozilla.components:feature-media:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\0881e063a4acf618e9475258665eb8dd\transformed\jetified-feature-media-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
-MERGED from [org.mozilla.components:feature-media:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\0881e063a4acf618e9475258665eb8dd\transformed\jetified-feature-media-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:feature-toolbar:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\3bb0aced67835cf4a905d264bddc7521\transformed\jetified-feature-toolbar-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:feature-toolbar:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\3bb0aced67835cf4a905d264bddc7521\transformed\jetified-feature-toolbar-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:feature-app-links:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\1b40b9e805be918cc4b14374ce321707\transformed\jetified-feature-app-links-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
@@ -407,8 +389,6 @@ MERGED from [org.mozilla.components:concept-toolbar:110.0.20230107143316] C:\Use
 MERGED from [org.mozilla.components:concept-toolbar:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\170a2b0f61430ff7bdcacd9ca0745607\transformed\jetified-concept-toolbar-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:concept-awesomebar:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\a14180c4ea53984c0e14022777c43a56\transformed\jetified-concept-awesomebar-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:concept-awesomebar:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\a14180c4ea53984c0e14022777c43a56\transformed\jetified-concept-awesomebar-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
-MERGED from [org.mozilla.components:feature-autofill:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\3f24346b8348b541c2455ab55fa7e270\transformed\jetified-feature-autofill-110.0.20230107143316\AndroidManifest.xml:11:5-13:41
-MERGED from [org.mozilla.components:feature-autofill:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\3f24346b8348b541c2455ab55fa7e270\transformed\jetified-feature-autofill-110.0.20230107143316\AndroidManifest.xml:11:5-13:41
 MERGED from [org.mozilla.components:service-location:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\f39aaeb4f3a328dc661a5274f3892422\transformed\jetified-service-location-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:service-location:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\f39aaeb4f3a328dc661a5274f3892422\transformed\jetified-service-location-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:service-digitalassetlinks:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\63a09bbd40316d68775aae50faae1368\transformed\jetified-service-digitalassetlinks-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
@@ -441,10 +421,6 @@ MERGED from [org.mozilla.components:lib-publicsuffixlist:110.0.20230107143316] C
 MERGED from [org.mozilla.components:lib-publicsuffixlist:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\19462b5a515974fe61b49fe83476ff66\transformed\jetified-lib-publicsuffixlist-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [androidx.databinding:viewbinding:7.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\418fdb5a8817bd5edd15ee6b70e5c0cc\transformed\jetified-viewbinding-7.3.1\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.databinding:viewbinding:7.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\418fdb5a8817bd5edd15ee6b70e5c0cc\transformed\jetified-viewbinding-7.3.1\AndroidManifest.xml:5:5-7:41
-MERGED from [org.mozilla.components:ui-widgets:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\1dcce748f8252c71b11243a9b9a03841\transformed\jetified-ui-widgets-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
-MERGED from [org.mozilla.components:ui-widgets:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\1dcce748f8252c71b11243a9b9a03841\transformed\jetified-ui-widgets-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
-MERGED from [org.mozilla.components:ui-colors:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\b2c46b05132eeba63715a3bb9317bf7a\transformed\jetified-ui-colors-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
-MERGED from [org.mozilla.components:ui-colors:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\b2c46b05132eeba63715a3bb9317bf7a\transformed\jetified-ui-colors-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:concept-base:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\118a9fcd8aba10400a67cf460d9e7376\transformed\jetified-concept-base-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:concept-base:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\118a9fcd8aba10400a67cf460d9e7376\transformed\jetified-concept-base-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:browser-domains:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\197064bb99d4596ccae0065f9e2257c3\transformed\jetified-browser-domains-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
@@ -459,16 +435,18 @@ MERGED from [androidx.compose.material:material-ripple:1.3.1] C:\Users\Exxus\.gr
 MERGED from [androidx.compose.material:material-ripple:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\89f4b2767f57997de701598c25b1c41a\transformed\jetified-material-ripple-1.3.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.compose.foundation:foundation:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\0dad97552cdeffb29612985c75f0bff0\transformed\jetified-foundation-1.3.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.compose.foundation:foundation:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\0dad97552cdeffb29612985c75f0bff0\transformed\jetified-foundation-1.3.1\AndroidManifest.xml:20:5-44
+MERGED from [org.mozilla.components:ui-colors:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\b2c46b05132eeba63715a3bb9317bf7a\transformed\jetified-ui-colors-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
+MERGED from [org.mozilla.components:ui-colors:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\b2c46b05132eeba63715a3bb9317bf7a\transformed\jetified-ui-colors-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
+MERGED from [androidx.activity:activity-compose:1.3.0] C:\Users\Exxus\.gradle\caches\transforms-3\40c06b9ebe99fdc477841f14dc0cd543\transformed\jetified-activity-compose-1.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity-compose:1.3.0] C:\Users\Exxus\.gradle\caches\transforms-3\40c06b9ebe99fdc477841f14dc0cd543\transformed\jetified-activity-compose-1.3.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.compose.animation:animation:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\5a47f9385bebd9e61aa027ea6f7f16ff\transformed\jetified-animation-1.3.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.compose.animation:animation:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\5a47f9385bebd9e61aa027ea6f7f16ff\transformed\jetified-animation-1.3.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-data:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\f59e610d5d4c07230bbe2122f10b1993\transformed\jetified-ui-tooling-data-1.3.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-data:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\f59e610d5d4c07230bbe2122f10b1993\transformed\jetified-ui-tooling-data-1.3.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.compose.foundation:foundation-layout:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\2eab8f1c8bbda76e03604c42faedd802\transformed\jetified-foundation-layout-1.3.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.compose.foundation:foundation-layout:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\2eab8f1c8bbda76e03604c42faedd802\transformed\jetified-foundation-layout-1.3.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.compose.material:material-icons-core:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\2eb0043c4c672daa9d58671cf8d92b9a\transformed\jetified-material-icons-core-1.3.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.compose.material:material-icons-core:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\2eb0043c4c672daa9d58671cf8d92b9a\transformed\jetified-material-icons-core-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.activity:activity-compose:1.3.0] C:\Users\Exxus\.gradle\caches\transforms-3\40c06b9ebe99fdc477841f14dc0cd543\transformed\jetified-activity-compose-1.3.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.activity:activity-compose:1.3.0] C:\Users\Exxus\.gradle\caches\transforms-3\40c06b9ebe99fdc477841f14dc0cd543\transformed\jetified-activity-compose-1.3.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.compose.ui:ui-tooling-data:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\f59e610d5d4c07230bbe2122f10b1993\transformed\jetified-ui-tooling-data-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.ui:ui-tooling-data:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\f59e610d5d4c07230bbe2122f10b1993\transformed\jetified-ui-tooling-data-1.3.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.compose.animation:animation-core:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\cb0bb79eaa03eaf3c325618c1d406bc4\transformed\jetified-animation-core-1.3.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.compose.animation:animation-core:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\cb0bb79eaa03eaf3c325618c1d406bc4\transformed\jetified-animation-core-1.3.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.compose.ui:ui:1.3.3] C:\Users\Exxus\.gradle\caches\transforms-3\359fd7ad4636c2fae2aba71ce15e2a7e\transformed\jetified-ui-1.3.3\AndroidManifest.xml:20:5-44
@@ -489,8 +467,6 @@ MERGED from [androidx.preference:preference:1.2.0] C:\Users\Exxus\.gradle\caches
 MERGED from [androidx.preference:preference:1.2.0] C:\Users\Exxus\.gradle\caches\transforms-3\4b01015472d385a87ff715164eb7de8d\transformed\preference-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat-resources:1.6.0] C:\Users\Exxus\.gradle\caches\transforms-3\beaf9c99d3f12f580fc5ed24fc974326\transformed\jetified-appcompat-resources-1.6.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat-resources:1.6.0] C:\Users\Exxus\.gradle\caches\transforms-3\beaf9c99d3f12f580fc5ed24fc974326\transformed\jetified-appcompat-resources-1.6.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.biometric:biometric:1.1.0] C:\Users\Exxus\.gradle\caches\transforms-3\69fc381618b3153d78eb0e09003968dc\transformed\biometric-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.biometric:biometric:1.1.0] C:\Users\Exxus\.gradle\caches\transforms-3\69fc381618b3153d78eb0e09003968dc\transformed\biometric-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat:1.6.0] C:\Users\Exxus\.gradle\caches\transforms-3\a4cca6bb53fa96a979376b3909ae82ea\transformed\appcompat-1.6.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.6.0] C:\Users\Exxus\.gradle\caches\transforms-3\a4cca6bb53fa96a979376b3909ae82ea\transformed\appcompat-1.6.0\AndroidManifest.xml:20:5-44
 MERGED from [org.mozilla.appservices:places:96.2.1] C:\Users\Exxus\.gradle\caches\transforms-3\724425244024f2c3976796d5f12abc0e\transformed\jetified-places-96.2.1\AndroidManifest.xml:5:5-7:41
@@ -605,18 +581,18 @@ MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] C:\Users\Exxus\.gradle\c
 MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] C:\Users\Exxus\.gradle\caches\transforms-3\31dfdaababbf744bb84bfd2d2cd2753a\transformed\jetified-emoji2-views-helper-1.2.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\Exxus\.gradle\caches\transforms-3\597067eed7897a808f4c60c824ba0847\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:21:5-44
 MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\Exxus\.gradle\caches\transforms-3\597067eed7897a808f4c60c824ba0847\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.media:media:1.0.0] C:\Users\Exxus\.gradle\caches\transforms-3\87392dfc2b0bd49582fd8b3f9f598068\transformed\media-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] C:\Users\Exxus\.gradle\caches\transforms-3\87392dfc2b0bd49582fd8b3f9f598068\transformed\media-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.jakewharton:butterknife:10.2.1] C:\Users\Exxus\.gradle\caches\transforms-3\b07e637d0281e9ca4bd12873cb06269d\transformed\jetified-butterknife-10.2.1\AndroidManifest.xml:5:5-44
 MERGED from [com.jakewharton:butterknife:10.2.1] C:\Users\Exxus\.gradle\caches\transforms-3\b07e637d0281e9ca4bd12873cb06269d\transformed\jetified-butterknife-10.2.1\AndroidManifest.xml:5:5-44
 MERGED from [com.jakewharton:butterknife-runtime:10.2.1] C:\Users\Exxus\.gradle\caches\transforms-3\966c8e4704e3312c196e80eafd519c6c\transformed\jetified-butterknife-runtime-10.2.1\AndroidManifest.xml:5:5-44
 MERGED from [com.jakewharton:butterknife-runtime:10.2.1] C:\Users\Exxus\.gradle\caches\transforms-3\966c8e4704e3312c196e80eafd519c6c\transformed\jetified-butterknife-runtime-10.2.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.browser:browser:1.3.0] C:\Users\Exxus\.gradle\caches\transforms-3\08bbb660b0ce8d6b6170b989d7af05d5\transformed\browser-1.3.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.browser:browser:1.3.0] C:\Users\Exxus\.gradle\caches\transforms-3\08bbb660b0ce8d6b6170b989d7af05d5\transformed\browser-1.3.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.autofill:autofill:1.1.0] C:\Users\Exxus\.gradle\caches\transforms-3\da3c8d0aa6a9273a1b0cf363898f376b\transformed\jetified-autofill-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.autofill:autofill:1.1.0] C:\Users\Exxus\.gradle\caches\transforms-3\da3c8d0aa6a9273a1b0cf363898f376b\transformed\jetified-autofill-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.media:media:1.2.0] C:\Users\Exxus\.gradle\caches\transforms-3\de125d424de961dc5848d7ed98e9c5e5\transformed\media-1.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.media:media:1.2.0] C:\Users\Exxus\.gradle\caches\transforms-3\de125d424de961dc5848d7ed98e9c5e5\transformed\media-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\Exxus\.gradle\caches\transforms-3\a00153392e658a866917b4a4143daf85\transformed\swiperefreshlayout-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\Exxus\.gradle\caches\transforms-3\a00153392e658a866917b4a4143daf85\transformed\swiperefreshlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\Exxus\.gradle\caches\transforms-3\92bd54c09be38ca4231fbc22e1e3afad\transformed\jetified-autofill-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\Exxus\.gradle\caches\transforms-3\92bd54c09be38ca4231fbc22e1e3afad\transformed\jetified-autofill-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\Exxus\.gradle\caches\transforms-3\c55383a09cfd316dfcf5a24eb990d4c9\transformed\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\Exxus\.gradle\caches\transforms-3\c55383a09cfd316dfcf5a24eb990d4c9\transformed\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.work:work-runtime:2.7.1] C:\Users\Exxus\.gradle\caches\transforms-3\23ae92aed52a081bfc703d5b32d2187d\transformed\work-runtime-2.7.1\AndroidManifest.xml:21:5-23:41
@@ -679,8 +655,6 @@ MERGED from [org.mozilla.geckoview:geckoview-exoplayer2-nightly:110.0.2023010709
 MERGED from [org.mozilla.geckoview:geckoview-exoplayer2-nightly:110.0.20230107093442] C:\Users\Exxus\.gradle\caches\transforms-3\8bc6a32ca92a422976fe894754791009\transformed\jetified-geckoview-exoplayer2-nightly-110.0.20230107093442\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:concept-fetch:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\9229a83ebbfef9757c0a384aea7ccd76\transformed\jetified-concept-fetch-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [org.mozilla.components:concept-fetch:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\9229a83ebbfef9757c0a384aea7ccd76\transformed\jetified-concept-fetch-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
-MERGED from [org.mozilla.components:ui-icons:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\e20f8c6e17019100c9a6bf3a2cdfc2f8\transformed\jetified-ui-icons-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
-MERGED from [org.mozilla.components:ui-icons:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\e20f8c6e17019100c9a6bf3a2cdfc2f8\transformed\jetified-ui-icons-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [io.reactivex.rxjava2:rxandroid:2.1.1] C:\Users\Exxus\.gradle\caches\transforms-3\fb4bad196cc3e25f419d675275151f6e\transformed\jetified-rxandroid-2.1.1\AndroidManifest.xml:18:5-43
 MERGED from [io.reactivex.rxjava2:rxandroid:2.1.1] C:\Users\Exxus\.gradle\caches\transforms-3\fb4bad196cc3e25f419d675275151f6e\transformed\jetified-rxandroid-2.1.1\AndroidManifest.xml:18:5-43
 MERGED from [androidx.compose.ui:ui-util:1.3.3] C:\Users\Exxus\.gradle\caches\transforms-3\e29d019dfd6f75832d0235fdc8b94491\transformed\jetified-ui-util-1.3.3\AndroidManifest.xml:20:5-44
@@ -689,6 +663,8 @@ MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\Exxus\.
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\Exxus\.gradle\caches\transforms-3\5a8e69298d0a417125d578f1f907142f\transformed\jetified-annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.dagger:dagger-lint-aar:2.38.1] C:\Users\Exxus\.gradle\caches\transforms-3\b412a641d2e5f51096c551f4c682ae75\transformed\jetified-dagger-lint-aar-2.38.1\AndroidManifest.xml:18:3-42
 MERGED from [com.google.dagger:dagger-lint-aar:2.38.1] C:\Users\Exxus\.gradle\caches\transforms-3\b412a641d2e5f51096c551f4c682ae75\transformed\jetified-dagger-lint-aar-2.38.1\AndroidManifest.xml:18:3-42
+MERGED from [org.mozilla.components:ui-icons:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\e20f8c6e17019100c9a6bf3a2cdfc2f8\transformed\jetified-ui-icons-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
+MERGED from [org.mozilla.components:ui-icons:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\e20f8c6e17019100c9a6bf3a2cdfc2f8\transformed\jetified-ui-icons-110.0.20230107143316\AndroidManifest.xml:10:5-12:41
 MERGED from [net.java.dev.jna:jna:5.12.1] C:\Users\Exxus\.gradle\caches\transforms-3\536b12ab227bf49a58f61369101710d9\transformed\jetified-jna-5.12.1\AndroidManifest.xml:7:5-47
 MERGED from [net.java.dev.jna:jna:5.12.1] C:\Users\Exxus\.gradle\caches\transforms-3\536b12ab227bf49a58f61369101710d9\transformed\jetified-jna-5.12.1\AndroidManifest.xml:7:5-47
 INJECTED from D:\Android\pro\SingleSiteBrowser\app\src\main\AndroidManifest.xml
@@ -726,8 +702,6 @@ ADDED from [org.mozilla.components:feature-downloads:110.0.20230107143316] C:\Us
 		ADDED from [org.mozilla.components:feature-downloads:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\8e4b1d790beeef6994d080a0a294fd65\transformed\jetified-feature-downloads-110.0.20230107143316\AndroidManifest.xml:16:9-65
 uses-permission#android.permission.FOREGROUND_SERVICE
 ADDED from [org.mozilla.components:feature-downloads:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\8e4b1d790beeef6994d080a0a294fd65\transformed\jetified-feature-downloads-110.0.20230107143316\AndroidManifest.xml:19:5-77
-MERGED from [org.mozilla.components:feature-media:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\0881e063a4acf618e9475258665eb8dd\transformed\jetified-feature-media-110.0.20230107143316\AndroidManifest.xml:14:5-77
-MERGED from [org.mozilla.components:feature-media:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\0881e063a4acf618e9475258665eb8dd\transformed\jetified-feature-media-110.0.20230107143316\AndroidManifest.xml:14:5-77
 MERGED from [androidx.work:work-runtime:2.7.1] C:\Users\Exxus\.gradle\caches\transforms-3\23ae92aed52a081bfc703d5b32d2187d\transformed\work-runtime-2.7.1\AndroidManifest.xml:28:5-77
 MERGED from [androidx.work:work-runtime:2.7.1] C:\Users\Exxus\.gradle\caches\transforms-3\23ae92aed52a081bfc703d5b32d2187d\transformed\work-runtime-2.7.1\AndroidManifest.xml:28:5-77
 	android:name
@@ -780,12 +754,6 @@ ADDED from [org.mozilla.components:feature-prompts:110.0.20230107143316] C:\User
 		ADDED from [org.mozilla.components:feature-prompts:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\64e6b579dc843fbf109b81c4f56d23f3\transformed\jetified-feature-prompts-110.0.20230107143316\AndroidManifest.xml:23:13-37
 	android:name
 		ADDED from [org.mozilla.components:feature-prompts:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\64e6b579dc843fbf109b81c4f56d23f3\transformed\jetified-feature-prompts-110.0.20230107143316\AndroidManifest.xml:21:13-84
-uses-permission#android.permission.QUERY_ALL_PACKAGES
-ADDED from [org.mozilla.components:feature-autofill:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\3f24346b8348b541c2455ab55fa7e270\transformed\jetified-feature-autofill-110.0.20230107143316\AndroidManifest.xml:15:5-17:53
-	tools:ignore
-		ADDED from [org.mozilla.components:feature-autofill:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\3f24346b8348b541c2455ab55fa7e270\transformed\jetified-feature-autofill-110.0.20230107143316\AndroidManifest.xml:17:9-50
-	android:name
-		ADDED from [org.mozilla.components:feature-autofill:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\3f24346b8348b541c2455ab55fa7e270\transformed\jetified-feature-autofill-110.0.20230107143316\AndroidManifest.xml:16:9-61
 queries
 ADDED from [org.mozilla.components:support-ktx:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\c796611f0b1e5ee44da6859d5375d2c3\transformed\jetified-support-ktx-110.0.20230107143316\AndroidManifest.xml:14:5-20:15
 MERGED from [org.mozilla.components:support-utils:110.0.20230107143316] C:\Users\Exxus\.gradle\caches\transforms-3\06c43c3e90530ba18f1d1687888d8643\transformed\jetified-support-utils-110.0.20230107143316\AndroidManifest.xml:18:5-24:15
@@ -806,14 +774,6 @@ ADDED from [androidx.compose.ui:ui-tooling:1.3.1] C:\Users\Exxus\.gradle\caches\
 		ADDED from [androidx.compose.ui:ui-tooling:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\b0903cc35e1e3ee2e058d33a4a48c53f\transformed\jetified-ui-tooling-1.3.1\AndroidManifest.xml:25:13-36
 	android:name
 		ADDED from [androidx.compose.ui:ui-tooling:1.3.1] C:\Users\Exxus\.gradle\caches\transforms-3\b0903cc35e1e3ee2e058d33a4a48c53f\transformed\jetified-ui-tooling-1.3.1\AndroidManifest.xml:24:13-71
-uses-permission#android.permission.USE_BIOMETRIC
-ADDED from [androidx.biometric:biometric:1.1.0] C:\Users\Exxus\.gradle\caches\transforms-3\69fc381618b3153d78eb0e09003968dc\transformed\biometric-1.1.0\AndroidManifest.xml:24:5-72
-	android:name
-		ADDED from [androidx.biometric:biometric:1.1.0] C:\Users\Exxus\.gradle\caches\transforms-3\69fc381618b3153d78eb0e09003968dc\transformed\biometric-1.1.0\AndroidManifest.xml:24:22-69
-uses-permission#android.permission.USE_FINGERPRINT
-ADDED from [androidx.biometric:biometric:1.1.0] C:\Users\Exxus\.gradle\caches\transforms-3\69fc381618b3153d78eb0e09003968dc\transformed\biometric-1.1.0\AndroidManifest.xml:27:5-74
-	android:name
-		ADDED from [androidx.biometric:biometric:1.1.0] C:\Users\Exxus\.gradle\caches\transforms-3\69fc381618b3153d78eb0e09003968dc\transformed\biometric-1.1.0\AndroidManifest.xml:27:22-71
 activity#mozilla.telemetry.glean.debug.GleanDebugActivity
 ADDED from [org.mozilla.telemetry:glean:51.8.2] C:\Users\Exxus\.gradle\caches\transforms-3\b519496aaa0cc3845beb84cf9e85b02a\transformed\jetified-glean-51.8.2\AndroidManifest.xml:10:9-13:51
 	android:launchMode

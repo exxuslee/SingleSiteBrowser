@@ -82,9 +82,9 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
 
         //TODO: Move to settings page so app restart no longer required
         //TODO: Differentiate between using search engine / adding to list - the code below removes all from list as I don't support adding to list, only setting as default
-        for (i in components.store.state.search.customSearchEngines) {
-            components.searchUseCases.removeSearchEngine(i)
-        }
+//        for (i in components.store.state.search.customSearchEngines) {
+//            components.searchUseCases.removeSearchEngine(i)
+//        }
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
 
@@ -193,20 +193,21 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
 
         if ((!forceSearch && searchTermOrURL.isUrl()) || engine == null) {
             loadUrlUseCase.invoke(searchTermOrURL.toNormalizedUrl(), flags)
-        } else {
-            if (newTab) {
-                components.searchUseCases.newTabSearch
-                    .invoke(
-                        searchTermOrURL,
-                        SessionState.Source.Internal.UserEntered,
-                        true,
-                        mode.isPrivate,
-                        searchEngine = engine
-                    )
-            } else {
-                components.searchUseCases.defaultSearch.invoke(searchTermOrURL, engine)
-            }
         }
+//        else {
+//            if (newTab) {
+//                components.searchUseCases.newTabSearch
+//                    .invoke(
+//                        searchTermOrURL,
+//                        SessionState.Source.Internal.UserEntered,
+//                        true,
+//                        mode.isPrivate,
+//                        searchEngine = engine
+//                    )
+//            } else {
+//                components.searchUseCases.defaultSearch.invoke(searchTermOrURL, engine)
+//            }
+//        }
     }
 
     private fun installPrintExtension() {

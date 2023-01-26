@@ -135,11 +135,11 @@ dependencies {
     implementation "org.mozilla.components:browser-errorpages:$mozComponentsVersion"
 
     // Mozilla feature components
-    implementation "org.mozilla.components:feature-awesomebar:$mozComponentsVersion"
-    implementation "org.mozilla.components:feature-autofill:$mozComponentsVersion"
-    implementation "org.mozilla.components:feature-readerview:$mozComponentsVersion"
-    implementation "org.mozilla.components:feature-media:$mozComponentsVersion"
-    implementation "org.mozilla.components:feature-search:$mozComponentsVersion"
+//    implementation "org.mozilla.components:feature-awesomebar:$mozComponentsVersion"
+//    implementation "org.mozilla.components:feature-autofill:$mozComponentsVersion"
+//    implementation "org.mozilla.components:feature-readerview:$mozComponentsVersion"
+//    implementation "org.mozilla.components:feature-media:$mozComponentsVersion"
+//    implementation "org.mozilla.components:feature-search:$mozComponentsVersion"
 
     implementation "org.mozilla.components:feature-tabs:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-session:$mozComponentsVersion"
@@ -170,11 +170,11 @@ dependencies {
     implementation "org.mozilla.components:support-locale:$mozComponentsVersion"
 
     // Mozilla UI components
-    implementation "org.mozilla.components:ui-autocomplete:$mozComponentsVersion"
-    implementation "org.mozilla.components:ui-tabcounter:$mozComponentsVersion"
-    implementation "org.mozilla.components:ui-icons:$mozComponentsVersion"
-    implementation "org.mozilla.components:ui-colors:$mozComponentsVersion"
-    implementation "org.mozilla.components:ui-widgets:$mozComponentsVersion"
+//    implementation "org.mozilla.components:ui-autocomplete:$mozComponentsVersion"
+//    implementation "org.mozilla.components:ui-tabcounter:$mozComponentsVersion"
+//    implementation "org.mozilla.components:ui-icons:$mozComponentsVersion"
+//    implementation "org.mozilla.components:ui-colors:$mozComponentsVersion"
+//    implementation "org.mozilla.components:ui-widgets:$mozComponentsVersion"
 
     // Mozilla lib components
     implementation "org.mozilla.components:lib-state:$mozComponentsVersion"
@@ -196,8 +196,8 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
 
     implementation "androidx.compose.ui:ui:1.3.3"
-    implementation "androidx.compose.foundation:foundation:1.3.1"
-    implementation "androidx.compose.material:material:1.3.1"
+//    implementation "androidx.compose.foundation:foundation:1.3.1"
+//    implementation "androidx.compose.material:material:1.3.1"
 
 }
 
