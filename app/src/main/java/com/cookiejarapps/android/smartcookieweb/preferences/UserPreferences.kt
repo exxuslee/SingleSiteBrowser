@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.cookiejarapps.android.smartcookieweb.browser.HomepageChoice
-import com.cookiejarapps.android.smartcookieweb.browser.ThemeChoice
 import mozilla.components.support.ktx.android.content.*
 
 class UserPreferences(appContext: Context): PreferencesHolder {

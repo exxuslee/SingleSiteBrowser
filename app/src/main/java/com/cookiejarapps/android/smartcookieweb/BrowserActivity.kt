@@ -52,12 +52,6 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
         supportFragmentManager.findFragmentById(R.id.container) as NavHostFragment
     }
 
-//    private val externalSourceIntentProcessors by lazy {
-//        listOf(
-//            OpenBrowserIntentProcessor(this, ::getIntentSessionId),
-//        )
-//    }
-
     private val webExtensionPopupFeature by lazy {
         WebExtensionPopupFeature(components.store, ::openPopup)
     }
@@ -101,83 +95,12 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
             components.searchUseCases.removeSearchEngine(i)
         }
 
-        if (UserPreferences(this).customSearchEngine) {
-            GlobalScope.launch {
-                val customSearch =
-                    createSearchEngine(
-                        name = "Custom Search",
-                        url = UserPreferences(this@BrowserActivity).customSearchEngineURL,
-                        icon = components.icons.loadIcon(IconRequest(UserPreferences(this@BrowserActivity).customSearchEngineURL))
-                            .await().bitmap
-                    )
-
-                runOnUiThread {
-                    components.searchUseCases.addSearchEngine(
-                        customSearch
-                    )
-                    components.searchUseCases.selectSearchEngine(
-                        customSearch
-                    )
-                }
-            }
-        } else {
-            if (SearchEngineList().getEngines()[UserPreferences(this).searchEngineChoice].type == SearchEngine.Type.BUNDLED) {
-                components.searchUseCases.selectSearchEngine(
-                    SearchEngineList().getEngines()[UserPreferences(this).searchEngineChoice]
-                )
-            } else {
-                components.searchUseCases.addSearchEngine(
-                    SearchEngineList().getEngines()[UserPreferences(
-                        this
-                    ).searchEngineChoice]
-                )
-                components.searchUseCases.selectSearchEngine(
-                    SearchEngineList().getEngines()[UserPreferences(this).searchEngineChoice]
-                )
-            }
-        }
-
-//        if (isActivityColdStarted(intent, savedInstanceState) &&
-//            !externalSourceIntentProcessors.any {
-//                it.process(
-//                    intent,
-//                    navHost.navController,
-//                    this.intent
-//                )
-//            }
-//        ) {
-//            navigateToBrowserOnColdStart()
-//        }
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
 
         installPrintExtension()
         components.appRequestInterceptor.setNavController(navHost.navController)
         lifecycle.addObserver(webExtensionPopupFeature)
     }
-
-//    final override fun onNewIntent(intent: Intent?) {
-//        super.onNewIntent(intent)
-//        // TODO: temporary fix
-//        openToBrowser(BrowserDirection.FromGlobal)
-//        intent?.let {
-//            handleNewIntent(it)
-//        }
-//    }
-
-//    open fun handleNewIntent(intent: Intent) {
-//        val intentProcessors = externalSourceIntentProcessors
-//        val intentHandled =
-//            intentProcessors.any { it.process(intent, navHost.navController, this.intent) }
-//        browsingModeManager.mode = BrowsingMode.Normal
-//
-//        if (intentHandled) {
-//            supportFragmentManager
-//                .primaryNavigationFragment
-//                ?.childFragmentManager
-//                ?.fragments
-//                ?.lastOrNull()
-//        }
-//    }
 
     open fun navigateToBrowserOnColdStart() {
         if (!browsingModeManager.mode.isPrivate) {
