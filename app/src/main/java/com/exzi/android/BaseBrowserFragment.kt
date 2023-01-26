@@ -97,9 +97,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         browserInitialized = if (tab != null) {
             initializeUI(view, tab)
             true
-        } else {
-            false
-        }
+        } else false
     }
 
     @Suppress("ComplexMethod", "LongMethod")
