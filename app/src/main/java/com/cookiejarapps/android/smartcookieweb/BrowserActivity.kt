@@ -71,10 +71,7 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
         super.onCreate(savedInstanceState)
 
         components.publicSuffixList.prefetch()
-
-        browsingModeManager = createBrowsingModeManager(
-            if (UserPreferences(this).lastKnownPrivate) BrowsingMode.Private else BrowsingMode.Normal
-        )
+        browsingModeManager = createBrowsingModeManager(BrowsingMode.Normal)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
