@@ -1,4 +1,4 @@
-package com.exzi.android
+package com.exzi.android.browser
 
 import androidx.annotation.IdRes
 

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.NavHostFragment
+import com.exzi.android.browser.BrowserDirection
 import com.exzi.android.ext.components
 import com.exzi.android.preferences.UserPreferences
 import com.exzi.android.utils.PrintUtils
@@ -20,7 +21,6 @@ import com.exzi.android.browser.DefaultBrowsingModeManager
 import com.exzi.android.databinding.ActivityMainBinding
 import mozilla.components.browser.state.search.SearchEngine
 import mozilla.components.browser.state.selector.selectedTab
-import mozilla.components.browser.state.state.SessionState
 import mozilla.components.browser.state.state.WebExtensionState
 import mozilla.components.concept.engine.EngineSession
 import mozilla.components.concept.engine.EngineView
