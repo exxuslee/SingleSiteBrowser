@@ -32,7 +32,7 @@ import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.browser.thumbnails.BrowserThumbnails
 import mozilla.components.feature.app.links.AppLinksFeature
 import mozilla.components.feature.intent.ext.EXTRA_SESSION_ID
-
+import mozilla.components.feature.prompts.PromptFeature
 import mozilla.components.feature.session.PictureInPictureFeature
 import mozilla.components.feature.session.SessionFeature
 import mozilla.components.feature.session.SwipeRefreshFeature
@@ -54,13 +54,14 @@ import mozilla.components.support.ktx.kotlinx.coroutines.flow.ifChanged
  */
 @ExperimentalCoroutinesApi
 @Suppress("TooManyFunctions", "LargeClass")
-abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler,
+abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, ActivityResultHandler,
     AccessibilityManager.AccessibilityStateChangeListener {
 
     protected val thumbnailsFeature = ViewBoundFeatureWrapper<BrowserThumbnails>()
 
     private val sessionFeature = ViewBoundFeatureWrapper<SessionFeature>()
     private val appLinksFeature = ViewBoundFeatureWrapper<AppLinksFeature>()
+    private val promptsFeature = ViewBoundFeatureWrapper<PromptFeature>()
     private val sitePermissionsFeature = ViewBoundFeatureWrapper<SitePermissionsFeature>()
     private val swipeRefreshFeature = ViewBoundFeatureWrapper<SwipeRefreshFeature>()
     private var pipFeature: PictureInPictureFeature? = null
@@ -106,20 +107,20 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler,
     internal open fun initializeUI(view: View, tab: SessionState) {
         val context = requireContext()
         val store = context.components.store
-//        val activity = requireActivity() as BrowserActivity
+        val activity = requireActivity() as BrowserActivity
 
-//        promptsFeature.set(
-//            feature = PromptFeature(
-//                activity = activity,
-//                store = components.store,
-//                customTabId = customTabSessionId,
-//                fragmentManager = parentFragmentManager,
-//                onNeedToRequestPermissions = { permissions ->
-//                    requestPermissions(permissions, REQUEST_CODE_PROMPT_PERMISSIONS)
-//                }),
-//            owner = this,
-//            view = view
-//        )
+        promptsFeature.set(
+            feature = PromptFeature(
+                activity = activity,
+                store = components.store,
+                customTabId = customTabSessionId,
+                fragmentManager = parentFragmentManager,
+                onNeedToRequestPermissions = { permissions ->
+                    requestPermissions(permissions, REQUEST_CODE_PROMPT_PERMISSIONS)
+                }),
+            owner = this,
+            view = view
+        )
 
         pipFeature = PictureInPictureFeature(
             store = store,
@@ -248,7 +249,8 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler,
 
     @CallSuper
     override fun onBackPressed(): Boolean {
-        return  sessionFeature.onBackPressed() ||
+        return promptsFeature.onBackPressed() ||
+                sessionFeature.onBackPressed() ||
                 removeSessionIfNeeded()
     }
 
@@ -281,12 +283,21 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler,
         grantResults: IntArray
     ) {
         val feature: PermissionsFeature? = when (requestCode) {
+            REQUEST_CODE_PROMPT_PERMISSIONS -> promptsFeature.get()
             REQUEST_CODE_APP_PERMISSIONS -> sitePermissionsFeature.get()
             else -> null
         }
         feature?.onPermissionsResult(permissions, grantResults)
     }
 
+    /**
+     * Forwards activity results to the [ActivityResultHandler] features.
+     */
+    override fun onActivityResult(requestCode: Int, data: Intent?, resultCode: Int): Boolean {
+        return listOf(
+            promptsFeature
+        ).any { it.onActivityResult(requestCode, data, resultCode) }
+    }
 
     /**
      * Removes the session if it was opened by an ACTION_VIEW intent
