@@ -34,12 +34,12 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    splits {
-        abi {
-            enable true
-            universalApk false
-        }
-    }
+//    splits {
+//        abi {
+//            enable true
+//            universalApk false
+//        }
+//    }
 
     composeOptions {
         kotlinCompilerExtensionVersion = '1.3.2'
@@ -53,23 +53,23 @@ android {
     namespace 'com.exzi.android'
 }
 
-ext.abiCodes = ['arm64-v8a':1, x86:2, x86_64:3]
-
-import com.android.build.OutputFile
-
-android.applicationVariants.all { variant ->
-
-    variant.outputs.each { output ->
-
-        def baseAbiVersionCode =
-                project.ext.abiCodes.get(output.getFilter(OutputFile.ABI))
-
-        if (baseAbiVersionCode != null) {
-            output.versionCodeOverride =
-                    baseAbiVersionCode + variant.versionCode
-        }
-    }
-}
+//ext.abiCodes = ['arm64-v8a':1, x86:2, x86_64:3]
+//
+//import com.android.build.OutputFile
+//
+//android.applicationVariants.all { variant ->
+//
+//    variant.outputs.each { output ->
+//
+//        def baseAbiVersionCode =
+//                project.ext.abiCodes.get(output.getFilter(OutputFile.ABI))
+//
+//        if (baseAbiVersionCode != null) {
+//            output.versionCodeOverride =
+//                    baseAbiVersionCode + variant.versionCode
+//        }
+//    }
+//}
 
 
 dependencies {
@@ -130,7 +130,7 @@ dependencies {
     implementation "org.mozilla.components:browser-engine-system:$mozComponentsVersion"
     implementation "org.mozilla.components:browser-session-storage:$mozComponentsVersion"
 //    implementation "org.mozilla.components:browser-tabstray:$mozComponentsVersion"
-    implementation "org.mozilla.components:browser-menu:$mozComponentsVersion"
+//    implementation "org.mozilla.components:browser-menu:$mozComponentsVersion"
     implementation "org.mozilla.components:browser-storage-sync:$mozComponentsVersion"
     implementation "org.mozilla.components:browser-errorpages:$mozComponentsVersion"
 
