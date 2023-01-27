@@ -14,23 +14,24 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.exzi.android.browser.HomepageChoice
+import com.exzi.android.databinding.FragmentBrowserBinding
 import com.exzi.android.ext.components
 import com.exzi.android.preferences.UserPreferences
-import com.exzi.android.databinding.FragmentBrowserBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
-import mozilla.components.browser.state.selector.*
+import mozilla.components.browser.state.selector.findCustomTab
+import mozilla.components.browser.state.selector.findCustomTabOrSelectedTab
+import mozilla.components.browser.state.selector.findTabOrCustomTabOrSelectedTab
+import mozilla.components.browser.state.selector.getNormalOrPrivateTabs
 import mozilla.components.browser.state.state.SessionState
 import mozilla.components.browser.state.state.TabSessionState
 import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.browser.thumbnails.BrowserThumbnails
 import mozilla.components.feature.app.links.AppLinksFeature
-import mozilla.components.feature.downloads.DownloadsFeature
 import mozilla.components.feature.intent.ext.EXTRA_SESSION_ID
 import mozilla.components.feature.prompts.PromptFeature
-import mozilla.components.feature.session.FullScreenFeature
 import mozilla.components.feature.session.PictureInPictureFeature
 import mozilla.components.feature.session.SessionFeature
 import mozilla.components.feature.sitepermissions.SitePermissionsFeature
@@ -57,11 +58,9 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     protected val thumbnailsFeature = ViewBoundFeatureWrapper<BrowserThumbnails>()
 
     private val sessionFeature = ViewBoundFeatureWrapper<SessionFeature>()
-    private val downloadsFeature = ViewBoundFeatureWrapper<DownloadsFeature>()
     private val appLinksFeature = ViewBoundFeatureWrapper<AppLinksFeature>()
     private val promptsFeature = ViewBoundFeatureWrapper<PromptFeature>()
     private val sitePermissionsFeature = ViewBoundFeatureWrapper<SitePermissionsFeature>()
-    private val fullScreenFeature = ViewBoundFeatureWrapper<FullScreenFeature>()
     private var pipFeature: PictureInPictureFeature? = null
 
     var customTabSessionId: String? = null
@@ -150,25 +149,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
             view = view
         )
 
-//        searchFeature.set(
-//            feature = SearchFeature(store, customTabSessionId) { request, tabId ->
-//                val parentSession = store.state.findTabOrCustomTab(tabId)
-//                val useCase = if (request.isPrivate) {
-//                    requireContext().components.searchUseCases.newPrivateTabSearch
-//                } else {
-//                    requireContext().components.searchUseCases.newTabSearch
-//                }
-//
-//                if (parentSession is CustomTabSessionState) {
-//                    useCase.invoke(request.query)
-//                } else {
-//                    useCase.invoke(request.query, parentSessionId = parentSession?.id)
-//                }
-//            },
-//            owner = this,
-//            view = view
-//        )
-
         val accentHighContrastColor = R.color.secondary_icon
 
         sitePermissionsFeature.set(
@@ -192,18 +172,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                     )
                 },
                 store = store
-            ),
-            owner = this,
-            view = view
-        )
-
-        fullScreenFeature.set(
-            feature = FullScreenFeature(
-                requireContext().components.store,
-                requireContext().components.sessionUseCases,
-                customTabSessionId,
-                ::viewportFitChange,
-                ::fullScreenChanged
             ),
             owner = this,
             view = view
@@ -268,20 +236,11 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     override fun onStop() {
         super.onStop()
         initUIJob?.cancel()
-
-        requireContext().components.store.state.findTabOrCustomTabOrSelectedTab(customTabSessionId)
-            ?.let { session ->
-                // If we didn't enter PiP, exit full screen on stop
-                if (!session.content.pictureInPictureEnabled && fullScreenFeature.onBackPressed()) {
-                    fullScreenChanged(false)
-                }
-            }
     }
 
     @CallSuper
     override fun onBackPressed(): Boolean {
-        return fullScreenFeature.onBackPressed() ||
-                promptsFeature.onBackPressed() ||
+        return promptsFeature.onBackPressed() ||
                 sessionFeature.onBackPressed() ||
                 removeSessionIfNeeded()
     }
@@ -315,7 +274,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         grantResults: IntArray
     ) {
         val feature: PermissionsFeature? = when (requestCode) {
-            REQUEST_CODE_DOWNLOAD_PERMISSIONS -> downloadsFeature.get()
             REQUEST_CODE_PROMPT_PERMISSIONS -> promptsFeature.get()
             REQUEST_CODE_APP_PERMISSIONS -> sitePermissionsFeature.get()
             else -> null

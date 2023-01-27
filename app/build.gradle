@@ -111,9 +111,9 @@ dependencies {
     // Mozilla concept components
     implementation "org.mozilla.components:concept-storage:$mozComponentsVersion"
     implementation "org.mozilla.components:concept-engine:$mozComponentsVersion"
-    implementation "org.mozilla.components:concept-menu:$mozComponentsVersion"
-    implementation "org.mozilla.components:concept-toolbar:$mozComponentsVersion"
-    implementation "org.mozilla.components:concept-tabstray:$mozComponentsVersion"
+//    implementation "org.mozilla.components:concept-menu:$mozComponentsVersion"
+//    implementation "org.mozilla.components:concept-toolbar:$mozComponentsVersion"
+//    implementation "org.mozilla.components:concept-tabstray:$mozComponentsVersion"
     implementation "org.mozilla.components:concept-base:$mozComponentsVersion"
     implementation "org.mozilla.components:concept-fetch:$mozComponentsVersion"
     implementation "org.mozilla.components:concept-awesomebar:$mozComponentsVersion"
@@ -125,11 +125,11 @@ dependencies {
     implementation "org.mozilla.components:browser-thumbnails:$mozComponentsVersion"
     implementation "org.mozilla.components:browser-state:$mozComponentsVersion"
 
-    implementation "org.mozilla.components:browser-toolbar:$mozComponentsVersion"
+//    implementation "org.mozilla.components:browser-toolbar:$mozComponentsVersion"
     implementation "org.mozilla.components:browser-state:$mozComponentsVersion"
     implementation "org.mozilla.components:browser-engine-system:$mozComponentsVersion"
     implementation "org.mozilla.components:browser-session-storage:$mozComponentsVersion"
-    implementation "org.mozilla.components:browser-tabstray:$mozComponentsVersion"
+//    implementation "org.mozilla.components:browser-tabstray:$mozComponentsVersion"
     implementation "org.mozilla.components:browser-menu:$mozComponentsVersion"
     implementation "org.mozilla.components:browser-storage-sync:$mozComponentsVersion"
     implementation "org.mozilla.components:browser-errorpages:$mozComponentsVersion"
@@ -143,11 +143,11 @@ dependencies {
 
     implementation "org.mozilla.components:feature-tabs:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-session:$mozComponentsVersion"
-    implementation "org.mozilla.components:feature-toolbar:$mozComponentsVersion"
+//    implementation "org.mozilla.components:feature-toolbar:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-intent:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-contextmenu:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-app-links:$mozComponentsVersion"
-    implementation "org.mozilla.components:feature-downloads:$mozComponentsVersion"
+//    implementation "org.mozilla.components:feature-downloads:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-privatemode:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-customtabs:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-pwa:$mozComponentsVersion"
@@ -155,12 +155,12 @@ dependencies {
     implementation "org.mozilla.components:feature-sitepermissions:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-webcompat:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-webnotifications:$mozComponentsVersion"
-    implementation "org.mozilla.components:feature-findinpage:$mozComponentsVersion"
+//    implementation "org.mozilla.components:feature-findinpage:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-prompts:$mozComponentsVersion"
 
     // Mozilla service components
-    implementation "org.mozilla.components:service-location:$mozComponentsVersion"
-    implementation "org.mozilla.components:service-digitalassetlinks:$mozComponentsVersion"
+//    implementation "org.mozilla.components:service-location:$mozComponentsVersion"
+//    implementation "org.mozilla.components:service-digitalassetlinks:$mozComponentsVersion"
 
     // Mozilla support components
     implementation "org.mozilla.components:support-base:$mozComponentsVersion"
