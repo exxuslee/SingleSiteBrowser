@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.exzi.android.browser.ToolbarGestureHandler
 import com.exzi.android.ext.components
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import mozilla.components.browser.state.state.SessionState
@@ -27,6 +28,15 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
 
         val context = requireContext()
         val components = context.components
+
+        binding.gestureLayout.addGestureListener(
+            ToolbarGestureHandler(
+                activity = requireActivity(),
+                contentLayout = binding.browserLayout,
+                store = components.store,
+                selectTabUseCase = components.tabsUseCases.selectTab
+            )
+        )
 
         thumbnailsFeature.set(
             feature = BrowserThumbnails(context, binding.engineView, components.store),

@@ -174,7 +174,7 @@ dependencies {
 //    implementation "org.mozilla.components:ui-tabcounter:$mozComponentsVersion"
 //    implementation "org.mozilla.components:ui-icons:$mozComponentsVersion"
 //    implementation "org.mozilla.components:ui-colors:$mozComponentsVersion"
-//    implementation "org.mozilla.components:ui-widgets:$mozComponentsVersion"
+    implementation "org.mozilla.components:ui-widgets:$mozComponentsVersion"
 
     // Mozilla lib components
     implementation "org.mozilla.components:lib-state:$mozComponentsVersion"

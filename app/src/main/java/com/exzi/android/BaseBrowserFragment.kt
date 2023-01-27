@@ -10,6 +10,7 @@ import android.view.WindowManager
 import android.view.accessibility.AccessibilityManager
 import androidx.annotation.CallSuper
 import androidx.annotation.VisibleForTesting
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -33,6 +34,7 @@ import mozilla.components.feature.intent.ext.EXTRA_SESSION_ID
 import mozilla.components.feature.prompts.PromptFeature
 import mozilla.components.feature.session.PictureInPictureFeature
 import mozilla.components.feature.session.SessionFeature
+import mozilla.components.feature.session.SwipeRefreshFeature
 import mozilla.components.feature.sitepermissions.SitePermissionsFeature
 import mozilla.components.lib.state.ext.consumeFlow
 import mozilla.components.lib.state.ext.flowScoped
@@ -60,6 +62,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     private val appLinksFeature = ViewBoundFeatureWrapper<AppLinksFeature>()
     private val promptsFeature = ViewBoundFeatureWrapper<PromptFeature>()
     private val sitePermissionsFeature = ViewBoundFeatureWrapper<SitePermissionsFeature>()
+    private val swipeRefreshFeature = ViewBoundFeatureWrapper<SwipeRefreshFeature>()
     private var pipFeature: PictureInPictureFeature? = null
 
     var customTabSessionId: String? = null
@@ -182,6 +185,23 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
             flow.mapNotNull { state -> state.findTabOrCustomTabOrSelectedTab(customTabSessionId) }
                 .ifChanged { tab -> tab.content.pictureInPictureEnabled }
                 .collect { tab -> pipModeChanged(tab) }
+        }
+
+        binding.swipeRefresh.isEnabled = shouldPullToRefreshBeEnabled(false)
+
+        if (binding.swipeRefresh.isEnabled) {
+            val primaryTextColor = ContextCompat.getColor(context, R.color.primary_icon)
+            binding.swipeRefresh.setColorSchemeColors(primaryTextColor)
+            swipeRefreshFeature.set(
+                feature = SwipeRefreshFeature(
+                    requireContext().components.store,
+                    context.components.sessionUseCases.reload,
+                    binding.swipeRefresh,
+                    customTabSessionId
+                ),
+                owner = this,
+                view = view
+            )
         }
     }
 
@@ -366,4 +386,8 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     override fun onAccessibilityStateChanged(enabled: Boolean) {
     }
 
+    @VisibleForTesting
+    internal fun shouldPullToRefreshBeEnabled(inFullScreen: Boolean): Boolean {
+        return UserPreferences(requireContext()).swipeToRefresh
+    }
 }
