@@ -154,9 +154,9 @@ dependencies {
     implementation "org.mozilla.components:feature-prompts:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-sitepermissions:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-webcompat:$mozComponentsVersion"
-    implementation "org.mozilla.components:feature-webnotifications:$mozComponentsVersion"
+//    implementation "org.mozilla.components:feature-webnotifications:$mozComponentsVersion"
 //    implementation "org.mozilla.components:feature-findinpage:$mozComponentsVersion"
-    implementation "org.mozilla.components:feature-prompts:$mozComponentsVersion"
+//    implementation "org.mozilla.components:feature-prompts:$mozComponentsVersion"
 
     // Mozilla service components
 //    implementation "org.mozilla.components:service-location:$mozComponentsVersion"
@@ -167,7 +167,7 @@ dependencies {
     implementation "org.mozilla.components:support-utils:$mozComponentsVersion"
     implementation "org.mozilla.components:support-webextensions:$mozComponentsVersion"
     implementation "org.mozilla.components:support-ktx:$mozComponentsVersion"
-    implementation "org.mozilla.components:support-locale:$mozComponentsVersion"
+//    implementation "org.mozilla.components:support-locale:$mozComponentsVersion"
 
     // Mozilla UI components
 //    implementation "org.mozilla.components:ui-autocomplete:$mozComponentsVersion"

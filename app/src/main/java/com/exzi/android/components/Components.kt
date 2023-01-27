@@ -32,7 +32,6 @@ import mozilla.components.feature.session.middleware.undo.UndoMiddleware
 import mozilla.components.feature.sitepermissions.OnDiskSitePermissionsStorage
 import mozilla.components.feature.tabs.TabsUseCases
 import mozilla.components.feature.webcompat.WebCompatFeature
-import mozilla.components.feature.webnotifications.WebNotificationFeature
 import mozilla.components.lib.publicsuffixlist.PublicSuffixList
 import org.mozilla.geckoview.ContentBlocking
 import org.mozilla.geckoview.GeckoRuntime
@@ -92,25 +91,11 @@ open class Components(private val applicationContext: Context) {
     val store by lazy {
         BrowserStore(
                 middleware = listOf(
-//                        ReaderViewMiddleware(),
                         ThumbnailsMiddleware(thumbnailStorage),
                         UndoMiddleware(),
-//                        RegionMiddleware(
-//                                applicationContext,
-//                                LocationService.default()
-//                        ),
-//                        SearchMiddleware(applicationContext),
-//                        RecordingDevicesMiddleware(applicationContext),
                         LastAccessMiddleware()
                 ) + EngineMiddleware.create(engine)
-        ).apply{
-            icons.install(engine, this)
-
-            WebNotificationFeature(
-                    applicationContext, engine, icons, R.drawable.ic_notification,
-                    permissionStorage, BrowserActivity::class.java
-            )
-        }
+        )
     }
 
     val sessionUseCases by lazy { SessionUseCases(store) }
