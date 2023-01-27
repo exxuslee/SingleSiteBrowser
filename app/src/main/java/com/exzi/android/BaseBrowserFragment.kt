@@ -13,7 +13,6 @@ import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.exzi.android.browser.HomepageChoice
 import com.exzi.android.databinding.FragmentBrowserBinding
 import com.exzi.android.ext.components
 import com.exzi.android.preferences.UserPreferences
@@ -211,21 +210,10 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                                 activity.browsingModeManager.mode.isPrivate
                             )
                         if (tabs.isEmpty() || store.state.selectedTabId == null) {
-                            when (UserPreferences(requireContext()).homepageType) {
-                                HomepageChoice.VIEW.ordinal -> {}
-                                HomepageChoice.BLANK_PAGE.ordinal -> {
-                                    components.tabsUseCases.addTab.invoke(
-                                        "about:blank",
-                                        selectTab = true
-                                    )
-                                }
-                                HomepageChoice.CUSTOM_PAGE.ordinal -> {
-                                    components.tabsUseCases.addTab.invoke(
-                                        UserPreferences(requireContext()).customHomepageUrl,
-                                        selectTab = true
-                                    )
-                                }
-                            }
+                            components.tabsUseCases.addTab.invoke(
+                                UserPreferences(requireContext()).customHomepageUrl,
+                                selectTab = true
+                            )
                         }
                     }
                 }

@@ -3,7 +3,6 @@ package com.exzi.android.preferences
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
-import com.exzi.android.browser.HomepageChoice
 import mozilla.components.support.ktx.android.content.*
 
 class UserPreferences(appContext: Context): PreferencesHolder {
@@ -17,7 +16,6 @@ class UserPreferences(appContext: Context): PreferencesHolder {
 
     // Preferences
     var javaScriptEnabled by booleanPreference(JAVA_SCRIPT_ENABLED, true)
-    var homepageType by intPreference(HOMEPAGE_TYPE, HomepageChoice.VIEW.ordinal)
     var customHomepageUrl by stringPreference(HOMEPAGE_URL, "")
     var launchInApp by booleanPreference(LAUNCH_IN_APP, true)
     var autoFontSize by booleanPreference(AUTO_FONT_SIZE, true)
