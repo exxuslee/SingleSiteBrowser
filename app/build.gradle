@@ -116,7 +116,7 @@ dependencies {
 //    implementation "org.mozilla.components:concept-tabstray:$mozComponentsVersion"
     implementation "org.mozilla.components:concept-base:$mozComponentsVersion"
     implementation "org.mozilla.components:concept-fetch:$mozComponentsVersion"
-    implementation "org.mozilla.components:concept-awesomebar:$mozComponentsVersion"
+//    implementation "org.mozilla.components:concept-awesomebar:$mozComponentsVersion"
 
     // Mozilla components
     implementation "org.mozilla.components:browser-engine-gecko:$mozComponentsVersion"
@@ -145,7 +145,7 @@ dependencies {
     implementation "org.mozilla.components:feature-session:$mozComponentsVersion"
 //    implementation "org.mozilla.components:feature-toolbar:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-intent:$mozComponentsVersion"
-    implementation "org.mozilla.components:feature-contextmenu:$mozComponentsVersion"
+//    implementation "org.mozilla.components:feature-contextmenu:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-app-links:$mozComponentsVersion"
 //    implementation "org.mozilla.components:feature-downloads:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-privatemode:$mozComponentsVersion"

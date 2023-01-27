@@ -23,13 +23,8 @@ import mozilla.components.concept.engine.Engine
 import mozilla.components.concept.engine.EngineSession
 import mozilla.components.concept.fetch.Client
 import mozilla.components.feature.app.links.AppLinksInterceptor
-//import mozilla.components.feature.media.middleware.RecordingDevicesMiddleware
 import mozilla.components.feature.pwa.ManifestStorage
 import mozilla.components.feature.pwa.WebAppInterceptor
-//import mozilla.components.feature.readerview.ReaderViewMiddleware
-//import mozilla.components.feature.search.SearchUseCases
-//import mozilla.components.feature.search.middleware.SearchMiddleware
-//import mozilla.components.feature.search.region.RegionMiddleware
 import mozilla.components.feature.session.HistoryDelegate
 import mozilla.components.feature.session.SessionUseCases
 import mozilla.components.feature.session.middleware.LastAccessMiddleware
@@ -39,13 +34,9 @@ import mozilla.components.feature.tabs.TabsUseCases
 import mozilla.components.feature.webcompat.WebCompatFeature
 import mozilla.components.feature.webnotifications.WebNotificationFeature
 import mozilla.components.lib.publicsuffixlist.PublicSuffixList
-import mozilla.components.service.location.LocationService
 import org.mozilla.geckoview.ContentBlocking
 import org.mozilla.geckoview.GeckoRuntime
 import org.mozilla.geckoview.GeckoRuntimeSettings
-
-
-private const val DAY_IN_MINUTES = 24 * 60L
 
 @Suppress("LargeClass")
 open class Components(private val applicationContext: Context) {
@@ -123,12 +114,6 @@ open class Components(private val applicationContext: Context) {
     }
 
     val sessionUseCases by lazy { SessionUseCases(store) }
-
-
-//    val searchUseCases by lazy {
-//        SearchUseCases(store, tabsUseCases, sessionUseCases)
-//    }
-
     val appLinksInterceptor by lazy {
         AppLinksInterceptor(
                 applicationContext,

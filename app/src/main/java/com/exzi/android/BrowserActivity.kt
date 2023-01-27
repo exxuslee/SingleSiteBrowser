@@ -24,7 +24,7 @@ import mozilla.components.concept.engine.EngineSession
 import mozilla.components.concept.engine.EngineView
 import mozilla.components.concept.engine.webextension.MessageHandler
 import mozilla.components.concept.engine.webextension.Port
-import mozilla.components.feature.contextmenu.ext.DefaultSelectionActionDelegate
+//import mozilla.components.feature.contextmenu.ext.DefaultSelectionActionDelegate
 import mozilla.components.support.base.feature.ActivityResultHandler
 import mozilla.components.support.base.feature.UserInteractionHandler
 import mozilla.components.support.ktx.kotlin.isUrl
@@ -91,12 +91,7 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
         parent: View?, name: String, context: Context, attrs: AttributeSet
     ): View? =
         when (name) {
-            EngineView::class.java.name -> components.engine.createView(context, attrs).apply {
-                selectionActionDelegate = DefaultSelectionActionDelegate(
-                    store = components.store,
-                    context = context
-                )
-            }.asView()
+            EngineView::class.java.name -> components.engine.createView(context, attrs).asView()
             else -> super.onCreateView(parent, name, context, attrs)
         }
 
