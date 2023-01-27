@@ -151,7 +151,7 @@ dependencies {
     implementation "org.mozilla.components:feature-privatemode:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-customtabs:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-pwa:$mozComponentsVersion"
-    implementation "org.mozilla.components:feature-prompts:$mozComponentsVersion"
+//    implementation "org.mozilla.components:feature-prompts:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-sitepermissions:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-webcompat:$mozComponentsVersion"
 //    implementation "org.mozilla.components:feature-webnotifications:$mozComponentsVersion"
