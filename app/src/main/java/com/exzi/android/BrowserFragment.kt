@@ -8,7 +8,6 @@ import com.exzi.android.browser.ToolbarGestureHandler
 import com.exzi.android.ext.components
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import mozilla.components.browser.state.state.SessionState
-import mozilla.components.browser.thumbnails.BrowserThumbnails
 import mozilla.components.feature.tabs.WindowFeature
 import mozilla.components.support.base.feature.UserInteractionHandler
 import mozilla.components.support.base.feature.ViewBoundFeatureWrapper
@@ -36,12 +35,6 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
                 store = components.store,
                 selectTabUseCase = components.tabsUseCases.selectTab
             )
-        )
-
-        thumbnailsFeature.set(
-            feature = BrowserThumbnails(context, binding.engineView, components.store),
-            owner = this,
-            view = view
         )
 
         windowFeature.set(

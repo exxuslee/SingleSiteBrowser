@@ -122,7 +122,7 @@ dependencies {
     implementation "org.mozilla.components:browser-engine-gecko:$mozComponentsVersion"
     implementation "org.mozilla.components:browser-icons:$mozComponentsVersion"
     implementation "org.mozilla.components:browser-domains:$mozComponentsVersion"
-    implementation "org.mozilla.components:browser-thumbnails:$mozComponentsVersion"
+//    implementation "org.mozilla.components:browser-thumbnails:$mozComponentsVersion"
     implementation "org.mozilla.components:browser-state:$mozComponentsVersion"
 
 //    implementation "org.mozilla.components:browser-toolbar:$mozComponentsVersion"
