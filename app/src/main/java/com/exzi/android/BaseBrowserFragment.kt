@@ -3,7 +3,6 @@ package com.exzi.android
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +24,6 @@ import kotlinx.coroutines.flow.mapNotNull
 import mozilla.components.browser.state.selector.findCustomTab
 import mozilla.components.browser.state.selector.findCustomTabOrSelectedTab
 import mozilla.components.browser.state.selector.findTabOrCustomTabOrSelectedTab
-import mozilla.components.browser.state.selector.getNormalOrPrivateTabs
 import mozilla.components.browser.state.state.SessionState
 import mozilla.components.browser.state.state.TabSessionState
 import mozilla.components.browser.state.store.BrowserStore
@@ -226,16 +224,10 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                 .ifChanged()
                 .collect { restored ->
                     if (restored) {
-                        val tabs =
-                            store.state.getNormalOrPrivateTabs(
-                                activity.browsingModeManager.mode.isPrivate
-                            )
-                        if (tabs.isEmpty() || store.state.selectedTabId == null) {
-                            components.tabsUseCases.addTab.invoke(
-                                UserPreferences(requireContext()).customHomepageUrl,
-                                selectTab = true
-                            )
-                        }
+                        components.tabsUseCases.addTab.invoke(
+                            UserPreferences(requireContext()).customHomepageUrl,
+                            selectTab = true
+                        )
                     }
                 }
         }

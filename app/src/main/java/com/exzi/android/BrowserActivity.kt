@@ -6,17 +6,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.AttributeSet
 import android.view.View
-import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.NavHostFragment
+import com.exzi.android.databinding.ActivityMainBinding
 import com.exzi.android.ext.components
 import com.exzi.android.preferences.UserPreferences
 import com.exzi.android.utils.PrintUtils
-import com.exzi.android.browser.BrowsingMode
-import com.exzi.android.browser.BrowsingModeManager
-import com.exzi.android.browser.DefaultBrowsingModeManager
-import com.exzi.android.databinding.ActivityMainBinding
 import mozilla.components.browser.state.search.SearchEngine
 import mozilla.components.browser.state.selector.selectedTab
 import mozilla.components.browser.state.state.WebExtensionState
@@ -24,12 +20,9 @@ import mozilla.components.concept.engine.EngineSession
 import mozilla.components.concept.engine.EngineView
 import mozilla.components.concept.engine.webextension.MessageHandler
 import mozilla.components.concept.engine.webextension.Port
-//import mozilla.components.feature.contextmenu.ext.DefaultSelectionActionDelegate
 import mozilla.components.support.base.feature.ActivityResultHandler
 import mozilla.components.support.base.feature.UserInteractionHandler
-import mozilla.components.support.ktx.kotlin.isUrl
 import mozilla.components.support.ktx.kotlin.toNormalizedUrl
-import mozilla.components.support.utils.SafeIntent
 import mozilla.components.support.webextensions.WebExtensionPopupFeature
 
 
@@ -39,7 +32,6 @@ import mozilla.components.support.webextensions.WebExtensionPopupFeature
 open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
 
     lateinit var binding: ActivityMainBinding
-    lateinit var browsingModeManager: BrowsingModeManager
     private val navHost by lazy {
         supportFragmentManager.findFragmentById(R.id.container) as NavHostFragment
     }
@@ -53,7 +45,6 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
         super.onCreate(savedInstanceState)
 
         components.publicSuffixList.prefetch()
-        browsingModeManager = createBrowsingModeManager(BrowsingMode.Normal)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
@@ -72,10 +63,6 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
         installPrintExtension()
         components.appRequestInterceptor.setNavController(navHost.navController)
         lifecycle.addObserver(webExtensionPopupFeature)
-    }
-
-    protected open fun createBrowsingModeManager(initialMode: BrowsingMode): BrowsingModeManager {
-        return DefaultBrowsingModeManager(initialMode, UserPreferences(this)) {}
     }
 
     final override fun onBackPressed() {
@@ -128,18 +115,20 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
         forceSearch: Boolean,
         flags: EngineSession.LoadUrlFlags = EngineSession.LoadUrlFlags.none()
     ) {
-        val mode = browsingModeManager.mode
-
-        val loadUrlUseCase = if (newTab) {
-            when (mode) {
-                BrowsingMode.Private -> components.tabsUseCases.addPrivateTab
-                BrowsingMode.Normal -> components.tabsUseCases.addTab
-            }
-        } else components.sessionUseCases.loadUrl
-
-        if ((!forceSearch && searchTermOrURL.isUrl()) || engine == null) {
-            loadUrlUseCase.invoke(searchTermOrURL.toNormalizedUrl(), flags)
-        }
+//        val mode = browsingModeManager.mode
+//
+//        val loadUrlUseCase = if (newTab) {
+//            when (mode) {
+//                BrowsingMode.Private -> components.tabsUseCases.addPrivateTab
+//                BrowsingMode.Normal -> components.tabsUseCases.addTab
+//            }
+//        } else components.sessionUseCases.loadUrl
+//
+//        if ((!forceSearch && searchTermOrURL.isUrl()) || engine == null) {
+//            loadUrlUseCase.invoke(searchTermOrURL.toNormalizedUrl(), flags)
+//        }
+        val loadUrlUseCase = components.sessionUseCases.loadUrl
+        loadUrlUseCase.invoke(searchTermOrURL.toNormalizedUrl(), flags)
     }
 
     private fun installPrintExtension() {

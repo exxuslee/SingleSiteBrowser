@@ -148,7 +148,7 @@ dependencies {
 //    implementation "org.mozilla.components:feature-contextmenu:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-app-links:$mozComponentsVersion"
 //    implementation "org.mozilla.components:feature-downloads:$mozComponentsVersion"
-    implementation "org.mozilla.components:feature-privatemode:$mozComponentsVersion"
+//    implementation "org.mozilla.components:feature-privatemode:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-customtabs:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-pwa:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-prompts:$mozComponentsVersion"
