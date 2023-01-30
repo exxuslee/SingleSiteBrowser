@@ -16,8 +16,6 @@ import mozilla.components.browser.icons.BrowserIcons
 import mozilla.components.browser.state.engine.EngineMiddleware
 import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.browser.storage.sync.PlacesHistoryStorage
-import mozilla.components.browser.thumbnails.ThumbnailsMiddleware
-import mozilla.components.browser.thumbnails.storage.ThumbnailStorage
 import mozilla.components.concept.engine.DefaultSettings
 import mozilla.components.concept.engine.Engine
 import mozilla.components.concept.engine.EngineSession
@@ -86,12 +84,10 @@ open class Components(private val applicationContext: Context) {
     // Storage
     private val lazyHistoryStorage = lazy { PlacesHistoryStorage(applicationContext) }
     val permissionStorage by lazy { GeckoSitePermissionsStorage(runtime, OnDiskSitePermissionsStorage(applicationContext)) }
-    val thumbnailStorage by lazy { ThumbnailStorage(applicationContext) }
 
     val store by lazy {
         BrowserStore(
                 middleware = listOf(
-                        ThumbnailsMiddleware(thumbnailStorage),
                         UndoMiddleware(),
                         LastAccessMiddleware()
                 ) + EngineMiddleware.create(engine)

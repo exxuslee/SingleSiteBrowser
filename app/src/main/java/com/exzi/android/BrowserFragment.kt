@@ -50,11 +50,7 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        (requireActivity() as BrowserActivity)
-            .openToBrowserAndLoad(
-                searchTermOrURL = "exzi.com",
-                newTab = false,
-            )
+        (requireActivity() as BrowserActivity).openToBrowserAndLoad(searchTermOrURL = "exzi.com")
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 }

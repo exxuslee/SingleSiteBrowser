@@ -100,33 +100,15 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
     @Suppress("LongParameterList")
     fun openToBrowserAndLoad(
         searchTermOrURL: String,
-        newTab: Boolean,
-        engine: SearchEngine? = null,
-        forceSearch: Boolean = false,
         flags: EngineSession.LoadUrlFlags = EngineSession.LoadUrlFlags.none()
     ) {
-        load(searchTermOrURL, newTab, engine, forceSearch, flags)
+        load(searchTermOrURL, flags)
     }
 
     private fun load(
         searchTermOrURL: String,
-        newTab: Boolean,
-        engine: SearchEngine?,
-        forceSearch: Boolean,
         flags: EngineSession.LoadUrlFlags = EngineSession.LoadUrlFlags.none()
     ) {
-//        val mode = browsingModeManager.mode
-//
-//        val loadUrlUseCase = if (newTab) {
-//            when (mode) {
-//                BrowsingMode.Private -> components.tabsUseCases.addPrivateTab
-//                BrowsingMode.Normal -> components.tabsUseCases.addTab
-//            }
-//        } else components.sessionUseCases.loadUrl
-//
-//        if ((!forceSearch && searchTermOrURL.isUrl()) || engine == null) {
-//            loadUrlUseCase.invoke(searchTermOrURL.toNormalizedUrl(), flags)
-//        }
         val loadUrlUseCase = components.sessionUseCases.loadUrl
         loadUrlUseCase.invoke(searchTermOrURL.toNormalizedUrl(), flags)
     }
