@@ -1,7 +1,5 @@
 package com.exzi.android.browser
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.app.Activity
 import android.graphics.PointF
@@ -9,9 +7,6 @@ import android.graphics.Rect
 import android.view.View
 import android.view.ViewConfiguration
 import androidx.core.animation.doOnEnd
-import androidx.core.graphics.contains
-import androidx.core.graphics.toPoint
-import androidx.core.view.isVisible
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import com.exzi.android.R
 import com.exzi.android.ext.isKeyboardVisible
@@ -20,7 +15,6 @@ import mozilla.components.browser.state.selector.selectedTab
 import mozilla.components.browser.state.state.TabSessionState
 import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.feature.tabs.TabsUseCases
-import mozilla.components.support.ktx.android.view.getRectWithViewLocation
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
