@@ -75,16 +75,15 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'com.google.android.material:material:1.8.0'
 
     // Support libraries
-    implementation "androidx.recyclerview:recyclerview:1.2.1"
+//    implementation "androidx.recyclerview:recyclerview:1.2.1"
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation "androidx.constraintlayout:constraintlayout:2.1.4"
     implementation "androidx.drawerlayout:drawerlayout:1.1.1"
     implementation "androidx.preference:preference-ktx:1.2.0"
-    implementation "androidx.palette:palette-ktx:1.0.0"
+//    implementation "androidx.palette:palette-ktx:1.0.0"
     implementation "androidx.annotation:annotation:1.5.0"
     implementation "androidx.appcompat:appcompat:1.6.0"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -106,16 +105,16 @@ dependencies {
     final def mozComponentsVersion = "110.0.20230107143316"
 
     // Mozilla compose components
-    implementation "org.mozilla.components:compose-awesomebar:$mozComponentsVersion"
+//    implementation "org.mozilla.components:compose-awesomebar:$mozComponentsVersion"
 
     // Mozilla concept components
-    implementation "org.mozilla.components:concept-storage:$mozComponentsVersion"
+//    implementation "org.mozilla.components:concept-storage:$mozComponentsVersion"
     implementation "org.mozilla.components:concept-engine:$mozComponentsVersion"
 //    implementation "org.mozilla.components:concept-menu:$mozComponentsVersion"
 //    implementation "org.mozilla.components:concept-toolbar:$mozComponentsVersion"
 //    implementation "org.mozilla.components:concept-tabstray:$mozComponentsVersion"
-    implementation "org.mozilla.components:concept-base:$mozComponentsVersion"
-    implementation "org.mozilla.components:concept-fetch:$mozComponentsVersion"
+//    implementation "org.mozilla.components:concept-base:$mozComponentsVersion"
+//    implementation "org.mozilla.components:concept-fetch:$mozComponentsVersion"
 //    implementation "org.mozilla.components:concept-awesomebar:$mozComponentsVersion"
 
     // Mozilla components
