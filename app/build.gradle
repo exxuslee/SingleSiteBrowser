@@ -90,17 +90,17 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 
-    final def daggerVersion = '2.38.1'
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    implementation "com.google.dagger:dagger-android:$daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
-    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
-    compileOnly 'javax.annotation:jsr250-api:1.0'
+//    final def daggerVersion = '2.38.1'
+//    implementation "com.google.dagger:dagger:$daggerVersion"
+//    implementation "com.google.dagger:dagger-android:$daggerVersion"
+//    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+//    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+//    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+//    compileOnly 'javax.annotation:jsr250-api:1.0'
 
-    final def butterKnifeVersion = '10.2.1'
-    implementation "com.jakewharton:butterknife:$butterKnifeVersion"
-    kapt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
+//    final def butterKnifeVersion = '10.2.1'
+//    implementation "com.jakewharton:butterknife:$butterKnifeVersion"
+//    kapt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
 
     final def mozComponentsVersion = "110.0.20230107143316"
 
