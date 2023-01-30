@@ -1,7 +1,6 @@
 package com.exzi.android
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,7 +30,6 @@ import mozilla.components.browser.thumbnails.BrowserThumbnails
 import mozilla.components.feature.app.links.AppLinksFeature
 import mozilla.components.feature.intent.ext.EXTRA_SESSION_ID
 import mozilla.components.feature.prompts.PromptFeature
-import mozilla.components.feature.session.PictureInPictureFeature
 import mozilla.components.feature.session.SessionFeature
 import mozilla.components.feature.session.SwipeRefreshFeature
 import mozilla.components.feature.sitepermissions.SitePermissionsFeature
@@ -62,7 +60,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
     private val promptsFeature = ViewBoundFeatureWrapper<PromptFeature>()
     private val sitePermissionsFeature = ViewBoundFeatureWrapper<SitePermissionsFeature>()
     private val swipeRefreshFeature = ViewBoundFeatureWrapper<SwipeRefreshFeature>()
-    private var pipFeature: PictureInPictureFeature? = null
 
     var customTabSessionId: String? = null
 
@@ -118,12 +115,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                 }),
             owner = this,
             view = view
-        )
-
-        pipFeature = PictureInPictureFeature(
-            store = store,
-            activity = requireActivity(),
-            tabId = customTabSessionId
         )
 
         appLinksFeature.set(
@@ -218,7 +209,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
 
     @VisibleForTesting
     internal fun observeRestoreComplete(store: BrowserStore, navController: NavController) {
-        val activity = activity as BrowserActivity
         consumeFlow(store) { flow ->
             flow.map { state -> state.restoreComplete }
                 .ifChanged()
@@ -322,8 +312,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         return requireContext().components.store.state.findCustomTabOrSelectedTab(customTabSessionId)
     }
 
-    override fun onHomePressed() = pipFeature?.onHomePressed() ?: false
-
     /**
      * Exit fullscreen mode when exiting PIP mode
      */
@@ -331,18 +319,6 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
         if (!session.content.pictureInPictureEnabled && session.content.fullScreen) {
             onBackPressed()
             fullScreenChanged(false)
-        }
-    }
-
-    final override fun onPictureInPictureModeChanged(enabled: Boolean) {
-        pipFeature?.onPictureInPictureModeChanged(enabled)
-    }
-
-    private fun viewportFitChange(layoutInDisplayCutoutMode: Int) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            val layoutParams = activity?.window?.attributes
-            layoutParams?.layoutInDisplayCutoutMode = layoutInDisplayCutoutMode
-            activity?.window?.attributes = layoutParams
         }
     }
 

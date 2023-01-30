@@ -142,7 +142,7 @@ dependencies {
 //    implementation "org.mozilla.components:feature-search:$mozComponentsVersion"
 
     implementation "org.mozilla.components:feature-tabs:$mozComponentsVersion"
-    implementation "org.mozilla.components:feature-session:$mozComponentsVersion"
+//    implementation "org.mozilla.components:feature-session:$mozComponentsVersion"
 //    implementation "org.mozilla.components:feature-toolbar:$mozComponentsVersion"
     implementation "org.mozilla.components:feature-intent:$mozComponentsVersion"
 //    implementation "org.mozilla.components:feature-contextmenu:$mozComponentsVersion"
