@@ -41,6 +41,7 @@ import mozilla.components.support.base.feature.ViewBoundFeatureWrapper
 import mozilla.components.support.ktx.android.view.exitImmersiveMode
 import mozilla.components.support.ktx.kotlinx.coroutines.flow.ifAnyChanged
 import mozilla.components.support.ktx.kotlinx.coroutines.flow.ifChanged
+import com.exzi.android.preferences.permission.SitePermissionOptionsStorage
 
 /**
  * Base fragment extended by [BrowserFragment].
@@ -160,7 +161,8 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                         it
                     )
                 },
-                store = store
+                store = store,
+                sitePermissionsRules = SitePermissionOptionsStorage(requireContext()).getSitePermissionsSettingsRules(),
             ),
             owner = this,
             view = view
