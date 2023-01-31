@@ -10,7 +10,6 @@ import androidx.core.view.GestureDetectorCompat
 
 interface SwipeGestureListener {
     fun onSwipeStarted(start: PointF, next: PointF): Boolean
-    fun onSwipeUpdate(distanceX: Float, distanceY: Float)
     fun onSwipeFinished(velocityX: Float, velocityY: Float)
 }
 
@@ -40,7 +39,6 @@ class SwipeGestureLayout @JvmOverloads constructor(
                 }
                 handledInitialScroll = true
             }
-            activeListener?.onSwipeUpdate(distanceX, distanceY)
             return activeListener != null
         }
 

@@ -69,27 +69,6 @@ class ToolbarGestureHandler(
         }
     }
 
-    override fun onSwipeUpdate(distanceX: Float, distanceY: Float) {
-        when (getDestination()) {
-            is Destination.Tab -> {}
-            is Destination.None -> {
-                // If there is no "next" tab to swipe to in the gesture direction, only do a
-                // partial animation to show that we are at the end of the tab list
-                val maxContentHidden = contentLayout.width * OVERSCROLL_HIDE_PERCENT
-                contentLayout.translationX = when (gestureDirection) {
-                    GestureDirection.RIGHT_TO_LEFT -> max(
-                        -maxContentHidden.toFloat(),
-                        contentLayout.translationX - distanceX
-                    ).coerceAtMost(0f)
-                    GestureDirection.LEFT_TO_RIGHT -> min(
-                        maxContentHidden.toFloat(),
-                        contentLayout.translationX - distanceX
-                    ).coerceAtLeast(0f)
-                }
-            }
-        }
-    }
-
     override fun onSwipeFinished(
         velocityX: Float,
         velocityY: Float
