@@ -1,4 +1,4 @@
-package com.exzi.android.browser
+package org.dextarde.pwa.browser
 
 import android.content.Context
 import android.graphics.PointF

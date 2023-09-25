@@ -1,4 +1,4 @@
-package com.exzi.android.utils
+package org.dextarde.pwa.utils
 
 import android.content.ClipData
 import android.content.ClipboardManager

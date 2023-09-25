@@ -1,13 +1,11 @@
-package com.exzi.android.components
+package org.dextarde.pwa.components
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.exzi.android.BrowserActivity
-import com.exzi.android.ext.components
-import com.exzi.android.preferences.UserPreferences
-import com.exzi.android.request.AppRequestInterceptor
-import com.exzi.android.utils.ClipboardHandler
-import com.exzi.android.R
+import org.dextarde.pwa.ext.components
+import org.dextarde.pwa.preferences.UserPreferences
+import org.dextarde.pwa.request.AppRequestInterceptor
+import org.dextarde.pwa.utils.ClipboardHandler
 import mozilla.components.browser.engine.gecko.GeckoEngine
 import mozilla.components.browser.engine.gecko.ext.toContentBlockingSetting
 import mozilla.components.browser.engine.gecko.fetch.GeckoViewFetchClient

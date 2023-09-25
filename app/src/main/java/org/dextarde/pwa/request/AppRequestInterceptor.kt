@@ -1,8 +1,8 @@
-package com.exzi.android.request
+package org.dextarde.pwa.request
 
 import android.content.Context
 import androidx.navigation.NavController
-import com.exzi.android.ext.components
+import org.dextarde.pwa.ext.components
 import mozilla.components.browser.errorpages.ErrorPages
 import mozilla.components.browser.errorpages.ErrorType
 import mozilla.components.concept.engine.EngineSession

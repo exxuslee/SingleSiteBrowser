@@ -1,7 +1,7 @@
-package com.exzi.android
+package org.dextarde.pwa
 
 import android.app.Application
-import com.exzi.android.components.Components
+import org.dextarde.pwa.components.Components
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

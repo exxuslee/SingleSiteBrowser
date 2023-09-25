@@ -1,4 +1,4 @@
-package com.exzi.android.ext
+package org.dextarde.pwa.ext
 
 import androidx.annotation.IdRes
 import androidx.navigation.NavController

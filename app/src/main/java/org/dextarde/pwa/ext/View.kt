@@ -1,6 +1,6 @@
 @file:Suppress("TooManyFunctions")
 
-package com.exzi.android.ext
+package org.dextarde.pwa.ext
 
 import android.graphics.Rect
 import android.os.Build

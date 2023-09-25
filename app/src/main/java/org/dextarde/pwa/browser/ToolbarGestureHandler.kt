@@ -1,4 +1,4 @@
-package com.exzi.android.browser
+package org.dextarde.pwa.browser
 
 import android.animation.ValueAnimator
 import android.app.Activity
@@ -8,16 +8,14 @@ import android.view.View
 import android.view.ViewConfiguration
 import androidx.core.animation.doOnEnd
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
-import com.exzi.android.R
-import com.exzi.android.ext.isKeyboardVisible
+import org.dextarde.pwa.ext.isKeyboardVisible
 import mozilla.components.browser.state.selector.getNormalOrPrivateTabs
 import mozilla.components.browser.state.selector.selectedTab
 import mozilla.components.browser.state.state.TabSessionState
 import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.feature.tabs.TabsUseCases
+import org.dextrade.pwa.R
 import kotlin.math.abs
-import kotlin.math.max
-import kotlin.math.min
 
 @Suppress("LargeClass", "TooManyFunctions")
 class ToolbarGestureHandler(

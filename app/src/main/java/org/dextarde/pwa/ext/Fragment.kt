@@ -1,11 +1,11 @@
-package com.exzi.android.ext
+package org.dextarde.pwa.ext
 
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
-import com.exzi.android.components.Components
+import org.dextarde.pwa.components.Components
 
 /**
  * Get the components of this application.

@@ -11,7 +11,7 @@ android {
 //        compose true
     }
     defaultConfig {
-        applicationId "com.exzi.android"
+        applicationId "org.dextrade.pwa"
         minSdkVersion 21
         targetSdkVersion 33
         versionCode 1
@@ -51,7 +51,7 @@ android {
     lint {
         abortOnError false
     }
-    namespace 'com.exzi.android'
+    namespace 'org.dextrade.pwa'
 }
 
 ext.abiCodes = ['arm64-v8a':1, x86:2, x86_64:3]

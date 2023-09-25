@@ -6,7 +6,7 @@
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
 
     <application
-        android:name=".BrowserApp"
+        android:name="org.dextarde.pwa.BrowserApp"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_rules"
         android:hardwareAccelerated="false"
@@ -17,7 +17,7 @@
         android:theme="@style/AppThemeNotActionBar">
 
         <activity
-            android:name=".BrowserActivity"
+            android:name="org.dextarde.pwa.BrowserActivity"
             android:configChanges="keyboard|keyboardHidden|mcc|mnc|orientation|screenSize|locale|layoutDirection|smallestScreenSize|screenLayout"
             android:exported="true"
             android:launchMode="singleTask"

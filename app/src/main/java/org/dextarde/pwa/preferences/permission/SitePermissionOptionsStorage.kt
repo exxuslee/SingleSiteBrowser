@@ -1,15 +1,15 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-package com.exzi.android.preferences.permission
+package org.dextarde.pwa.preferences.permission
 
 import android.content.Context
 import androidx.annotation.StringRes
 import androidx.annotation.VisibleForTesting
 import androidx.preference.PreferenceManager
-import com.exzi.android.R
 import mozilla.components.feature.sitepermissions.SitePermissionsRules
 import mozilla.components.support.ktx.android.content.isPermissionGranted
+import org.dextrade.pwa.R
 
 @Suppress("TooManyFunctions")
 class SitePermissionOptionsStorage(private val context: Context) {

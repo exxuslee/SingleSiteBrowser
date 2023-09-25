@@ -1,8 +1,8 @@
-package com.exzi.android.ext
+package org.dextarde.pwa.ext
 
 import android.content.Context
-import com.exzi.android.BrowserApp
-import com.exzi.android.components.Components
+import org.dextarde.pwa.BrowserApp
+import org.dextarde.pwa.components.Components
 
 // get app from context
 val Context.application: BrowserApp

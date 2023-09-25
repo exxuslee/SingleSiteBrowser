@@ -1,4 +1,4 @@
-package com.exzi.android
+package org.dextarde.pwa
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,9 +13,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.exzi.android.databinding.FragmentBrowserBinding
-import com.exzi.android.ext.components
-import com.exzi.android.preferences.UserPreferences
+import org.dextarde.pwa.ext.components
+import org.dextarde.pwa.preferences.UserPreferences
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.map
@@ -41,7 +40,9 @@ import mozilla.components.support.base.feature.ViewBoundFeatureWrapper
 import mozilla.components.support.ktx.android.view.exitImmersiveMode
 import mozilla.components.support.ktx.kotlinx.coroutines.flow.ifAnyChanged
 import mozilla.components.support.ktx.kotlinx.coroutines.flow.ifChanged
-import com.exzi.android.preferences.permission.SitePermissionOptionsStorage
+import org.dextarde.pwa.preferences.permission.SitePermissionOptionsStorage
+import org.dextrade.pwa.R
+import org.dextrade.pwa.databinding.FragmentBrowserBinding
 
 /**
  * Base fragment extended by [BrowserFragment].

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/rootContainer"
-    tools:context=".BrowserActivity">
+    tools:context="org.dextarde.pwa.BrowserActivity">
 
     <fragment
         android:id="@+id/container"

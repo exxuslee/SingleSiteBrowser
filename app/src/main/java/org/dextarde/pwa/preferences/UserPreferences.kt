@@ -1,4 +1,4 @@
-package com.exzi.android.preferences
+package org.dextarde.pwa.preferences
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE

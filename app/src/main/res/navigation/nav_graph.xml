@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/browserFragment"
-        android:name="com.exzi.android.BrowserFragment"
+        android:name="org.dextarde.pwa.BrowserFragment"
         app:exitAnim="@anim/fade_out"
         tools:layout="@layout/fragment_browser">
         <argument

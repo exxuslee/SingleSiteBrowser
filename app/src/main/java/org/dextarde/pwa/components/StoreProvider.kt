@@ -1,4 +1,4 @@
-package com.exzi.android.components
+package org.dextarde.pwa.components
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel

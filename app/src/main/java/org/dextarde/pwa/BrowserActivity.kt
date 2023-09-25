@@ -1,4 +1,4 @@
-package com.exzi.android
+package org.dextarde.pwa
 
 import android.content.ComponentCallbacks2
 import android.content.Context
@@ -9,11 +9,9 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.NavHostFragment
-import com.exzi.android.databinding.ActivityMainBinding
-import com.exzi.android.ext.components
-import com.exzi.android.preferences.UserPreferences
-import com.exzi.android.utils.PrintUtils
-import mozilla.components.browser.state.search.SearchEngine
+import org.dextarde.pwa.ext.components
+import org.dextarde.pwa.preferences.UserPreferences
+import org.dextarde.pwa.utils.PrintUtils
 import mozilla.components.browser.state.selector.selectedTab
 import mozilla.components.browser.state.state.WebExtensionState
 import mozilla.components.concept.engine.EngineSession
@@ -24,6 +22,8 @@ import mozilla.components.support.base.feature.ActivityResultHandler
 import mozilla.components.support.base.feature.UserInteractionHandler
 import mozilla.components.support.ktx.kotlin.toNormalizedUrl
 import mozilla.components.support.webextensions.WebExtensionPopupFeature
+import org.dextrade.pwa.R
+import org.dextrade.pwa.databinding.ActivityMainBinding
 
 
 /**

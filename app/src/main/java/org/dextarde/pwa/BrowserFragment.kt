@@ -1,11 +1,11 @@
-package com.exzi.android
+package org.dextarde.pwa
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.exzi.android.browser.ToolbarGestureHandler
-import com.exzi.android.ext.components
+import org.dextarde.pwa.browser.ToolbarGestureHandler
+import org.dextarde.pwa.ext.components
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import mozilla.components.browser.state.state.SessionState
 import mozilla.components.feature.tabs.WindowFeature
