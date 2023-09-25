@@ -11,6 +11,7 @@ import mozilla.components.browser.state.state.SessionState
 import mozilla.components.feature.tabs.WindowFeature
 import mozilla.components.support.base.feature.UserInteractionHandler
 import mozilla.components.support.base.feature.ViewBoundFeatureWrapper
+import org.dextrade.pwa.R
 
 /**
  * Fragment used for browsing the web within the main app.
@@ -50,7 +51,9 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        (requireActivity() as BrowserActivity).openToBrowserAndLoad(searchTermOrURL = "exzi.com")
+        (requireActivity() as BrowserActivity).openToBrowserAndLoad(
+            searchTermOrURL = getString(R.string.url_main)
+        )
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 }

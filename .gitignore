@@ -12,3 +12,10 @@
 .externalNativeBuild
 .cxx
 local.properties
+.idea
+/**/build/*
+/captures
+/local.properties
+.externalNativeBuild
+/app/release/app-release.aab
+/app/release/output-metadata.json
