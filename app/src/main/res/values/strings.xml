@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="url_main" translatable="false">http://dextrade-pwa.site/#onboarding/welcome</string>
+  <string name="url_main" translatable="false">https://pwa.dextrade.com/</string>
   <string name="app_name" translatable="false">DexTrade PWA</string>
   <string name="url_project" translatable="false">https://github.com/CookieJarApps/SmartCookieWeb-preview</string>
 
