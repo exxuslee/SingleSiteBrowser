@@ -150,7 +150,7 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                     gravity = 0,
                     shouldWidthMatchParent = true,
                     positiveButtonBackgroundColor = accentHighContrastColor,
-                    positiveButtonTextColor = R.color.photonWhite
+                    positiveButtonTextColor = R.color.black
                 ),
                 sessionId = customTabSessionId,
                 onNeedToRequestPermissions = { permissions ->
