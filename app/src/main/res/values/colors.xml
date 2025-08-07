@@ -58,4 +58,5 @@
     <color name="icon_inside_13">#333</color>
     <color name="icon_inside_14">#cd00ea</color>
     <color name="icon_inside_15">#03A9F4</color>
+    <color name="ic_mayonto_launcher_background">#FFFFFFFF</color>
 </resources>
