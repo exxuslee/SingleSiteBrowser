@@ -3,7 +3,6 @@ package com.cookiejarapps.android.smartcookieweb
 
 import android.app.Application
 import com.cookiejarapps.android.smartcookieweb.components.Components
-import com.cookiejarapps.android.smartcookieweb.theme.applyAppTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -19,7 +18,7 @@ import mozilla.components.support.locale.LocaleAwareApplication
 import mozilla.components.support.webextensions.WebExtensionSupport
 import java.util.concurrent.TimeUnit
 
-class BrowserApp : LocaleAwareApplication() {
+class BrowserApp : Application() {
 
     private val logger = Logger("BrowserApp")
 
@@ -35,9 +34,6 @@ class BrowserApp : LocaleAwareApplication() {
         Facts.registerProcessor(LogFactProcessor())
 
         components.engine.warmUp()
-        restoreBrowserState()
-
-        applyAppTheme(this)
 
         GlobalScope.launch(Dispatchers.IO) {
             components.webAppManifestStorage.warmUpScopes(System.currentTimeMillis())
@@ -80,15 +76,6 @@ class BrowserApp : LocaleAwareApplication() {
                 Logger.error("Failed to initialize web extension support", e)
             }
         }
-    }
-
-    private fun restoreBrowserState() = GlobalScope.launch(Dispatchers.Main) {
-        components.tabsUseCases.restore(components.sessionStorage)
-
-        components.sessionStorage.autoSave(components.store)
-            .periodicallyInForeground(interval = 30, unit = TimeUnit.SECONDS)
-            .whenGoingToBackground()
-            .whenSessionsChange()
     }
 
     override fun onTrimMemory(level: Int) {

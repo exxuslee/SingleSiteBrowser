@@ -9,25 +9,19 @@ import android.graphics.Rect
 import android.view.View
 import android.view.ViewConfiguration
 import androidx.core.animation.doOnEnd
-import androidx.core.graphics.contains
-import androidx.core.graphics.toPoint
 import androidx.core.view.isVisible
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import androidx.navigation.findNavController
 import com.cookiejarapps.android.smartcookieweb.R
 import com.cookiejarapps.android.smartcookieweb.browser.FakeTab
 import com.cookiejarapps.android.smartcookieweb.browser.SwipeGestureListener
-import com.cookiejarapps.android.smartcookieweb.ext.getRectWithScreenLocation
-import com.cookiejarapps.android.smartcookieweb.ext.getWindowInsets
 import com.cookiejarapps.android.smartcookieweb.ext.isKeyboardVisible
-import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
 import mozilla.components.browser.state.selector.getNormalOrPrivateTabs
 import mozilla.components.browser.state.selector.selectedTab
 import mozilla.components.browser.state.state.TabSessionState
 import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.feature.tabs.TabsUseCases
 import mozilla.components.support.ktx.android.view.getRectWithViewLocation
-import com.cookiejarapps.android.smartcookieweb.components.toolbar.ToolbarPosition
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
@@ -36,8 +30,6 @@ import kotlin.math.min
 class ToolbarGestureHandler(
     private val activity: Activity,
     private val contentLayout: View,
-    private val tabPreview: FakeTab,
-    private val toolbarLayout: View,
     private val store: BrowserStore,
     private val selectTabUseCase: TabsUseCases.SelectTabUseCase
 ) : SwipeGestureListener {
@@ -74,7 +66,6 @@ class ToolbarGestureHandler(
         @Suppress("ComplexCondition")
         return if (
             !activity.window.decorView.isKeyboardVisible() &&
-            start.isInToolbar() &&
             abs(dx) > touchSlop &&
             abs(dy) < abs(dx)
         ) {
@@ -88,16 +79,6 @@ class ToolbarGestureHandler(
     override fun onSwipeUpdate(distanceX: Float, distanceY: Float) {
         when (getDestination()) {
             is Destination.Tab -> {
-                tabPreview.translationX = when (gestureDirection) {
-                    GestureDirection.RIGHT_TO_LEFT -> min(
-                        windowWidth.toFloat() + previewOffset,
-                        tabPreview.translationX - distanceX
-                    ).coerceAtLeast(0f)
-                    GestureDirection.LEFT_TO_RIGHT -> max(
-                        -windowWidth.toFloat() - previewOffset,
-                        tabPreview.translationX - distanceX
-                    ).coerceAtMost(0f)
-                }
                 contentLayout.translationX = when (gestureDirection) {
                     GestureDirection.RIGHT_TO_LEFT -> min(
                         0f,
@@ -134,8 +115,6 @@ class ToolbarGestureHandler(
         val destination = getDestination()
         if (destination is Destination.Tab && isGestureComplete(velocityX)) {
             animateToNextTab(destination.tab)
-        } else {
-            animateCanceledGesture(velocityX)
         }
     }
 
@@ -176,18 +155,9 @@ class ToolbarGestureHandler(
             is Destination.Tab -> destination.tab.id
             is Destination.None -> return
         }
-
-        tabPreview.loadPreviewThumbnail(thumbnailId)
-        tabPreview.alpha = 1f
-        tabPreview.translationX = when (gestureDirection) {
-            GestureDirection.RIGHT_TO_LEFT -> windowWidth.toFloat() + previewOffset
-            GestureDirection.LEFT_TO_RIGHT -> -windowWidth.toFloat() - previewOffset
-        }
-        tabPreview.isVisible = true
     }
 
     private fun isGestureComplete(velocityX: Float): Boolean {
-        val previewWidth = tabPreview.getRectWithViewLocation().visibleWidth.toDouble()
         val velocityMatchesDirection = when (gestureDirection) {
             GestureDirection.RIGHT_TO_LEFT -> velocityX <= 0
             GestureDirection.LEFT_TO_RIGHT -> velocityX >= 0
@@ -195,8 +165,7 @@ class ToolbarGestureHandler(
         val reverseFling =
             abs(velocityX) >= minimumFlingVelocity && !velocityMatchesDirection
 
-        return !reverseFling && (previewWidth / windowWidth >= GESTURE_FINISH_PERCENT ||
-            abs(velocityX) >= minimumFlingVelocity)
+        return !reverseFling && (abs(velocityX) >= minimumFlingVelocity)
     }
 
     private fun getAnimator(finalContextX: Float, duration: Long): ValueAnimator {
@@ -206,10 +175,6 @@ class ToolbarGestureHandler(
             addUpdateListener { animator ->
                 val value = animator.animatedValue as Float
                 contentLayout.translationX = value
-                tabPreview.translationX = when (gestureDirection) {
-                    GestureDirection.RIGHT_TO_LEFT -> value + windowWidth + previewOffset
-                    GestureDirection.LEFT_TO_RIGHT -> value - windowWidth - previewOffset
-                }
             }
         }
     }
@@ -233,44 +198,8 @@ class ToolbarGestureHandler(
 
                 selectTabUseCase(tab.id)
 
-                val shortAnimationDuration =
-                    activity.resources.getInteger(android.R.integer.config_shortAnimTime)
-                tabPreview.animate()
-                    .alpha(0f)
-                    .setDuration(shortAnimationDuration.toLong())
-                    .setListener(object : AnimatorListenerAdapter() {
-                        override fun onAnimationEnd(animation: Animator) {
-                            tabPreview.isVisible = false
-                        }
-                    })
             }
         }.start()
-    }
-
-    private fun animateCanceledGesture(velocityX: Float) {
-        val duration = if (abs(velocityX) >= minimumFlingVelocity) {
-            CANCELED_FLING_ANIMATION_DURATION
-        } else {
-            CANCELED_GESTURE_ANIMATION_DURATION
-        }
-
-        getAnimator(0f, duration).apply {
-            doOnEnd {
-                tabPreview.isVisible = false
-            }
-        }.start()
-    }
-
-    private fun PointF.isInToolbar(): Boolean {
-        val toolbarLocation = toolbarLayout.getRectWithScreenLocation()
-        // In Android 10, the system gesture touch area overlaps the bottom of the toolbar, so
-        // lets make our swipe area taller by that amount
-        activity.window.decorView.getWindowInsets()?.let { insets ->
-            if (UserPreferences(activity).toolbarPosition == ToolbarPosition.BOTTOM.ordinal) {
-                toolbarLocation.top -= (insets.mandatorySystemGestureInsets.bottom - insets.stableInsetBottom)
-            }
-        }
-        return toolbarLocation.contains(toPoint())
     }
 
     private val Rect.visibleWidth: Int

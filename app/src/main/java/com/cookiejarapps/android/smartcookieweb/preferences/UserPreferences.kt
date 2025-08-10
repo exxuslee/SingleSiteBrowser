@@ -3,12 +3,6 @@ package com.cookiejarapps.android.smartcookieweb.preferences
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
-import com.cookiejarapps.android.smartcookieweb.browser.AddonSortType
-import com.cookiejarapps.android.smartcookieweb.browser.BookmarkSortType
-import com.cookiejarapps.android.smartcookieweb.settings.HomepageBackgroundChoice
-import com.cookiejarapps.android.smartcookieweb.settings.HomepageChoice
-import com.cookiejarapps.android.smartcookieweb.settings.ThemeChoice
-import com.cookiejarapps.android.smartcookieweb.components.toolbar.ToolbarPosition
 import mozilla.components.support.ktx.android.content.*
 
 class UserPreferences(appContext: Context): PreferencesHolder {
@@ -16,64 +10,23 @@ class UserPreferences(appContext: Context): PreferencesHolder {
     override val preferences: SharedPreferences =
         appContext.getSharedPreferences(SCW_PREFERENCES, MODE_PRIVATE)
 
-    // Saved values
-    var bookmarkFolder by booleanPreference("save_bookmark_folder", false)
-    var bookmarkFolderId by longPreference("save_bookmark_folder_id", -1L)
-    var shortcutDrawerOpen by booleanPreference("shortcut_drawer", true)
-    var lastKnownPrivate by booleanPreference("last_known_mode_private", false)
-    var firstLaunch by booleanPreference("first_launch", true)
-
     // Preferences
     var javaScriptEnabled by booleanPreference(JAVA_SCRIPT_ENABLED, true)
-    var showAddonsInBar by booleanPreference(SHOW_ADDONS_IN_BAR, false)
-    var searchEngineChoice by intPreference(SEARCH_ENGINE, 0)
     var customSearchEngine by booleanPreference(CUSTOM_SEARCH_ENGINE, false)
     var customSearchEngineURL by stringPreference(CUSTOM_SEARCH_ENGINE_URL, "")
-    var toolbarPosition by intPreference(TOOLBAR_POSITION, ToolbarPosition.TOP.ordinal)
-    var homepageType by intPreference(HOMEPAGE_TYPE, HomepageChoice.VIEW.ordinal)
     var customHomepageUrl by stringPreference(HOMEPAGE_URL, "")
-    var appThemeChoice by intPreference(APP_THEME_CHOICE, ThemeChoice.SYSTEM.ordinal)
-    var webThemeChoice by intPreference(WEB_THEME_CHOICE, ThemeChoice.SYSTEM.ordinal)
-    var homepageBackgroundChoice by intPreference(HOMEPAGE_BACKGROUND_CHOICE, HomepageBackgroundChoice.NONE.ordinal)
-    var homepageBackgroundUrl by stringPreference(HOMEPAGE_BACKGROUND_URL, "")
     var launchInApp by booleanPreference(LAUNCH_IN_APP, true)
     var customAddonCollection by booleanPreference(CUSTOM_ADDON_BOOL, false)
-    var shownCollectionDisclaimer by booleanPreference(SHOWN_ADDON_DISCLAIMER, false)
     var customAddonCollectionUser by stringPreference(COLLECTION_USER, "")
     var customAddonCollectionName by stringPreference(COLLECTION_NAME, "")
     var autoFontSize by booleanPreference(AUTO_FONT_SIZE, true)
     var fontSizeFactor by floatPreference(FONT_SIZE_FACTOR, 1f)
     var hideBarWhileScrolling by booleanPreference(HIDE_URL_BAR, true)
-    var swapDrawers by booleanPreference(SWAP_DRAWERS, false)
-    var stackFromBottom by booleanPreference(STACK_FROM_BOTTOM, false)
-    var showTabsInGrid by booleanPreference(SHOW_TABS_IN_GRID, false)
-    var swipeToRefresh by booleanPreference(SWIPE_TO_REFRESH, true)
+     var swipeToRefresh by booleanPreference(SWIPE_TO_REFRESH, true)
     var remoteDebugging by booleanPreference(REMOTE_DEBUGGING, false)
-    var promptExternalDownloader by booleanPreference(PROMPT_EXTERNAL_DOWNLOADER, false)
-    var addonSort by intPreference(WEB_THEME_CHOICE, AddonSortType.RATING.ordinal)
-    var showUrlProtocol by booleanPreference(SHOW_URL_PROTOCOL, false)
-    var searchSuggestionsEnabled by booleanPreference(SEARCH_SUGGESTIONS, true)
-    var safeBrowsing by booleanPreference(SAFE_BROWSING, true)
+     var safeBrowsing by booleanPreference(SAFE_BROWSING, true)
     var trackingProtection by booleanPreference(TRACKING_PROTECTION, true)
-    var showShortcuts by booleanPreference(SHOW_SHORTCUTS, true)
-    var loadShortcutIcons by booleanPreference(LOAD_SHORTCUT_ICONS, true)
     var trustThirdPartyCerts by booleanPreference(TRUST_THIRD_PARTY_CERTS, false)
-    var barAddonsList by stringPreference(BAR_ADDONS_LIST, "")
-    var bookmarkSortType by intPreference(BOOKMARK_SORT_TYPE, BookmarkSortType.MANUAL.ordinal)
-
-    // TODO: make these configurable & clean up duplicates
-    var shouldUseBottomToolbar: Boolean
-        get(){
-            return toolbarPosition == ToolbarPosition.BOTTOM.ordinal
-        }
-        set(value){
-            toolbarPosition = if(value) ToolbarPosition.BOTTOM.ordinal else ToolbarPosition.TOP.ordinal
-        }
-
-    val toolbarPositionType: ToolbarPosition
-        get(){
-            return if(toolbarPosition == ToolbarPosition.BOTTOM.ordinal) ToolbarPosition.BOTTOM else ToolbarPosition.TOP
-        }
 
     companion object {
         const val SCW_PREFERENCES = "scw_preferences"

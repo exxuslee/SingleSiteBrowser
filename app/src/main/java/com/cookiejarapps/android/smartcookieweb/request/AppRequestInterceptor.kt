@@ -9,8 +9,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.cookiejarapps.android.smartcookieweb.BrowserActivity
 import com.cookiejarapps.android.smartcookieweb.R
-import com.cookiejarapps.android.smartcookieweb.addons.AddonDetailsActivity
-import com.cookiejarapps.android.smartcookieweb.addons.AddonsActivity
 import com.cookiejarapps.android.smartcookieweb.browser.home.HomeFragmentDirections
 import com.cookiejarapps.android.smartcookieweb.ext.components
 import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
@@ -40,9 +38,6 @@ class AppRequestInterceptor(val context: Context) : RequestInterceptor {
         isDirectNavigation: Boolean,
         isSubframeRequest: Boolean
     ): InterceptionResponse? {
-        interceptXpiUrl(uri, hasUserGesture)?.let { response ->
-            return response
-        }
 
        var response = context.components.appLinksInterceptor.onLoadRequest(
            engineSession, uri, lastUri, hasUserGesture, isSameDomain, isRedirect,
@@ -91,32 +86,6 @@ class AppRequestInterceptor(val context: Context) : RequestInterceptor {
         return RequestInterceptor.ErrorResponse(errorPageUri)
     }
 
-    private fun interceptXpiUrl(
-        uri: String,
-        hasUserGesture: Boolean
-    ): InterceptionResponse? {
-        if (hasUserGesture && uri.startsWith("https://addons.mozilla.org") && !UserPreferences(
-                context
-            ).customAddonCollection) {
-
-            val matchResult = "https://addons.mozilla.org/firefox/downloads/file/([^\\s]+)/([^\\s]+\\.xpi)".toRegex().matchEntire(uri)
-            if (matchResult != null) {
-
-                matchResult.groupValues.getOrNull(1)?.let { addonId ->
-                    val intent = Intent(context, AddonsActivity::class.java)
-                    intent.putExtra("ADDON_ID", addonId)
-                    intent.putExtra("ADDON_URL", uri)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                    startActivity(context, intent, null)
-
-                    return InterceptionResponse.Deny
-                }
-            }
-        }
-
-        // In all other case we let the original request proceed.
-        return null
-    }
 
     private fun getErrorCategory(errorType: ErrorType): ErrorCategory = when (errorType) {
         ErrorType.UNKNOWN,

@@ -27,20 +27,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed" />
 
-    <com.cookiejarapps.android.smartcookieweb.search.awesomebar.AwesomeBarWrapper
-        android:id="@+id/awesome_bar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="4dp"
-        android:fadingEdge="horizontal"
-        android:fadingEdgeLength="40dp"
-        android:nestedScrollingEnabled="false"
-        android:requiresFadingEdge="vertical"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/pill_wrapper"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/top_barrier" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/top_barrier"
