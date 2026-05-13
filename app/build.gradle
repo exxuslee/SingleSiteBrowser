@@ -10,6 +10,13 @@ plugins {
 }
 
 
+ def localProperties = new Properties()
+ def localFile = rootProject.file('local.properties')
+ if (localFile.exists()) {
+     localFile.withInputStream { stream -> localProperties.load(stream) }
+ }
+
+
 android {
 
     compileSdkVersion 35
@@ -22,7 +29,7 @@ android {
     namespace 'com.cookiejarapps.android.smartcookieweb'
 
     defaultConfig {
-        applicationId "com.cookiejarapps.android.smartcookieweb"
+        applicationId "ua.kiev.intersystems.edpro.warranty"
         minSdkVersion 21
         targetSdkVersion 35
         // Increment by 4 with each update
@@ -40,8 +47,20 @@ android {
         jvmTarget = JavaVersion.VERSION_11
     }
 
+
+    signingConfigs {
+        create("release") {
+            storeFile = file(localProperties.getProperty("RELEASE_STORE_FILE"))
+            storePassword = localProperties.getProperty("RELEASE_STORE_PASSWORD")
+            keyAlias = localProperties.getProperty("RELEASE_KEY_ALIAS")
+            keyPassword = localProperties.getProperty("RELEASE_KEY_PASSWORD")
+            enableV1Signing = true
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -52,6 +71,10 @@ android {
     splits {
         abi {
             enable true
+            reset()
+
+            include "arm64-v8a", "x86_64"
+
             universalApk false
         }
     }
@@ -70,9 +93,8 @@ android {
 }
 
 def abiBaseMap = [
-        "arm64-v8a": 1,
-        "x86"      : 2,
-        "x86_64"   : 3
+        "arm64-v8a"  : 1,
+        "x86_64"     : 2
 ]
 
 androidComponents {

@@ -1,0 +1,117 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "ua.kiev.intersystems.edpro.warranty",
+  "variantName": "debug",
+  "elements": [
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "mips64"
+        }
+      ],
+      "attributes": [],
+      "versionCode": 128,
+      "versionName": "29.1",
+      "outputFile": "app-mips64-debug.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "armeabi"
+        }
+      ],
+      "attributes": [],
+      "versionCode": 128,
+      "versionName": "29.1",
+      "outputFile": "app-armeabi-debug.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "arm64-v8a"
+        }
+      ],
+      "attributes": [],
+      "versionCode": 1128,
+      "versionName": "29.1",
+      "outputFile": "app-arm64-v8a-debug.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "riscv64"
+        }
+      ],
+      "attributes": [],
+      "versionCode": 128,
+      "versionName": "29.1",
+      "outputFile": "app-riscv64-debug.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "armeabi-v7a"
+        }
+      ],
+      "attributes": [],
+      "versionCode": 128,
+      "versionName": "29.1",
+      "outputFile": "app-armeabi-v7a-debug.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "x86"
+        }
+      ],
+      "attributes": [],
+      "versionCode": 2128,
+      "versionName": "29.1",
+      "outputFile": "app-x86-debug.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "x86_64"
+        }
+      ],
+      "attributes": [],
+      "versionCode": 3128,
+      "versionName": "29.1",
+      "outputFile": "app-x86_64-debug.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "mips"
+        }
+      ],
+      "attributes": [],
+      "versionCode": 128,
+      "versionName": "29.1",
+      "outputFile": "app-mips-debug.apk"
+    }
+  ],
+  "elementType": "File",
+  "minSdkVersionForDexing": 21
+}
