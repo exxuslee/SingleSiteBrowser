@@ -1,32 +1,14 @@
 package com.cookiejarapps.android.smartcookieweb.request
 
 import android.content.Context
-import android.content.Intent
-import android.util.Log
-import androidx.core.content.ContextCompat.startActivity
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import com.cookiejarapps.android.smartcookieweb.BrowserActivity
-import com.cookiejarapps.android.smartcookieweb.R
-import com.cookiejarapps.android.smartcookieweb.browser.home.HomeFragmentDirections
 import com.cookiejarapps.android.smartcookieweb.ext.components
-import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
 import mozilla.components.browser.errorpages.ErrorPages
 import mozilla.components.browser.errorpages.ErrorType
 import mozilla.components.concept.engine.EngineSession
 import mozilla.components.concept.engine.request.RequestInterceptor
 import mozilla.components.concept.engine.request.RequestInterceptor.InterceptionResponse
-import java.lang.ref.WeakReference
 
-
-class AppRequestInterceptor(val context: Context) : RequestInterceptor {
-
-    private var navController: WeakReference<NavController>? = null
-
-    fun setNavController(navController: NavController) {
-        this.navController = WeakReference(navController)
-    }
+class AppRequestInterceptor(private val context: Context) : RequestInterceptor {
 
     override fun onLoadRequest(
         engineSession: EngineSession,
@@ -36,80 +18,27 @@ class AppRequestInterceptor(val context: Context) : RequestInterceptor {
         isSameDomain: Boolean,
         isRedirect: Boolean,
         isDirectNavigation: Boolean,
-        isSubframeRequest: Boolean
-    ): InterceptionResponse? {
-
-       var response = context.components.appLinksInterceptor.onLoadRequest(
-           engineSession, uri, lastUri, hasUserGesture, isSameDomain, isRedirect,
-           isDirectNavigation, isSubframeRequest
-       )
-
-        if (response == null && !isDirectNavigation) {
-            response = context.components.webAppInterceptor.onLoadRequest(
-                engineSession, uri, lastUri, hasUserGesture, isSameDomain, isRedirect,
-                isDirectNavigation, isSubframeRequest
-            )
-        }
-
-        return response
-    }
+        isSubframeRequest: Boolean,
+    ): InterceptionResponse? = context.components.appLinksInterceptor.onLoadRequest(
+        engineSession, uri, lastUri, hasUserGesture, isSameDomain, isRedirect,
+        isDirectNavigation, isSubframeRequest,
+    )
 
     override fun onErrorRequest(
         session: EngineSession,
         errorType: ErrorType,
-        uri: String?
+        uri: String?,
     ): RequestInterceptor.ErrorResponse {
-        val riskLevel = getErrorCategory(errorType)
-
-        if (uri == "about:homepage") {
-            /* This needs to be in onErrorRequest because onLoadRequest doesn't load on about pages due to a GeckoView bug
-            * We don't need to (and can't) check whether the URL was loaded by a link, whether the user entered the URL, or whether the browser opened it
-            * This doesn't matter though - GeckoView blocks web pages from loading about URLs already
-            * TODO: Option to focus on address bar when new tab is created
-            */
-            navController?.get()?.navigate(
-                HomeFragmentDirections.actionGlobalHome(
-                    focusOnAddressBar = false
-                )
-            )
-
-            return RequestInterceptor.ErrorResponse("resource://android/assets/homepage.html")
-        }
-
         val errorPageUri = ErrorPages.createUrlEncodedErrorPage(
             context = context,
             errorType = errorType,
             uri = uri,
-            htmlResource = riskLevel.htmlRes
+            htmlResource = getErrorCategory(errorType).htmlRes,
         )
-
         return RequestInterceptor.ErrorResponse(errorPageUri)
     }
 
-
     private fun getErrorCategory(errorType: ErrorType): ErrorCategory = when (errorType) {
-        ErrorType.UNKNOWN,
-        ErrorType.ERROR_CORRUPTED_CONTENT,
-        ErrorType.ERROR_CONTENT_CRASHED,
-        ErrorType.ERROR_CONNECTION_REFUSED,
-        ErrorType.ERROR_NO_INTERNET,
-        ErrorType.ERROR_NET_INTERRUPT,
-        ErrorType.ERROR_NET_TIMEOUT,
-        ErrorType.ERROR_NET_RESET,
-        ErrorType.ERROR_UNSAFE_CONTENT_TYPE,
-        ErrorType.ERROR_REDIRECT_LOOP,
-        ErrorType.ERROR_INVALID_CONTENT_ENCODING,
-        ErrorType.ERROR_MALFORMED_URI,
-        ErrorType.ERROR_FILE_NOT_FOUND,
-        ErrorType.ERROR_FILE_ACCESS_DENIED,
-        ErrorType.ERROR_PROXY_CONNECTION_REFUSED,
-        ErrorType.ERROR_OFFLINE,
-        ErrorType.ERROR_UNKNOWN_HOST,
-        ErrorType.ERROR_UNKNOWN_SOCKET_TYPE,
-        ErrorType.ERROR_UNKNOWN_PROXY_HOST,
-        ErrorType.ERROR_HTTPS_ONLY,
-        ErrorType.ERROR_UNKNOWN_PROTOCOL -> ErrorCategory.Network
-
         ErrorType.ERROR_SECURITY_BAD_CERT,
         ErrorType.ERROR_SECURITY_SSL,
         ErrorType.ERROR_BAD_HSTS_CERT,
@@ -119,17 +48,19 @@ class AppRequestInterceptor(val context: Context) : RequestInterceptor {
         ErrorType.ERROR_SAFEBROWSING_PHISHING_URI,
         ErrorType.ERROR_SAFEBROWSING_MALWARE_URI,
         ErrorType.ERROR_SAFEBROWSING_UNWANTED_URI -> ErrorCategory.Malware
+
+        else -> ErrorCategory.Network
     }
 
-    internal enum class ErrorCategory(val htmlRes: String) {
+    private enum class ErrorCategory(val htmlRes: String) {
         Network(NETWORK_ERROR_PAGE),
         SSL(SSL_ERROR_PAGE),
         Malware(MALWARE_ERROR_PAGE),
     }
 
     companion object {
-        internal const val NETWORK_ERROR_PAGE = "network_error_page.html"
-        internal const val SSL_ERROR_PAGE = "ssl_error_page.html"
-        internal const val MALWARE_ERROR_PAGE = "malware_error_page.html"
+        private const val NETWORK_ERROR_PAGE = "network_error_page.html"
+        private const val SSL_ERROR_PAGE = "ssl_error_page.html"
+        private const val MALWARE_ERROR_PAGE = "malware_error_page.html"
     }
 }
