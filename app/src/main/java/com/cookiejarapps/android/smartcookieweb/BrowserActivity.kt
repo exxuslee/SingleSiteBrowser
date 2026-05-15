@@ -9,16 +9,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.cookiejarapps.android.smartcookieweb.databinding.ActivityMainBinding
 import com.cookiejarapps.android.smartcookieweb.ext.components
-import mozilla.components.concept.engine.EngineSession
 import mozilla.components.concept.engine.EngineView
 import mozilla.components.feature.contextmenu.ext.DefaultSelectionActionDelegate
 import mozilla.components.support.base.feature.ActivityResultHandler
 import mozilla.components.support.base.feature.UserInteractionHandler
-import mozilla.components.support.ktx.kotlin.toNormalizedUrl
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-open class BrowserActivity : AppCompatActivity() {
+@OptIn(ExperimentalCoroutinesApi::class)
+class BrowserActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
+
+    private val browserFragment: BrowserFragment?
+        get() = supportFragmentManager.findFragmentById(R.id.browser_fragment) as? BrowserFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,10 +32,8 @@ open class BrowserActivity : AppCompatActivity() {
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-        supportFragmentManager.primaryNavigationFragment?.childFragmentManager?.fragments?.forEach {
-            if (it is UserInteractionHandler && it.onBackPressed()) {
-                return
-            }
+        if (browserFragment?.onBackPressed() == true) {
+            return
         }
         super.onBackPressed()
     }
@@ -55,18 +56,9 @@ open class BrowserActivity : AppCompatActivity() {
         }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        supportFragmentManager.primaryNavigationFragment?.childFragmentManager?.fragments?.forEach {
-            if (it is ActivityResultHandler && it.onActivityResult(requestCode, data, resultCode)) {
-                return
-            }
+        if (browserFragment?.onActivityResult(requestCode, data, resultCode) == true) {
+            return
         }
         super.onActivityResult(requestCode, resultCode, data)
-    }
-
-    fun load(
-        searchTermOrURL: String,
-        flags: EngineSession.LoadUrlFlags = EngineSession.LoadUrlFlags.none(),
-    ) {
-        components.sessionUseCases.loadUrl.invoke(searchTermOrURL.toNormalizedUrl(), flags)
     }
 }

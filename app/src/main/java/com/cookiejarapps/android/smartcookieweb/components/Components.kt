@@ -2,7 +2,7 @@ package com.cookiejarapps.android.smartcookieweb.components
 
 import android.content.Context
 import android.content.res.Configuration
-import com.cookiejarapps.android.smartcookieweb.preferences.UserPreferences
+import com.cookiejarapps.android.smartcookieweb.BuildConfig
 import com.cookiejarapps.android.smartcookieweb.request.AppRequestInterceptor
 import mozilla.components.browser.engine.gecko.GeckoEngine
 import mozilla.components.browser.engine.gecko.ext.toContentBlockingSetting
@@ -18,7 +18,6 @@ import mozilla.components.feature.prompts.PromptMiddleware
 import mozilla.components.feature.prompts.file.FileUploadsDirCleaner
 import mozilla.components.feature.session.SessionUseCases
 import mozilla.components.feature.sitepermissions.OnDiskSitePermissionsStorage
-import mozilla.components.feature.tabs.TabsUseCases
 import mozilla.components.feature.webcompat.WebCompatFeature
 import org.mozilla.geckoview.ContentBlocking
 import org.mozilla.geckoview.GeckoRuntime
@@ -40,34 +39,34 @@ open class Components(private val applicationContext: Context) {
     val appLinksInterceptor by lazy {
         AppLinksInterceptor(
             applicationContext,
-            launchInApp = { UserPreferences(applicationContext).launchInApp },
+            launchInApp = { BuildConfig.LAUNCH_IN_APP },
         )
     }
 
     private val engineSettings by lazy {
         DefaultSettings().apply {
             requestInterceptor = appRequestInterceptor
-            remoteDebuggingEnabled = UserPreferences(applicationContext).remoteDebugging
+            remoteDebuggingEnabled = BuildConfig.REMOTE_DEBUGGING
             supportMultipleWindows = false
-            enterpriseRootsEnabled = UserPreferences(applicationContext).trustThirdPartyCerts
-            if (!UserPreferences(applicationContext).autoFontSize) {
-                fontSizeFactor = UserPreferences(applicationContext).fontSizeFactor
+            enterpriseRootsEnabled = BuildConfig.TRUST_THIRD_PARTY_CERTS
+            if (!BuildConfig.AUTO_FONT_SIZE) {
+                fontSizeFactor = BuildConfig.FONT_SIZE_FACTOR
                 automaticFontSizeAdjustment = false
             }
             preferredColorScheme = darkEnabled()
-            javascriptEnabled = UserPreferences(applicationContext).javaScriptEnabled
+            javascriptEnabled = BuildConfig.JAVA_SCRIPT_ENABLED
         }
     }
 
     private val runtime by lazy {
         val runtimeSettings = GeckoRuntimeSettings.Builder()
-            .debugLogging(com.cookiejarapps.android.smartcookieweb.BuildConfig.DEBUG)
+            .debugLogging(BuildConfig.DEBUG)
             .contentBlocking(trackingPolicy.toContentBlockingSetting())
             .build()
 
         runtimeSettings.contentBlocking.setSafeBrowsing(safeBrowsingPolicy)
 
-        if (UserPreferences(applicationContext).safeBrowsing) {
+        if (BuildConfig.SAFE_BROWSING) {
             runtimeSettings.contentBlocking.setSafeBrowsingProviders(
                 ContentBlocking.GOOGLE_SAFE_BROWSING_PROVIDER,
                 ContentBlocking.GOOGLE_LEGACY_SAFE_BROWSING_PROVIDER,
@@ -107,14 +106,13 @@ open class Components(private val applicationContext: Context) {
     }
 
     val sessionUseCases by lazy { SessionUseCases(store) }
-    val tabsUseCases: TabsUseCases by lazy { TabsUseCases(store) }
 
     val fileUploadsDirCleaner: FileUploadsDirCleaner by lazy {
         FileUploadsDirCleaner { applicationContext.cacheDir }
     }
 
     private val trackingPolicy by lazy {
-        if (UserPreferences(applicationContext).trackingProtection) {
+        if (BuildConfig.TRACKING_PROTECTION) {
             EngineSession.TrackingProtectionPolicy.recommended()
         } else {
             EngineSession.TrackingProtectionPolicy.none()
@@ -122,7 +120,7 @@ open class Components(private val applicationContext: Context) {
     }
 
     private val safeBrowsingPolicy by lazy {
-        if (UserPreferences(applicationContext).safeBrowsing) {
+        if (BuildConfig.SAFE_BROWSING) {
             ContentBlocking.SafeBrowsing.DEFAULT
         } else {
             ContentBlocking.SafeBrowsing.NONE
