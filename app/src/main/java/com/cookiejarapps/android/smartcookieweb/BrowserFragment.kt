@@ -52,12 +52,18 @@ class BrowserFragment : Fragment(), UserInteractionHandler, ActivityResultHandle
         return binding.root
     }
 
+    private val startUrl: String
+        get() = arguments?.getString(ARG_URL)
+            ?: (activity as? BrowserActivity)?.intent?.getStringExtra(BrowserActivity.EXTRA_URL)
+            ?: BuildConfig.SITE_URL
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val store = requireContext().components.store
+        val url = startUrl
         if (store.state.selectedTab == null) {
             store.dispatch(
                 TabListAction.AddTabAction(
-                    createTab(url = BuildConfig.SITE_URL),
+                    createTab(url = url),
                     select = true,
                 ),
             )
@@ -71,11 +77,29 @@ class BrowserFragment : Fragment(), UserInteractionHandler, ActivityResultHandle
                         initializeFeatures(view)
                         browserInitialized = true
                     }
-                    val url = tab.content.url
-                    if (url.isBlank() || url == "about:blank") {
-                        requireContext().components.sessionUseCases.loadUrl(BuildConfig.SITE_URL)
+                    val tabUrl = tab.content.url
+                    if (tabUrl.isBlank() || tabUrl == "about:blank") {
+                        requireContext().components.sessionUseCases.loadUrl(url)
                     }
                 }
+        }
+    }
+
+    fun loadUrl(url: String) {
+        arguments = (arguments ?: Bundle()).apply {
+            putString(ARG_URL, url)
+        }
+        val store = requireContext().components.store
+        val selectedTab = store.state.selectedTab
+        if (selectedTab != null) {
+            requireContext().components.sessionUseCases.loadUrl(url, selectedTab.id)
+        } else {
+            store.dispatch(
+                TabListAction.AddTabAction(
+                    createTab(url = url),
+                    select = true,
+                ),
+            )
         }
     }
 
@@ -221,6 +245,8 @@ class BrowserFragment : Fragment(), UserInteractionHandler, ActivityResultHandle
     }
 
     companion object {
+        const val ARG_URL = "url"
+
         private const val REQUEST_KEY_PROMPT_PERMISSIONS = "promptFeature"
         private const val REQUEST_CODE_PROMPT_PERMISSIONS = 2
         private const val REQUEST_CODE_APP_PERMISSIONS = 3

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.commit
 import com.cookiejarapps.android.smartcookieweb.databinding.ActivityMainBinding
 import com.cookiejarapps.android.smartcookieweb.ext.components
 import mozilla.components.concept.engine.EngineView
@@ -36,6 +37,20 @@ class BrowserActivity : AppCompatActivity() {
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
             view.setPadding(insets.left, insets.top, insets.right, insets.bottom)
             windowInsets
+        }
+
+        if (savedInstanceState == null) {
+            val url = intent.getStringExtra(EXTRA_URL) ?: BuildConfig.SITE_URL
+            supportFragmentManager.commit {
+                replace(
+                    R.id.browser_fragment,
+                    BrowserFragment().apply {
+                        arguments = Bundle().apply {
+                            putString(BrowserFragment.ARG_URL, url)
+                        }
+                    },
+                )
+            }
         }
 
         onBackPressedDispatcher.addCallback(
@@ -69,10 +84,22 @@ class BrowserActivity : AppCompatActivity() {
             else -> super.onCreateView(parent, name, context, attrs)
         }
 
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        intent.getStringExtra(EXTRA_URL)?.let { url ->
+            browserFragment?.loadUrl(url)
+        }
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (browserFragment?.onActivityResult(requestCode, data, resultCode) == true) {
             return
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    companion object {
+        const val EXTRA_URL = "extra_url"
     }
 }

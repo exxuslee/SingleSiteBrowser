@@ -14,13 +14,10 @@
     android:supportsRtl="true"
     android:theme="@style/AppThemeNotActionBar">
 
-    <activity android:name=".BrowserActivity"
-        android:enableOnBackInvokedCallback="true"
-        android:launchMode="singleTask"
-        android:resizeableActivity="true"
-        android:supportsPictureInPicture="true"
-        android:configChanges="keyboard|keyboardHidden|mcc|mnc|orientation|screenSize|locale|layoutDirection|smallestScreenSize|screenLayout"
+    <activity
+        android:name=".HomeActivity"
         android:exported="true"
+        android:enableOnBackInvokedCallback="true"
         tools:targetApi="24">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -28,6 +25,15 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+
+    <activity android:name=".BrowserActivity"
+        android:enableOnBackInvokedCallback="true"
+        android:launchMode="singleTask"
+        android:resizeableActivity="true"
+        android:supportsPictureInPicture="true"
+        android:configChanges="keyboard|keyboardHidden|mcc|mnc|orientation|screenSize|locale|layoutDirection|smallestScreenSize|screenLayout"
+        android:exported="false"
+        tools:targetApi="24" />
 
   </application>
 

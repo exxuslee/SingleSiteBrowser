@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Whiteboard",
+    "package": "com.xbh.whiteboard",
+    "icon": "intech",
+    "description": "Додаток для інтерактивної дошки"
+  },
+  {
+    "title": "Equipify — Гарантія",
+    "url": "https://equipify.com.ua/index.php/servis-ta-garantiya",
+    "icon": "warranty",
+    "description": "Гарантія на обладнання"
+  },
+  {
+    "title": "MozaBook",
+    "url": "https://www.mozaweb.com/uk/mozaBook",
+    "icon": "bird",
+    "description": "Сервіс для MozaBook"
+  },
+  {
+    "title": "Sketchfab",
+    "url": "https://sketchfab.com/",
+    "icon": "ic_item_website",
+    "description": "Бібліотека 3D-моделей для браузера"
+  }
+]

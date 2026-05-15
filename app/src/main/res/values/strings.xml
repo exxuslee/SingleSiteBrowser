@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Equipify гарантія</string>
+    <string name="home_title">Оберіть категорію</string>
+    <string name="home_subtitle">Натисніть на потрібний пункт, щоб відкрити</string>
+    <string name="item_type_website">Сайт</string>
+    <string name="item_type_app">Додаток</string>
+    <string name="target_not_found">Не вдалося відкрити додаток</string>
+    <string name="target_not_installed">Додаток не встановлено</string>
 </resources>

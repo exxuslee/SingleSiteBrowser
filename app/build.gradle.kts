@@ -122,6 +122,7 @@ dependencies {
     implementation("androidx.annotation:annotation:1.10.0")
     implementation("androidx.appcompat:appcompat:1.7.1")
     implementation("androidx.fragment:fragment-ktx:1.8.9")
+    implementation("androidx.recyclerview:recyclerview:1.4.0")
 
     val mozComponentsVersion = "150.0"
 
