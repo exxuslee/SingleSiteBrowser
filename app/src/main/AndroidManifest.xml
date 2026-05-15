@@ -15,6 +15,7 @@
     android:theme="@style/AppThemeNotActionBar">
 
     <activity android:name=".BrowserActivity"
+        android:enableOnBackInvokedCallback="true"
         android:launchMode="singleTask"
         android:resizeableActivity="true"
         android:supportsPictureInPicture="true"
