@@ -43,6 +43,7 @@ class HomeActivity : AppCompatActivity() {
         startActivity(
             Intent(this, BrowserActivity::class.java).apply {
                 putExtra(BrowserActivity.EXTRA_URL, url)
+                addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
             },
         )
     }

@@ -39,8 +39,8 @@ class BrowserActivity : AppCompatActivity() {
             windowInsets
         }
 
+        val url = intent.getStringExtra(EXTRA_URL) ?: BuildConfig.SITE_URL
         if (savedInstanceState == null) {
-            val url = intent.getStringExtra(EXTRA_URL) ?: BuildConfig.SITE_URL
             supportFragmentManager.commit {
                 replace(
                     R.id.browser_fragment,
@@ -51,6 +51,8 @@ class BrowserActivity : AppCompatActivity() {
                     },
                 )
             }
+        } else {
+            browserFragment?.loadUrl(url)
         }
 
         onBackPressedDispatcher.addCallback(

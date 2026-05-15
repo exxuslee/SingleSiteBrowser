@@ -59,15 +59,7 @@ class BrowserFragment : Fragment(), UserInteractionHandler, ActivityResultHandle
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val store = requireContext().components.store
-        val url = startUrl
-        if (store.state.selectedTab == null) {
-            store.dispatch(
-                TabListAction.AddTabAction(
-                    createTab(url = url),
-                    select = true,
-                ),
-            )
-        }
+        ensureTabLoadsUrl(startUrl)
 
         consumeFlow(store) { flow ->
             flow.mapNotNull { it.selectedTab }
@@ -77,10 +69,6 @@ class BrowserFragment : Fragment(), UserInteractionHandler, ActivityResultHandle
                         initializeFeatures(view)
                         browserInitialized = true
                     }
-                    val tabUrl = tab.content.url
-                    if (tabUrl.isBlank() || tabUrl == "about:blank") {
-                        requireContext().components.sessionUseCases.loadUrl(url)
-                    }
                 }
         }
     }
@@ -89,17 +77,24 @@ class BrowserFragment : Fragment(), UserInteractionHandler, ActivityResultHandle
         arguments = (arguments ?: Bundle()).apply {
             putString(ARG_URL, url)
         }
+        ensureTabLoadsUrl(url)
+    }
+
+    private fun ensureTabLoadsUrl(url: String) {
         val store = requireContext().components.store
         val selectedTab = store.state.selectedTab
-        if (selectedTab != null) {
-            requireContext().components.sessionUseCases.loadUrl(url, selectedTab.id)
-        } else {
+        if (selectedTab == null) {
             store.dispatch(
                 TabListAction.AddTabAction(
                     createTab(url = url),
                     select = true,
                 ),
             )
+        } else {
+            val currentUrl = selectedTab.content.url
+            if (currentUrl.isBlank() || currentUrl == "about:blank" || currentUrl != url) {
+                requireContext().components.sessionUseCases.loadUrl(url, selectedTab.id)
+            }
         }
     }
 
