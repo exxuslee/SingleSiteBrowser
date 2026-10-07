@@ -90,6 +90,7 @@ android {
     lint {
         abortOnError = false
     }
+    compileSdkMinor = 2
 }
 
 val abiBaseMap = mapOf(
