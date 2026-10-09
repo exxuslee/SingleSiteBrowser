@@ -25,7 +25,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "ua.kiev.intersystems.edpro.warranty"
+        applicationId = "ua.kiev.intersystems.edpro.list"
         minSdk = 26
         targetSdk = 36
         versionCode = 128

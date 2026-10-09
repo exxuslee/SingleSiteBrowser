@@ -6,21 +6,15 @@
     "description": "Додаток для інтерактивної дошки"
   },
   {
+    "title": "Еквіпіфайко",
+    "package": "ua.kiev.intersystems.equipify.quiz",
+    "icon": "equipifyko",
+    "description": "Шкільна вікторина"
+  },
+  {
     "title": "Equipify — Гарантія",
     "url": "https://equipify.com.ua/index.php/servis-ta-garantiya",
     "icon": "warranty",
     "description": "Гарантія на обладнання"
-  },
-  {
-    "title": "MozaBook",
-    "url": "https://www.mozaweb.com/uk/mozaBook",
-    "icon": "bird",
-    "description": "Сервіс для MozaBook"
-  },
-  {
-    "title": "Sketchfab",
-    "url": "https://sketchfab.com/",
-    "icon": "sketchfab",
-    "description": "Бібліотека 3D-моделей для браузера"
   }
 ]

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Equipify гарантія</string>
+    <string name="app_name" translatable="false">Equipify</string>
     <string name="home_title">Оберіть категорію</string>
     <string name="home_subtitle">Натисніть на потрібний пункт, щоб відкрити</string>
     <string name="item_type_website">Сайт</string>
