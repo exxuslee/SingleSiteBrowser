@@ -48,8 +48,9 @@ class HomeActivity : AppCompatActivity() {
         )
     }
 
-    private fun launchExternalApp(packageName: String) {
-        val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
+    private fun launchExternalApp(packageNames: List<String>) {
+        val launchIntent = packageNames.firstNotNullOfOrNull { packageManager.getLaunchIntentForPackage(it) }
+
         if (launchIntent != null) {
             try {
                 startActivity(launchIntent)

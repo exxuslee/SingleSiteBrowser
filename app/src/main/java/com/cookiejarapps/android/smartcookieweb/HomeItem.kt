@@ -15,7 +15,7 @@ sealed class HomeItem {
     data class ExternalApp(
         override val title: String,
         override val icon: String,
-        val packageName: String,
+        val packageName: List<String>,
         override val description: String,
     ) : HomeItem()
 }

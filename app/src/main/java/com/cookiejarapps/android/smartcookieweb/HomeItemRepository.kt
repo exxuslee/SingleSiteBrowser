@@ -2,6 +2,7 @@ package com.cookiejarapps.android.smartcookieweb
 
 import android.content.Context
 import org.json.JSONArray
+import org.json.JSONObject
 
 object HomeItemRepository {
 
@@ -18,7 +19,7 @@ object HomeItemRepository {
                         HomeItem.ExternalApp(
                             title = title,
                             icon = icon,
-                            packageName = item.getString("package"),
+                            packageName = item.getStringList("package"),
                             description = item.optString("description", ""),
                         ),
                     )
@@ -34,4 +35,10 @@ object HomeItemRepository {
             }
         }
     }
+
+    private fun JSONObject.getStringList(key: String): List<String> =
+        when (val raw = get(key)) {
+            is JSONArray -> List(raw.length()) { raw.getString(it) }
+            else -> listOf(raw.toString())
+        }
 }
