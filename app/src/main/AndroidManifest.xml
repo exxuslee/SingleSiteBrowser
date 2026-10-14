@@ -4,9 +4,11 @@
 
   <uses-permission android:name="android.permission.INTERNET" />
 
-  <package android:name="com.xbh.whiteboard" />
-  <package android:name="com.dazzle.whiteboard" />
-  <package android:name="ua.kiev.intersystems.equipify.quiz" />
+  <queries>
+    <package android:name="com.xbh.whiteboard" />
+    <package android:name="com.dazzle.whiteboard" />
+    <package android:name="ua.kiev.intersystems.equipify.quiz" />
+  </queries>
 
   <application
     android:name=".BrowserApp"
